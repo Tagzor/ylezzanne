@@ -3,14 +3,32 @@
 <head>
 <meta charset="utf-8">
 <title>Ylezzanne</title>
+<link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css">
 <link href="styles/main.css" rel="stylesheet" type="text/css">
+<script src="SpryAssets/SpryMenuBar.js" type="text/javascript"></script>
 </head>
 
 <body>
 <div id="wrapper">
   <header id="top">
-    <h2>Ylezzanne</h2>
+    <table width="100%" border="1" align="center">
+      <tr>
+        <th height="66" colspan="3" scope="col">Ylezzanne</th>
+        <th width="15%" scope="col"><ul id="MenuBar1" class="MenuBarHorizontal">
+          <li><a class="MenuBarItemSubmenu" href="#">Profiilipilt</a>
+            <ul>
+              <li><a href="profiil.html">Profiil</a></li>
+              <li><a href="muudaparool.html">Muuda Parool</a></li>
+              <li><a href="statistika.html">Statistika</a></li>
+              <li><a href="sisselogimine.html">Log out</a></li>
+              </ul>
+            </li>
+          </ul>
+        </th>
+      </tr>
+	<table/>
   </header>
+
   <table width="100%" border="1" cellspacing="5" cellpadding="5">
   <tbody>
     <tr>
@@ -53,9 +71,9 @@
             <p>Graafik</p>
             <img src="images/graafik1.jpg" width="600" height="300" alt=""/>   
         </td>
-    </tr>
-  </tbody>
-</table>
+      </tr>
+    </tbody>
+  </table>
  
   <footer>
     <p>Ylezzanne</p>
