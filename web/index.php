@@ -20,8 +20,12 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 $app->get('/', function() use($app) {
   $app['monolog']->addDebug('logging output.');
-  return 'Hello';
+  return 'Hello world';
 });
+
+$app->get('/hello/{name}', function($name) use($app) { 
+    return 'Hello '.$app->escape($name); 
+}); 
 
 $app->get('/twig/{name}', function ($name) use ($app) {
     return $app['twig']->render('index.twig', array(
