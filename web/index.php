@@ -1,7 +1,7 @@
 <?php
 
 
-require('../vendor/autoload.php');
+require_once __DIR__.'/../vendor/autoload.php';
 
 $app = new Silex\Application();
 $app['debug'] = true;
@@ -17,12 +17,6 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 ));
 
 // Our web handlers
-
-$app->get('/', function() use($app) {
-  $app['monolog']->addDebug('logging output.');
-  return 'Hello world';
-});
-
 $app->get('/hello/{name}', function($name) use($app) { 
     return 'Hello '.$app->escape($name); 
 }); 
@@ -31,6 +25,11 @@ $app->get('/twig/{name}', function ($name) use ($app) {
     return $app['twig']->render('index.twig', array(
         'name' => $name,
     ));
+});
+
+$app->get('/', function() use($app) {
+  $app['monolog']->addDebug('logging output.');
+  return 'Hello world';
 });
 
 $app->run();
