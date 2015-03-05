@@ -29,7 +29,7 @@ $app->get('/twig/{name}', function ($name) use ($app) {
 
 $app->get('/', function() use($app) {
   $app['monolog']->addDebug('logging output.');
-  return 'Hello world';
+  return str_repeat('Hello', getenv('TIMES'));
 });
 
 $app->run();
