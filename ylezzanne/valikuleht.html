@@ -1,45 +1,67 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="bootstrap.css" rel="stylesheet">
-<link href="valikuleht.css" rel="stylesheet">
-<title>Vali m&auml;ng</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<link href="bootstrap.css" rel="stylesheet">-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link href="valikuleht.css" rel="stylesheet">
+	<title>Vali m&auml;ng</title>
 </head>
 
 <body>
 <!--Ma pean veel mõtlema, mismoodi ma selle drop-down menu normaalselt paremasse nurka lükkan. Idee on vähemalt lehel juba olemas.-->
-<p id="name">Ylezzanne</p>
-<div id="drop-down">
-	<ul>
-    	<li><img src="http://fc09.deviantart.net/fs70/f/2010/006/b/4/some_hand_drawn_guys_by_getILLUSIONIZED.jpg" alt="tyyp" style="width:100px; height:100px;">
-        	<ul><a href="profiil.html">Profiil</a></ul>
-          	<ul><a href="muudaparool.html">Muuda parool</a></ul>
-          	<ul><a href="sisselogimine.html">Log out</a></ul>
-      </li>
-</ul>
-</div>
 
+	<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class ="container">
+		<div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">ylezzanne</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">	
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" 
+					aria-expanded="false">Mina <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="profiil.html">Profiil</a></li>
+						<li><a href="muudaparool.html">Muuda parooli</a></li>
+						<li><a href="sisselogimine.html">Logi v&auml;lja</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	  </div>
+	</nav>
 
-<div class="container text-center">
-			<div class="row">
-			  <div class="col-lg-4">
-					<img src="http://platformed.info/platformed.info/wp-content/uploads/2014/03/super-mario-bros.gif" class="img-circle" style="width:100%;height:100%">
-					<a href="mang.html"><h4>Põhim&auml;ng</h4></a>
-			    <a href="statistika.html"><p>Statistika</p></a>
-				</div>
-				<div class="col-lg-4">
-					<img src="http://nokiainnovation.com/wp-content/uploads/2012/02/snake.png" class="img-circle" style="width:100%;height:100%">
-					<a href="ussikas.html"><h4>Veel mingi mäng</h4></a>
-					<a href="statistika2.html"><p>Statistika</p></a>
-				</div>
-				<div class="col-lg-4">
-					<img src="http://www.mobygames.com/images/shots/l/202973-elasto-mania-windows-screenshot-gravity-modifying-appless.gif" class="img-circle" style="width:100%;height:100%">
-					<a href="elasto_mania.html"><h4>Mingi üleslaetud mäng</h4></a>
-					<a href="statistika3.html"><p>Statistika</p></a>
-				</div>
-  </div>
-</div>
-
+	<div class = "container text-center">
+		<div class="row">
+			<div class="col-lg-4">
+				<img src="http://platformed.info/platformed.info/wp-content/uploads/2014/03/super-mario-bros.gif" class="img-circle" alt= "mang">	
+				<a href="mang.html"><h2>Põhim&auml;ng</h2></a>
+				<a href="statistika.html"><p>Statistika</p></a>
+			</div>
+			<div class="col-lg-4">
+				<img src="http://nokiainnovation.com/wp-content/uploads/2012/02/snake.png" class="img-circle" alt= "mang">
+				<a href="ussikas.html"><h2>Veel mingi mäng</h2></a>
+				<a href="statistika2.html"><p>Statistika</p></a>
+			</div>
+			<div class="col-lg-4">
+				<img src="http://www.mobygames.com/images/shots/l/202973-elasto-mania-windows-screenshot-gravity-modifying-appless.gif" class="img-circle" alt= "mang">
+				<a href="elasto_mania.html"><h2>Mingi üleslaetud mäng</h2></a>
+				<a href="statistika3.html"><p>Statistika</p></a>
+			</div>
+		</div>
+	</div>
+	
 </body>
 </html>
