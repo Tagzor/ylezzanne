@@ -10,10 +10,11 @@ body{
 	padding-top: 100px;
 }
 
-body.profiil{
+body.liikumisega{
 	overflow-x: hidden;
 }
 
+@media screen and (max-width: 767px) {
 .row-offcanvas {
     position: relative;
     -webkit-transition: all .25s ease-out;
@@ -21,13 +22,26 @@ body.profiil{
             transition: all .25s ease-out;
 }
 
+.row-offcanvas-right {
+    right: 0;
+}
+
 .row-offcanvas-left {
     left: 0;
+}
+
+.row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -50%; /* 6 columns */
 }
 
 .row-offcanvas-left
   .sidebar-offcanvas {
     left: -50%; /* 6 columns */
+}
+
+.row-offcanvas-right.active {
+    right: 50%; /* 6 columns */
 }
 
 .row-offcanvas-left.active {
@@ -38,4 +52,5 @@ body.profiil{
     position: absolute;
     top: 0;
     width: 50%; /* 6 columns */
+}
 }
