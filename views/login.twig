@@ -1,0 +1,23 @@
+﻿{% extends 'ylezzanne.html.twig' %}
+
+{% block content %}
+<div class="container">
+	<form class="form-signin">
+	        <h2 class="form-signin-heading">Sisselogimine</h2>
+	        <label for="inputUsername" class="sr-only">Kasutajanimi</label>
+	        <input type="text" id="inputUsername" class="form-control" placeholder="Kasutajanimi" required autofocus>
+	        <label for="inputPassword" class="sr-only">Parool</label>
+	        <input type="password" id="inputPassword" class="form-control" placeholder="Parool" required>
+	        <!-- Teeme mingi küpsiste pulli ka?
+		<div class="checkbox">
+	          <label>
+	            <input type="checkbox" value="remember-me"> Remember me
+	          </label>
+	        </div>
+		-->
+	        <button class="btn btn-lg btn-primary btn-block" type="submit">Logi sisse</button>
+		<button type="button" class="btn btn-info btn-block"><img src="id_pildid/id-kaart.png" alt="mobiilid">Sisene Mobiil-IDga</button>
+		<button type="button" class="btn btn-info btn-block"><img src="id_pildid/mobiil-id.png" alt="mobiilid">Sisene Mobiil-IDga</button>
+	</form>
+</div>
+{% endblock %}

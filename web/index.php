@@ -54,8 +54,7 @@ $app->get('/twig/{name}', function ($name) use ($app) {
 
 $app->get('/', function() use($app) {
   $app['monolog']->addDebug('logging output.');
-  //return str_repeat('Hello', getenv('TIMES'));
-  return $app->redirect('/hello');
+  return $app['twig']->render('login.twig');
 });
 
 $app->run();
