@@ -42,8 +42,10 @@ $app->get('/db/', function() use($app) {
   ));
 });
 
-$app->get('/hello/{name}', function($name) use($app) { 
-    return 'Hello '.$app->escape($name); 
+$app->get('/user/{name}', function ($name) use ($app) {
+    return $app['twig']->render('index.twig', array(
+        'name' => $name,
+    ));
 }); 
 
 $app->get('/twig/{name}', function ($name) use ($app) {
