@@ -43,7 +43,7 @@ $app->get('/db/', function() use($app) {
 });
 
 $app->get('/user/{name}', function ($name) use ($app) {
-    return $app['twig']->render('index.twig', array(
+    return $app['twig']->render('user.twig', array(
         'name' => $name,
     ));
 }); 
