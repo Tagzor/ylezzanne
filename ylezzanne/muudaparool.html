@@ -1,12 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link href="valikuleht.css" rel="stylesheet">
+	<title>Muuda parooli</title>
+<!--
 <title>Kolmas vaade</title>
 <meta charset="utf-8">
 <script src="SpryAssets/SpryMenuBar.js" type="text/javascript"></script>
 <link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css">
+-->
 </head>
 <body>
+<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class ="container">
+		<div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">ylezzanne</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">	
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" 
+					aria-expanded="false">Mina <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="profiil.html">Profiil</a></li>
+						<li><a href="muudaparool.html">Muuda parooli</a></li>
+						<li><a href="statistika.html">Statistika</a></li>
+						<li><a href="sisselogimine.html">Logi v&auml;lja</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	  </div>
+	</nav>
+	
+	<div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-left">
+
+        <div class="col-xs-12">
+          <p class="pull-left visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Men&uuml;&uuml;</button>
+          </p>
+		  <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+			<div class="list-group">
+				<a href="#" class="list-group-item active">men&uuml;&uuml; siia alla?</a>
+				<a href="#" class="list-group-item">nupp</a>
+				<a href="#" class="list-group-item">nupp</a>
+				<a href="#" class="list-group-item">nupp</a>
+				<a href="#" class="list-group-item">nupp</a>
+				<a href="#" class="list-group-item">nupp</a>
+				<a href="#" class="list-group-item">nupp</a>
+			</div>
+		  </div>
+          <div class="jumbotron col-xs-offset-0 col-sm-offset-3">
+				<p>Funktsionaalsus alles tuleb.</p>
+          </div>
+		</div>
+      </div>
+	</div>
+<!--
 <table width="100%" border="1" align="center">
   <tr>
     <th height="66" colspan="2" scope="col">ylezzanne</th>
@@ -74,5 +139,7 @@
 <script type="text/javascript">
 var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
 </script>
+-->
+<script src="offcanvas.js"></script>
 </body>
 </html>
