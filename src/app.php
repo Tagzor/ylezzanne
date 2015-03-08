@@ -53,7 +53,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
 				),
 				'secured' => array(
 						'pattern' => '^.*$',
-						'form' => array('login_path' => '/login', 'check_path' => '/login_check', 'default_target_path'=> '/db'),
+						'form' => array('login_path' => '/login', 'check_path' => '/login_check'),
 						'logout' => array(
 							'logout_path' => '/logout',
 						),
