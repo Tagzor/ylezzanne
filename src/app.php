@@ -49,7 +49,7 @@ $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
 		'security.firewalls' => array(
 				'login' => array(
-					'pattern' => '^/login$',
+					'pattern' => '^/login$','^/eid$','^/mid$'
 				),
 				'secured' => array(
 						'pattern' => '^.*$',
