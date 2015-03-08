@@ -17,11 +17,11 @@ class UserProvider implements UserProviderInterface
 	 *
 	 */
 	protected $pdo;
- 
-    public function __construct( $pdo)
-    {
-        $this->pdo = $pdo;
-    }
+	
+	
+	public function __construct(Pdo $pdo) {
+		$this->pdo = $pdo;
+	}
  
     public function loadUserByUsername($username)
     {

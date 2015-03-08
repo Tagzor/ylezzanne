@@ -30,6 +30,8 @@ $app->register ( new Herrera\Pdo\PdoServiceProvider (), array (
 // Register the SessionProvider.
 $app->register(new Silex\Provider\SessionServiceProvider());
 
+
+
 // Register the SecurityServiceProvider.
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
 		'security.firewalls' => array(
@@ -46,7 +48,8 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
 // 				            'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='),
 // 				        ),
 						'users' => $app->share(function() use ($app) {
-							return new Ylezzanne\Dao\UserProvider($app['pdo']);
+							$pdo= $app['pdo'];
+							return new Ylezzanne\Dao\UserProvider($pdo);
 						}),
 				),
 		),
