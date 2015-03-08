@@ -3,7 +3,11 @@
 {% block content %}
 <div class="container">
 	<form class="form-signin" action="{{ path('login_check') }}" method="post">
-	        {{ error }}
+
+			{% if error %}
+			    {{ error }}
+			{% endif %}
+	        
 	        <h2 class="form-signin-heading">Sisselogimine</h2>
 	        
 	        <label for="username" class="sr-only">Kasutajanimi</label>
