@@ -27,6 +27,19 @@ $app->register ( new Herrera\Pdo\PdoServiceProvider (), array (
 		'pdo.password' => $dbopts ["pass"] 
 ) );
 
+$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
+		'db.options' => array (
+				'mysql_read' => array(
+						'driver'    => 'pdo_pgsql',
+						'host'      => $dbopts ["host"],
+						'dbname'    => ltrim ( $dbopts ["path"], '/' ) ,
+						'user'      => $dbopts ["user"],
+						'password'  => $dbopts ["pass"],
+						'charset'   => 'utf8',
+				),
+			),
+) );
+
 // Register the SessionProvider.
 $app->register(new Silex\Provider\SessionServiceProvider());
 
@@ -48,7 +61,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
 // 				            'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='),
 // 				        ),
 						'users' => $app->share(function() use ($app) {
-							return new Ylezzanne\Dao\UserProvider($app['pdo']);
+							return new Ylezzanne\Dao\UserProvider($app['db']);
 						}),
 				),
 		),

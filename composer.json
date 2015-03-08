@@ -5,7 +5,8 @@
     "twig/twig": "~1.0",
     "herrera-io/silex-pdo": "1.*",
     "symfony/security": "~2.3",
-    "symfony/twig-bridge": "~2.3"
+    "symfony/twig-bridge": "~2.3",
+    "doctrine/dbal:~2.2"
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*"
