@@ -1,4 +1,5 @@
 <?php
+use Symfony\Component\HttpFoundation\Request;
 
 // define controllers for a twig
 $twig = $app['controllers_factory'];
