@@ -54,9 +54,10 @@ $app->get ( '/login', function (Request $request) use($app) {
 	) );
 } );
 
-$app->get ( '/tbd', function () use($app) {
-	$app ['monolog']->addDebug ( 'logging output.' );
-	return $app ['twig']->render ( 'tbd.twig' );
+$app->get ( '/tbd/{name}', function ($name) use($app) {
+	return $app ['twig']->render ( 'tbd.twig', array (
+			'name' => $name 
+	) );
 } );
 
 $app->get ( '/', function () use($app) {
