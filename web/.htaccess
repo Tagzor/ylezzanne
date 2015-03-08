@@ -1,0 +1,4 @@
+FallbackResource /index.php
+<IfModule php5_module>
+	name "Ylezzanne"
+</IfModule>
