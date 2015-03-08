@@ -58,8 +58,12 @@ $app->get('/login', function(Request $request) use ($app) {
 });
 
 $app->get('/', function() use($app) {
-	if ($app['security']->isGranted('ROLE_ADMIN')) {
-		return new RedirectResponse('/db');
+	$token = $app['security']->getToken();
+	if (null !== $token) {
+		$user = $token->getUser();
+		return $app['twig']->render('user.twig', array(
+        'name' => $user->getUsername(),
+    ));
 	}	
   $app['monolog']->addDebug('logging output.');
   return $app['twig']->render('login.twig');
