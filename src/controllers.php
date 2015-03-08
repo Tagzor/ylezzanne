@@ -54,6 +54,12 @@ $app->get ( '/login', function (Request $request) use($app) {
 	) );
 } );
 
+$app->get ( '/eid', function () use($app) {
+	
+	$app ['monolog']->addDebug ( 'logging output.' );
+	return $app ['twig']->render ( 'eid.twig');
+} );
+
 $app->get ( '/', function () use($app) {
 	$token = $app ['security']->getToken ();
 	if (null !== $token) {
@@ -61,40 +67,6 @@ $app->get ( '/', function () use($app) {
 		return $app ['twig']->render ( 'user.twig', array (
 				'name' => $user->getUsername () 
 		) );
-	}
-	$app ['monolog']->addDebug ( 'logging output.' );
-	return $app ['twig']->render ( 'login.twig' );
-} );
-
-$app->get ( '/eid', function () use($app) {
-	ini_set('display_errors', 'stderr');
-	mb_internal_encoding("UTF-8");
-	error_reporting(E_ALL);// | E_STRICT
-	
-	require_once("openid.ee-authentication.php");
-	
-	if (isset ( $msg ))
-		echo "<div class=\"alert\">$msg</div>";
-	if (isset ( $error ))
-		echo "<div class=\"error\">$error</div>";
-	if (isset ( $success ))
-		echo "<div class=\"success\">$success</div>";
-		
-		// Vaatame, mis muutujad olemas on ...
-	if (! empty ( $_SESSION )) {
-		echo "<h2>Massiivi \$_SESSION sisu:</h2>";
-		echo "<div class='alert'>";
-		foreach ( $_SESSION as $k => $v )
-			echo "$k = $v <br />";
-		echo "</div>";
-	}
-	
-	if (isset ( $_GET ["action"] ) and $_GET ["action"] == "finishAuth") {
-		echo "<h2>OpenID teegi töö tulemus:</h2>";
-		echo "<div class='alert'>";
-		foreach ( $_GET as $k => $v )
-			echo "$k = $v <br />";
-		echo "</div>";
 	}
 	$app ['monolog']->addDebug ( 'logging output.' );
 	return $app ['twig']->render ( 'login.twig' );
