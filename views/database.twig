@@ -1,9 +1,20 @@
-<p>Got these rows from the database:</p>
+{% extends 'ylezzanne.html.twig' %}
+
+{% set active = 'name' %}
+
+{% block content %}
+<div class="container">
+
+<p>Andmebaasi TEST:</p>
 
 <ul>
 {% for n in names %}
   <li> {{ n.name }} </li>
 {% else %}
-  <li>Nameless!</li>
+  <li>NIMETU</li>
 {% endfor %}
 </ul>
+
+/div>
+
+{% endblock %}

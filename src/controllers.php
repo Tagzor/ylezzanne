@@ -26,7 +26,7 @@ $game->get ( '/', function () {
 
 // define controllers for a game
 $statistics = $app ['controllers_factory'];
-$statistics->get ( '/db/', function () use($app) {
+$statistics->get ( '/', function () use($app) {
 	$st = $app ['pdo']->prepare ( 'SELECT name FROM test_table' );
 	$st->execute ();
 	
@@ -54,10 +54,9 @@ $app->get ( '/login', function (Request $request) use($app) {
 	) );
 } );
 
-$app->get ( '/eid', function () use($app) {
-	
+$app->get ( '/tbd', function () use($app) {
 	$app ['monolog']->addDebug ( 'logging output.' );
-	return $app ['twig']->render ( 'eid.twig');
+	return $app ['twig']->render ( 'tbd.twig' );
 } );
 
 $app->get ( '/', function () use($app) {
