@@ -47,6 +47,13 @@ $app->mount('/db', $statistics);
 
 
 // define "global" controllers
+$app->get('/login', function(Request $request) use ($app) {
+	return $app['twig']->render('login.twig', array(
+			'error'         => $app['security.last_error']($request),
+			'last_username' => $app['session']->get('_security.last_username'),
+	));
+});
+
 $app->get('/', function() use($app) {
   $app['monolog']->addDebug('logging output.');
   return $app['twig']->render('login.twig');
