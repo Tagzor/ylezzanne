@@ -1,6 +1,6 @@
 <?php
 
-namespace Ylezanne\Entity;
+namespace Ylezzanne\Dao;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;

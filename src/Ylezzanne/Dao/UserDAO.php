@@ -1,8 +1,8 @@
 <?php
 
-namespace Ylezanne\Dao;
+namespace Ylezzanne\Dao;
 
-use Herrera\Pdo\PdoServiceProvider;
+use Herrera\Pdo\Pdo;
 use Ylezzanne\Dao\User;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -12,10 +12,10 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 /**
 * User DAO
 */
-class UserDAO implements RepositoryInterface, UserProviderInterface {
+class UserDAO implements UserProviderInterface {
 	/**
 	 *
-	 * @var \Herrera\Pdo\PdoServiceProvider;
+	 * @var \Herrera\Pdo\Pdo;
 	 *
 	 */
 	protected $pdo;
@@ -26,7 +26,7 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 	 */
 	protected $encoder;
 	
-	public function __construct(PdoServiceProvider $pdo, $encoder) {
+	public function __construct(Pdo $pdo, $encoder) {
 		$this->pdo = $pdo;
 		$this->encoder = $encoder;
 	}
