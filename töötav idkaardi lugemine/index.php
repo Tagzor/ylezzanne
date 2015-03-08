@@ -57,7 +57,7 @@ Parool:<br>
           </label>
         </div>-->
         <button class="btn btn-lg btn-primary btn-block" type="submit">Logi sisse</button>
-		<a href="?action=eid-login"><button type="button" class="btn btn-info btn-block"><img src="images/id-kaart.png" alt="idkaart">Sisene ID.kaardiga</button></a>
+		<a href="?action=eid-login"><button type="button" class="btn btn-info btn-block"><img src="images/id-kaart.png" alt="idkaart"></button></a>
 		<a href="?action=mid-login"><button type="button" class="btn btn-info btn-block"><img src="images/mobiil-id.png" alt="mobiilid">Sisene Mobiil-IDga</button></a>
       </form>
 <li>Sessiooni <a href="?action=logout">lõpetamine</a></li>
