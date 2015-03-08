@@ -50,6 +50,7 @@ $app->mount('/db', $statistics);
 
 // define "global" controllers
 $app->get('/login', function(Request $request) use ($app) {
+	
 	return $app['twig']->render('login.twig', array(
 			'error'         => $app['security.last_error']($request),
 			'last_username' => $app['session']->get('_security.last_username'),
@@ -57,6 +58,9 @@ $app->get('/login', function(Request $request) use ($app) {
 });
 
 $app->get('/', function() use($app) {
+	if ($app['security']->isGranted('ROLE_ADMIN')) {
+		return new RedirectResponse('/db');
+	}	
   $app['monolog']->addDebug('logging output.');
   return $app['twig']->render('login.twig');
 });
