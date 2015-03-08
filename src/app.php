@@ -1,7 +1,6 @@
 <?php
 use Silex\Application;
 use Silex\Provider;
-use Symfony\Component\HttpFoundation\Request;
 
 //
 // Application setup
@@ -24,6 +23,9 @@ $app->register ( new Herrera\Pdo\PdoServiceProvider (), array (
 		'pdo.username' => $dbopts ["user"],
 		'pdo.password' => $dbopts ["pass"] 
 ) );
+
+// Register the SessionProvider.
+$app->register(new Silex\Provider\SessionServiceProvider());
 
 // Register the SecurityServiceProvider.
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
