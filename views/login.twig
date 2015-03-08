@@ -17,8 +17,8 @@
 	        <input type="password" id="password" name="_password" value="" class="form-control" placeholder="Parool" required />
 	        
 	    <button class="btn btn-lg btn-primary btn-block" type="submit">Logi sisse</button>
-		<a href="{{ path('eid') }}"><button type="button" class="btn btn-info btn-block"><img src="{{ app.request.basepath }}/images/id-kaart.png" alt="mobiilid"></button></a>
-		<a href="{{ path('mid') }}"><button type="button" class="btn btn-info btn-block"><img src="{{ app.request.basepath }}/images/mobiil-id.png" alt="mobiilid"></button></a>
+		<a href="/eid"><button type="button" class="btn btn-info btn-block"><img src="{{ app.request.basepath }}/images/id-kaart.png" alt="mobiilid"></button></a>
+		<a href="/mid"><button type="button" class="btn btn-info btn-block"><img src="{{ app.request.basepath }}/images/mobiil-id.png" alt="mobiilid"></button></a>
 	</form>
 </div>
 {% endblock %}
