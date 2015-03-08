@@ -11,6 +11,9 @@ $app ['debug'] = true;
 $app->register ( new Silex\Provider\MonologServiceProvider (), array (
 		'monolog.logfile' => 'php://stderr' 
 ) );
+
+$app->register(new Provider\UrlGeneratorServiceProvider());
+
 // Register the Twig templating engine
 $app->register ( new Silex\Provider\TwigServiceProvider (), array (
 		'twig.path' => __DIR__ . '/../views' 
