@@ -13,12 +13,12 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 * User DAO
 */
 class UserDAO implements UserProviderInterface {
+	
 	/**
-	 *
-	 * @var \Herrera\Pdo\Pdo;
-	 *
-	 */
-	protected $pdo;
+     * @var Pdo
+     */
+    private $pdo;
+    
 	/**
 	 *
 	 * @var \Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder
@@ -27,7 +27,7 @@ class UserDAO implements UserProviderInterface {
 	protected $encoder;
 	
 	public function __construct(Pdo $pdo, $encoder) {
-		$this->pdo = $pdo;
+		$this->pdo  = $pdo;
 		$this->encoder = $encoder;
 	}
 
