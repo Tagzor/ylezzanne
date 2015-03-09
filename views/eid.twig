@@ -7,6 +7,8 @@ if(isset($msg)) echo "<div class=\"alert\">$msg</div>";
 if(isset($error)) echo "<div class=\"error\">$error</div>";
 if(isset($success)) echo "<div class=\"success\">$success</div>"; 
 
+require_once__DIR__.'/..src/openid.ee-authentication.php';
+
 // Vaatame, mis muutujad olemas on ...
 if(!empty($_SESSION)) {
 	echo "<h2>Massiivi \$_SESSION sisu:</h2>";
