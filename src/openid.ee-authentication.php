@@ -4,12 +4,10 @@ ini_set('display_errors', 'stderr');
 mb_internal_encoding("UTF-8");
 error_reporting(E_ALL);// | E_STRICT
 // OpenID teek...
-
 require_once("Auth/OpenID/Consumer.php");
 require_once("Auth/OpenID/FileStore.php");
 require_once("Auth/OpenID/SReg.php");
 require_once("Auth/OpenID/PAPE.php");
-
 
 // Kasutame PHP sessiooni
 session_start();
@@ -18,9 +16,9 @@ function getSiteURL() {
 	// Võib tagastada ka näiteks stringi "http://mart.randala.pri.ee/openid-php/"
 	return "http://" . $_SERVER["HTTP_HOST"] . dirname($_SERVER["SCRIPT_NAME"]) . "/";
 } 
-function getReturnTo() { return getSiteURL() . "?action=finishAuth"; }
+function getReturnTo() { return getSiteURL() . "/finishAuth"; }
 function getTrustRoot() { return getSiteURL(); }
-function displayError($message) { $error = $message; include 'index.php'; die(); }
+function displayError($message) { $error = $message; include 'login.php'; die(); }
 function escape($thing) { return htmlentities($thing); }
 
 function getConsumer() { $store = getStore(); $consumer = new Auth_OpenID_Consumer($store); return $consumer; }
@@ -51,6 +49,7 @@ function OpenIDeeAuth($method = "e") { // "e" = ID-kaart, "m" = Mobiil-ID
 // Väljalogides kustutame sessiooni...
 if(isset($_GET["action"])){
 if($_GET["action"] == "logout") { session_destroy(); header("Location: " . getTrustRoot() );}
+
 // Sisselogimise lõpul korjame vajalikud andmed välja ja paneme PHP sessioonimuutujatesse
 if($_GET["action"] == "finishAuth") {
 	$consumer = getConsumer();
@@ -89,9 +88,8 @@ if($_GET["action"] == "finishAuth") {
 	}
 }
 // Siin kutsume välja autentimis-transaktsiooni
-if($_GET["action"] == "mid-login") OpenIDeeAuth("m"); //Mobiil-ID autentimine
-else if($_GET["action"] == "eid-login") OpenIDeeAuth("e"); //ID-kaardi autentimine
-
+if($_GET["action"] == "mid") OpenIDeeAuth("m"); //Mobiil-ID autentimine
+else if($_GET["action"] == "eid") OpenIDeeAuth("e"); //ID-kaardi autentimine
 
 }
 ?>

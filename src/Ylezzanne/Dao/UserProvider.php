@@ -5,30 +5,40 @@ namespace Ylezzanne\Dao;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\User;
-use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
-use Doctrine\DBAL\Connection;
-
+use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
+use Herrera\Pdo\Pdo;
+ 
 class UserProvider implements UserProviderInterface
 {
-    private $conn;
-
-    public function __construct(Connection $conn)
-    {
-        $this->conn = $conn;
-    }
-
+    /**
+	 *
+	 * @var Pdo;
+	 *
+	 */
+	protected $pdo;
+	
+	
+	public function __construct(Pdo $pdo) {
+		$this->pdo = $pdo;
+	}
+ 
     public function loadUserByUsername($username)
     {
-        $stmt = $this->conn->executeQuery('SELECT * FROM users WHERE username = ?', array(strtolower($username)));
-
-        if (!$user = $stmt->fetch()) {
-            throw new UsernameNotFoundException(sprintf('Username "%s" does not exist.', $username));
-        }
-
-        return new User($user['username'], $user['password'], explode(',', $user['roles']), true, true, true, true);
+    	$st = $pdo->prepare('SELECT u.*  FROM users u WHERE ( u.username = ? OR u.mail = ? );', array (	$username, 	$username) );
+    	$st->execute();
+    	
+    	$usersData = $st->fetchAll ();
+    	if (empty ( $usersData )) {
+    		throw new UsernameNotFoundException ( sprintf ( 'User "%s" not found.', $username ) );
+    	}
+    	//$user = $this->buildUser ( $usersData [0] );
+    	$user = new User($usersData [0]->getUsername(), $usersData [0]->getPassword(), explode(',', $user['roles']), true, true, true, true);
+    	return $user;
+    	
+        
     }
-
+ 
     public function refreshUser(UserInterface $user)
     {
         if (!$user instanceof User) {
@@ -37,7 +47,7 @@ class UserProvider implements UserProviderInterface
 
         return $this->loadUserByUsername($user->getUsername());
     }
-
+ 
     public function supportsClass($class)
     {
         return $class === 'Symfony\Component\Security\Core\User\User';
