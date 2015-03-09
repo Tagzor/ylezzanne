@@ -60,7 +60,7 @@ Parool:<br>
 		<a href="?action=eid-login"><button type="button" class="btn btn-info btn-block"><img src="images/id-kaart.png" alt="idkaart">Sisene ID.kaardiga</button></a>
 		<a href="?action=mid-login"><button type="button" class="btn btn-info btn-block"><img src="images/mobiil-id.png" alt="mobiilid">Sisene Mobiil-IDga</button></a>
       </form>
-<li>Sessiooni <a href="?action=logout">lõpetamine</a></li>
+<li>Sessiooni <a href="?action=logout">lï¿½petamine</a></li>
 <?php
 if(isset($msg)) echo "<div class=\"alert\">$msg</div>";
 if(isset($error)) echo "<div class=\"error\">$error</div>";
@@ -76,7 +76,7 @@ if(!empty($_SESSION)) {
 }
 
 if(isset($_GET["action"]) and $_GET["action"] == "finishAuth"){
-	echo "<h2>OpenID teegi töö tulemus:</h2>";
+	echo "<h2>OpenID teegi tï¿½ï¿½ tulemus:</h2>";
 	echo "<div class='alert'>";
 	foreach($_GET as $k => $v)
 		echo "$k = $v <br />";
@@ -92,28 +92,7 @@ if(isset($_GET["action"]) and $_GET["action"] == "finishAuth"){
     <input type="password" placeholder="Parool" />
     <input type="submit" value="Logi sisse"/>
   </form>
-<?php
-if(isset($msg)) echo "<div class=\"alert\">$msg</div>";
-if(isset($error)) echo "<div class=\"error\">$error</div>";
-if(isset($success)) echo "<div class=\"success\">$success</div>"; 
 
-// Vaatame, mis muutujad olemas on ...
-if(!empty($_SESSION)) {
-	echo "<h2>Massiivi \$_SESSION sisu:</h2>";
-	echo "<div class='alert'>";
-	foreach($_SESSION as $k => $v)
-		echo "$k = $v <br />";
-	echo "</div>";
-}
-
-if(isset($_GET["action"]) and $_GET["action"] == "finishAuth"){
-	echo "<h2>OpenID teegi töö tulemus:</h2>";
-	echo "<div class='alert'>";
-	foreach($_GET as $k => $v)
-		echo "$k = $v <br />";
-	echo "</div>";
-}
-?>
 </div>
 <div>
 	<p align="center"><a id="id_button" title="Sisene ID-kaardiga" href="siia tuleb mingi variant kuidas id-kaardiga siseneda">Sisene ID kaardiga</a	></p>
