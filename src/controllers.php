@@ -60,6 +60,12 @@ $app->get ( '/tbd/{name}', function ($name) use($app) {
 	) );
 } );
 
+$app->get ( '/eid', function () use($app) {
+	return $app ['twig']->render ( 'eid.twig', array (
+			'name' => $name 
+	) );
+} );
+
 $app->get ( '/', function () use($app) {
 	$token = $app ['security']->getToken ();
 	if (null !== $token) {
