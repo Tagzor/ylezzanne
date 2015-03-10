@@ -19,14 +19,14 @@ $user->get ( '/{name}', function ($name) use($app) {
 } );
 
 $user->get ( '/', function () use($app) {
-	echo "load by username: ". $username;
+	echo "load by users! ";
 	
-	$st = $this->$app ['pdo']->prepare('SELECT u.*  FROM users u WHERE ( u.username = ? OR u.mail = ? );', array (	$username, 	$username) );
+	$st = $app ['pdo']->prepare('SELECT u.*  FROM users u );');
 	$st->execute();
 	 
 	$usersData = $st->fetchAll ();
 	if (empty ( $usersData )) {
-		echo "no user with username: ". $username;
+		echo "no user stored ";
 	} else {
 	    echo "dbusername:" . $usersData [0]->getUsername();
 	}
