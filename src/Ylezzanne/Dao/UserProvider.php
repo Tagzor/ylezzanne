@@ -34,8 +34,12 @@ class UserProvider implements UserProviderInterface
     	if (empty ( $usersData )) {
     		throw new UsernameNotFoundException ( sprintf ( 'User "%s" not found.', $username ) );
     	}
+    	
+    	echo "dbusername:" . $usersData [0]->getUsername();
+    	
     	//$user = $this->buildUser ( $usersData [0] );
     	$user = new User($usersData [0]->getUsername(), $usersData [0]->getPassword(), explode(',', $user['roles']), true, true, true, true);
+    	echo "loaed by username: ". $user;
     	return $user;
     	
         
