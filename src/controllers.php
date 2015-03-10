@@ -43,7 +43,7 @@ $user->get ( '/', function () use($app) {
 	$winner = $usersData[rand(0,count($usersData)-1)];
 	
 	return $app ['twig']->render ( 'user.twig', array (
-		'name' => $winner->username,
+		'name' => $winner->getUsername(),
 	) );
 } );
 	
