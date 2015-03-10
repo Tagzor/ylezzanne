@@ -31,9 +31,7 @@ $user->get ( '/', function ($name) use($app) {
 	 
 	echo "dbusername:" . $usersData [0]->getUsername();
 	 
-	return $app ['twig']->render ( 'user.twig', array (
-		'name' => $usersData [0]->getUsername(),
-	) );
+	
 } );
 	
 	
