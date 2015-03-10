@@ -925,7 +925,6 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.6-dev"
-                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -1363,7 +1362,6 @@
     "packages-dev": [
         {
             "name": "heroku/heroku-buildpack-php",
-
             "version": "v66",
             "source": {
                 "type": "git",
