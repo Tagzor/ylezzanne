@@ -19,9 +19,9 @@ $user->get ( '/{name}', function ($name) use($app) {
 } );
 
 $user->get ( '/', function () use($app) {
-	echo "load by users! ";
+	echo "load users! ";
 	
-	$st = $app ['pdo']->prepare('SELECT u.*  FROM users u );');
+	$st = $app ['pdo']->prepare('SELECT u.*  FROM users u');
 	$st->execute();
 	 
 	$usersData = $st->fetchAll ();
