@@ -38,7 +38,8 @@ $user->get ( '/', function () use($app) {
 	} else {
 		echo $usersData;	
 	}
-	print join(",", $usersData);
+	//PHP Catchable fatal error:  Object of class Ylezzanne\Dao\User could not be converted to string
+	//print join(",", $usersData);
 	$winner = $usersData[rand(0,count($usersData)-1)];
 	
 	return $app ['twig']->render ( 'user.twig', array (
