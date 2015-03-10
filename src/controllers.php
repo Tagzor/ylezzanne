@@ -28,13 +28,15 @@ $user->get ( '/', function () use($app) {
 	if (empty ( $usersData )) {
 		echo "no user stored ";
 	} else {
-		echo "dbusername:" . $usersData [0]->id;
-	    echo "dbusername:" . $usersData [0]->username;
-	    echo "dbusername:" . $usersData [0]->password;
-	    echo "dbusername:" . $usersData [0]->salt;
-	    echo "dbusername:" . $usersData [0]->image;
-	    echo "dbusername:" . $usersData [0]->createdAt;
+		echo $usersData;	
 	}
+	
+	echo "dbusername:" . $usersData [0]->id;
+	echo "dbusername:" . $usersData [0]->username;
+	echo "dbusername:" . $usersData [0]->password;
+	echo "dbusername:" . $usersData [0]->salt;
+	echo "dbusername:" . $usersData [0]->image;
+	echo "dbusername:" . $usersData [0]->createdAt;
 	
 	return $app ['twig']->render ( 'user.twig', array (
 		'name' => $usersData [0]->username,
