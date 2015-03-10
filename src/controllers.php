@@ -1,6 +1,7 @@
 <?php
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Ylezzanne\Dao\User;
 
 // define controllers for a twig
 $twig = $app ['controllers_factory'];
@@ -23,23 +24,25 @@ $user->get ( '/', function () use($app) {
 	
 	$st = $app ['pdo']->prepare('SELECT u.*  FROM users u');
 	$st->execute();
-	 
-	$usersData = $st->fetchAll ();
+	
+	$usersData = array();
+	while ( $row = $st->fetch ( PDO::FETCH_ASSOC ) ) {
+		$app ['monolog']->addDebug ( 'Row ' . $row ['username'] );
+		$user = new User($row ['id'],$row ['username'], $row ['password']);
+		array_push($usersData, $user);
+        print count($usersData ); 
+	}
+	
 	if (empty ( $usersData )) {
 		echo "no user stored ";
 	} else {
 		echo $usersData;	
 	}
-	
-	echo "dbusername:" . $usersData [0]->id;
-	echo "dbusername:" . $usersData [0]->username;
-	echo "dbusername:" . $usersData [0]->password;
-	echo "dbusername:" . $usersData [0]->salt;
-	echo "dbusername:" . $usersData [0]->image;
-	echo "dbusername:" . $usersData [0]->createdAt;
+	print join(",", $usersData);
+	$winner = $usersData[rand(0,count($usersData)-1)];
 	
 	return $app ['twig']->render ( 'user.twig', array (
-		'name' => $usersData [0]->username,
+		'name' => $winner->username,
 	) );
 } );
 	
