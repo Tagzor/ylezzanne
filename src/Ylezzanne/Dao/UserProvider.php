@@ -26,7 +26,8 @@ class UserProvider implements UserProviderInterface
     public function loadUserByUsername($username)
     {
     	echo "load by username: ". $username;
-    	$st = $pdo->prepare('SELECT u.*  FROM users u WHERE ( u.username = ? OR u.mail = ? );', array (	$username, 	$username) );
+    	 
+    	$st = $this->pdo->prepare('SELECT u.*  FROM users u WHERE ( u.username = ? OR u.mail = ? );', array (	$username, 	$username) );
     	$st->execute();
     	
     	$usersData = $st->fetchAll ();
