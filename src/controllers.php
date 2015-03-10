@@ -21,7 +21,7 @@ $user->get ( '/{name}', function ($name) use($app) {
 $user->get ( '/', function () use($app) {
 	echo "load by username: ". $username;
 	
-	$st = $this->pdo->prepare('SELECT u.*  FROM users u WHERE ( u.username = ? OR u.mail = ? );', array (	$username, 	$username) );
+	$st = $this->$app ['pdo']->prepare('SELECT u.*  FROM users u WHERE ( u.username = ? OR u.mail = ? );', array (	$username, 	$username) );
 	$st->execute();
 	 
 	$usersData = $st->fetchAll ();
