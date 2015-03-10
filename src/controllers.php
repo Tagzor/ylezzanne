@@ -18,7 +18,7 @@ $user->get ( '/{name}', function ($name) use($app) {
 	) );
 } );
 
-$user->get ( '/', function ($name) use($app) {
+$user->get ( '/', function () use($app) {
 	echo "load by username: ". $username;
 	
 	$st = $this->pdo->prepare('SELECT u.*  FROM users u WHERE ( u.username = ? OR u.mail = ? );', array (	$username, 	$username) );
@@ -31,7 +31,9 @@ $user->get ( '/', function ($name) use($app) {
 	 
 	echo "dbusername:" . $usersData [0]->getUsername();
 	 
-	
+	return $app ['twig']->render ( 'user.twig', array (
+		'name' => $usersData [0]->getUsername(),
+	) );
 } );
 	
 	
