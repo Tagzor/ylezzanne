@@ -26,11 +26,11 @@ $user->get ( '/', function () use($app) {
 	 
 	$usersData = $st->fetchAll ();
 	if (empty ( $usersData )) {
-		throw new UsernameNotFoundException ( sprintf ( 'User "%s" not found.', $username ) );
+		echo "no user with username: ". $username;
+	} else {
+	    echo "dbusername:" . $usersData [0]->getUsername();
 	}
-	 
-	echo "dbusername:" . $usersData [0]->getUsername();
-	 
+	
 	return $app ['twig']->render ( 'user.twig', array (
 		'name' => $usersData [0]->getUsername(),
 	) );
