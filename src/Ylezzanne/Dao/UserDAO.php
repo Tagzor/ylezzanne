@@ -39,7 +39,7 @@ class UserDAO implements UserProviderInterface {
 	 *        
 	 */
 	public function getCount() {
-		$st = $pdo->prepare('SELECT COUNT(user_id) FROM users');
+		$st = $this->pdo->prepare('SELECT COUNT(user_id) FROM users');
 		$st->execute();
 		
 		$count = $st->rowCount();
@@ -56,7 +56,7 @@ class UserDAO implements UserProviderInterface {
 	 *        
 	 */
 	public function find($id) {
-		$st = $pdo->prepare('SELECT * FROM users WHERE user_id = ?', array (	$id	) );
+		$st = $this->pdo->prepare('SELECT * FROM users WHERE id = ?', array ($id) );
 		$st->execute();
 		
 		$userData = array();
@@ -71,16 +71,18 @@ class UserDAO implements UserProviderInterface {
 	 * {@inheritDoc}
 	 */
 	public function loadUserByUsername($username) {
-		$st = $pdo->prepare('SELECT u.*  FROM users u WHERE ( u.username = ? OR u.mail = ? );', array (	$username, 	$username) );
+		$st = $this->pdo->prepare('SELECT u.*  FROM users u WHERE ( u.username = ? OR u.mail = ? );', array (	$username, 	$username) );
 		$st->execute();
 				
 		$usersData = $st->fetchAll ();
 		if (empty ( $usersData )) {
 			throw new UsernameNotFoundException ( sprintf ( 'User "%s" not found.', $username ) );
 		}
+
 		$user = $this->buildUser ( $usersData [0] );
 		return $user;
 	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -96,12 +98,14 @@ class UserDAO implements UserProviderInterface {
 		}
 		return $refreshedUser;
 	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
 	public function supportsClass($class) {
 		return 'Ylezzanne\Dao\User' === $class;
 	}
+	
 	/**
 	 * Instantiates a user entity and sets its properties using pdo data.
 	 *
@@ -113,7 +117,7 @@ class UserDAO implements UserProviderInterface {
 	 */
 	protected function buildUser($userData) {
 		$user = new User ();
-		$user->setId ( $userData ['user_id'] );
+		$user->setId ( $userData ['id'] );
 		$user->setUsername ( $userData ['username'] );
 		$user->setSalt ( $userData ['salt'] );
 		$user->setPassword ( $userData ['password'] );

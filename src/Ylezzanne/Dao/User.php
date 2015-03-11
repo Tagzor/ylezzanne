@@ -50,13 +50,14 @@ class User implements UserInterface
 	protected $role;
 	
 	/**
-	 * The filename of the main artist image.
+	 * The filename of the user image.
 	 *
 	 * @var string
 	 */
 	protected $image;
+	
 	/**
-	 * When the artist entity was created.
+	 * When the user entity was created.
 	 *
 	 * @var DateTime
 	 */
@@ -65,7 +66,7 @@ class User implements UserInterface
 	/**
 	 * The temporary uploaded file.
 	 *
-	 * $this->image stores the filename after the file gets moved to "images/".
+	 * $this->image stores the filename after the file gets moved to "images/users/".
 	 *
 	 * @var \Symfony\Component\HttpFoundation\File\UploadedFile
 	 */
@@ -85,6 +86,7 @@ class User implements UserInterface
 	{
 		$this->id = $id;
 	}
+	
 	/**
 	 * @inheritDoc
 	 */
@@ -96,6 +98,7 @@ class User implements UserInterface
 	{
 		$this->username = $username;
 	}
+	
 	/**
 	 * @inheritDoc
 	 */
@@ -107,6 +110,7 @@ class User implements UserInterface
 	{
 		$this->salt = $salt;
 	}
+	
 	/**
 	 * @inheritDoc
 	 */
@@ -118,6 +122,7 @@ class User implements UserInterface
 	{
 		$this->password = $password;
 	}
+	
 	public function getMail()
 	{
 		return $this->mail;
@@ -136,6 +141,7 @@ class User implements UserInterface
 	public function setImage($image) {
 		$this->image = $image;
 	}
+	
 	public function getCreatedAt()
 	{
 		return $this->createdAt;
@@ -144,6 +150,7 @@ class User implements UserInterface
 	{
 		$this->createdAt = $createdAt;
 	}
+	
 	public function getFile() {
 		return $this->file;
 	}
@@ -151,6 +158,7 @@ class User implements UserInterface
 	{
 		$this->file = $file;
 	}
+	
 	/**
 	 * @inheritDoc
 	 */
@@ -165,6 +173,7 @@ class User implements UserInterface
 	public function setRole($role) {
 		$this->role = $role;
 	}
+	
 	/**
 	 * @inheritDoc
 	 */
