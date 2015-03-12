@@ -30,7 +30,8 @@ $user->get ( '/', function () use($app) {
 		$app ['monolog']->addDebug ( 'Row ' . $row ['username'] );
 		$app ['monolog']->addDebug ( 'Row ' . $row ['password'] );
 		
-		$user = new User($row ['id'],$row ['username'], $row ['password']);
+		$user = $this->buildUser ( $row );
+		
 		array_push($usersData, $user);
 		
 		$password = $app['security.encoder.digest']->encodePassword('foo', $user->getSalt());
@@ -116,4 +117,16 @@ $app->get ( '/', function () use($app) {
 	return $app ['twig']->render ( 'login.twig' );
 } );
 
+function buildUser($userData) {
+	$user = new User ();
+	$user->setId ( $userData ['id'] );
+	$user->setUsername ( $userData ['username'] );
+	$user->setSalt ( $userData ['salt'] );
+	$user->setPassword ( $userData ['password'] );
+	$user->setMail ( $userData ['mail'] );
+	$user->setRole ( $userData ['role'] );
+	$createdAt = new \DateTime ( '@' . $userData ['created_at'] );
+	$user->setCreatedAt ( $createdAt );
+	return $user;
+}
 ?>
