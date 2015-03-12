@@ -14,8 +14,40 @@ $twig->get ( '/{name}', function ($name) use($app) {
 // define controllers for a user
 $user = $app ['controllers_factory'];
 $user->get ( '/{name}', function ($name) use($app) {
+	$stmt = $this->pdo->prepare("SELECT * FROM users WHERE username=:username");
+	$stmt->bindValue(':username', $name, PDO::PARAM_STR);
+	$st->execute();
+	
+	$usersData = array();
+	while ( $row = $st->fetch ( PDO::FETCH_ASSOC ) ) {
+		$app ['monolog']->addDebug ( 'Row ' . $row ['username'] );
+		$app ['monolog']->addDebug ( 'Row ' . $row ['password'] );
+	
+		$user = buildUser ( $row );
+	
+		array_push($usersData, $user);
+	
+		$salt = uniqid(mt_rand());
+		$password = $app['security.encoder.digest']->encodePassword('foo', $salt);
+	
+		$app ['monolog']->addDebug ( 'RowSalt ' . $salt );
+		$app ['monolog']->addDebug ( 'RowPAssword ' . $password );
+	
+	
+		print count($usersData );
+	}
+	
+	if (empty ( $usersData )) {
+		echo "no user stored ";
+	} else {
+		echo $usersData;
+	}
+	//PHP Catchable fatal error:  Object of class Ylezzanne\Dao\User could not be converted to string
+	//print join(",", $usersData);
+	$winner = $usersData[rand(0,count($usersData)-1)];
+	
 	return $app ['twig']->render ( 'user.twig', array (
-			'name' => $name 
+			'name' => $winner->getUsername(),
 	) );
 } );
 
