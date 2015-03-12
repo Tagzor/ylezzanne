@@ -77,13 +77,14 @@ class UserDAO implements UserProviderInterface {
 		$stmt->execute();
 		
 		$usersData = $stmt->fetchAll ();
+		echo ( 'NR "%s" found.'.count($usersData) );
 		if (empty ( $usersData )) {
 			throw new UsernameNotFoundException ( sprintf ( 'User "%s" not found.', $username ) );
 		}
-
+		
 		$user = $this->buildUser ( $usersData [0] );
-		sprintf ( 'User "%s" found.', $user->getUsername()  );
-		sprintf ( 'NR "%s" found.',count($usersData) );
+		echo ( 'User "%s" found.'. $user->getUsername().'/'. $user->getPassword() );
+		
 		return $user;
 	}
 	
