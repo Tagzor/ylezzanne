@@ -56,12 +56,12 @@ class UserDAO implements UserProviderInterface {
 	 *        
 	 */
 	public function find($id) {
-		$st = $this->pdo->prepare("SELECT * FROM users WHERE id = :id");
+		$stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = :id");
 		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
-		$st->execute();
+		$stmt->execute();
 		
 		$userData = array();
-		while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
  			$userData = $row;
 		}
 		return $userData ? $this->buildUser ( $userData ) : FALSE;
@@ -74,9 +74,9 @@ class UserDAO implements UserProviderInterface {
 		$stmt = $this->pdo->prepare("SELECT * FROM users WHERE username=:username AND mail=:mail");
 		$stmt->bindValue(':username', $username, PDO::PARAM_STR);
 		$stmt->bindValue(':mail', $username, PDO::PARAM_STR);
-		$st->execute();
+		$stmt->execute();
 		
-		$usersData = $st->fetchAll ();
+		$usersData = $stmt->fetchAll ();
 		if (empty ( $usersData )) {
 			throw new UsernameNotFoundException ( sprintf ( 'User "%s" not found.', $username ) );
 		}
