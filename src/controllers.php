@@ -30,7 +30,7 @@ $user->get ( '/', function () use($app) {
 		$app ['monolog']->addDebug ( 'Row ' . $row ['username'] );
 		$app ['monolog']->addDebug ( 'Row ' . $row ['password'] );
 		
-		$user = $this->buildUser ( $row );
+		$user = buildUser ( $row );
 		
 		array_push($usersData, $user);
 		
