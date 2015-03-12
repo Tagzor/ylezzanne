@@ -82,6 +82,8 @@ class UserDAO implements UserProviderInterface {
 		}
 
 		$user = $this->buildUser ( $usersData [0] );
+		sprintf ( 'User "%s" found.', $user->getUsername()  );
+		sprintf ( 'NR "%s" found.',count($usersData) );
 		return $user;
 	}
 	
