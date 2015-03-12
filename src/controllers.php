@@ -14,9 +14,9 @@ $twig->get ( '/{name}', function ($name) use($app) {
 // define controllers for a user
 $user = $app ['controllers_factory'];
 $user->get ( '/{name}', function ($name) use($app) {
-	$stmt = $this->pdo->prepare("SELECT * FROM users WHERE username=:username");
+	$stmt = $app ['pdo']->prepare("SELECT * FROM users WHERE username=:username");
 	$stmt->bindValue(':username', $name, PDO::PARAM_STR);
-	$st->execute();
+	$stmt->execute();
 	
 	$usersData = array();
 	while ( $row = $st->fetch ( PDO::FETCH_ASSOC ) ) {
