@@ -34,10 +34,12 @@ $user->get ( '/', function () use($app) {
 		
 		array_push($usersData, $user);
 		
-		$password = $app['security.encoder.digest']->encodePassword('foo', $user->getSalt());
-		$encoded = $app['security.encoder.digest']->encodePassword($user, 'foo');
+		$user['salt'] = uniqid(mt_rand());
+		$user['password'] = $app['security.encoder.digest']->encodePassword('foo', $user['salt']);
 		
-		$app ['monolog']->addDebug ( 'Encoded ' . $encoded );
+		$app ['monolog']->addDebug ( 'Row ' . $user ['salt'] );
+		$app ['monolog']->addDebug ( 'Row ' . $user ['password'] );
+		
 		
         print count($usersData ); 
 	}
