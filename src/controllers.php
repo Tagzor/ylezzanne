@@ -19,7 +19,7 @@ $user->get ( '/{name}', function ($name) use($app) {
 	$stmt->execute();
 	
 	$usersData = array();
-	while ( $row = $st->fetch ( PDO::FETCH_ASSOC ) ) {
+	while ( $row = $stmt->fetch ( PDO::FETCH_ASSOC ) ) {
 		$app ['monolog']->addDebug ( 'Row ' . $row ['username'] );
 		$app ['monolog']->addDebug ( 'Row ' . $row ['password'] );
 	
