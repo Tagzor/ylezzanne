@@ -28,8 +28,14 @@ $user->get ( '/', function () use($app) {
 	$usersData = array();
 	while ( $row = $st->fetch ( PDO::FETCH_ASSOC ) ) {
 		$app ['monolog']->addDebug ( 'Row ' . $row ['username'] );
+		$app ['monolog']->addDebug ( 'Row ' . $row ['password'] );
+		
 		$user = new User($row ['id'],$row ['username'], $row ['password']);
 		array_push($usersData, $user);
+		
+		$encoded = $app->encodePassword($user, 'foo');
+		$app ['monolog']->addDebug ( 'Encoded ' . $encoded );
+		
         print count($usersData ); 
 	}
 	

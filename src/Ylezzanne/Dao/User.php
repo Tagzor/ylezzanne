@@ -72,12 +72,6 @@ class User implements UserInterface
 	 */
 	protected $file;
 	
-	public function __construct($id, $username, $password){
-		$this->username = $username;
-		$this->password = $password;
-		$this->id = $id;
-	}
-	
 	public function getId()
 	{
 		return $this->id;
