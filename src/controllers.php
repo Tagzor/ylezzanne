@@ -33,7 +33,10 @@ $user->get ( '/', function () use($app) {
 		$user = new User($row ['id'],$row ['username'], $row ['password']);
 		array_push($usersData, $user);
 		
-		$encoded = $app->encodePassword($user, 'foo');
+		$app['security.encoder.digest'];
+		$password = $encoder->encodePassword('foo', $user->getSalt());
+		$encoded = $app['security.encoder.digest']->encodePassword($user, 'foo');
+		
 		$app ['monolog']->addDebug ( 'Encoded ' . $encoded );
 		
         print count($usersData ); 
