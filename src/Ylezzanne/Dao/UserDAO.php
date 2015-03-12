@@ -39,7 +39,7 @@ class UserDAO implements UserProviderInterface {
 	 *        
 	 */
 	public function getCount() {
-		$st = $this->pdo->prepare('SELECT COUNT(user_id) FROM users');
+		$st = $this->pdo->prepare('SELECT COUNT(*) FROM users');
 		$st->execute();
 		
 		$count = $st->rowCount();
@@ -56,14 +56,14 @@ class UserDAO implements UserProviderInterface {
 	 *        
 	 */
 	public function find($id) {
-		$st = $this->pdo->prepare('SELECT * FROM users WHERE id = ?', array ($id) );
+		$st = $this->pdo->prepare("SELECT * FROM users WHERE id = :id");
+		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
 		$st->execute();
 		
 		$userData = array();
 		while ($row = $st->fetch(PDO::FETCH_ASSOC)) {
  			$userData = $row;
 		}
-		
 		return $userData ? $this->buildUser ( $userData ) : FALSE;
 	}
 
@@ -71,9 +71,11 @@ class UserDAO implements UserProviderInterface {
 	 * {@inheritDoc}
 	 */
 	public function loadUserByUsername($username) {
-		$st = $this->pdo->prepare('SELECT u.*  FROM users u WHERE ( u.username = ? OR u.mail = ? );', array (	$username, 	$username) );
+		$stmt = $this->pdo->prepare("SELECT * FROM users WHERE username=:username AND mail=:mail");
+		$stmt->bindValue(':username', $username, PDO::PARAM_STR);
+		$stmt->bindValue(':mail', $username, PDO::PARAM_STR);
 		$st->execute();
-				
+		
 		$usersData = $st->fetchAll ();
 		if (empty ( $usersData )) {
 			throw new UsernameNotFoundException ( sprintf ( 'User "%s" not found.', $username ) );
