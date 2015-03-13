@@ -1,7 +1,6 @@
 <?php
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Ylezzanne\Dao\User;
 use Symfony\Component\Security\Core\User\User;
 
 // define controllers for a twig
