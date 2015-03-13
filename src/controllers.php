@@ -51,7 +51,7 @@ $user->get ( '/{name}', function ($name) use($app) {
 	$winner = $usersData[rand(0,count($usersData)-1)];
 	
 	return $app ['twig']->render ( 'user.twig', array (
-			'name' => $winner->getUsername(),
+			'name' => $winner[username],
 	) );
 } );
 

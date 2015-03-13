@@ -56,36 +56,30 @@ class UserDAO implements UserProviderInterface {
 	 *        
 	 */
 	public function find($id) {
-		$stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = :id");
-		$stmt->bindValue(':id', $id, PDO::PARAM_INT);
-		$stmt->execute();
+		$stmt = $this->pdo->prepare("SELECT u.* FROM users u WHERE u.id = :id");
+		$stmt->execute(array(':id' => $id));
 		
 		$userData = array();
 		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
  			$userData = $row;
 		}
-		return $userData ? $this->buildUser ( $userData ) : FALSE;
+		return $userData ? $user =  new Symfony\Component\Security\Core\User($row['username'], $row['password'], explode(',', $row['role']), true, true, true, true) : FALSE;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public function loadUserByUsername($username) {
-		$stmt = $this->pdo->prepare("SELECT * FROM users WHERE username=:username OR mail=:mail");
-		$stmt->bindValue(':username', $username, PDO::PARAM_STR);
-		$stmt->bindValue(':mail', $username, PDO::PARAM_STR);
-		$stmt->execute();
+		$stmt = $this->pdo->prepare("SELECT u.* FROM users u WHERE u.username=:username OR u.mail=:username");
+		$stmt->execute(array(':username' => $username));
 		
 		$usersData = $stmt->fetchAll ();
-		echo ( 'NR "%s" found.'.count($usersData) );
 		if (empty ( $usersData )) {
 			throw new UsernameNotFoundException ( sprintf ( 'User "%s" not found.', $username ) );
 		}
 		
-		$user = $this->buildUser ( $usersData [0] );
-		echo ( 'User "%s" found.'. $user->getUsername().'/'. $user->getPassword() );
+		$user =  new Symfony\Component\Security\Core\User($row['username'], $row['password'], explode(',', $row['role']), true, true, true, true);
 		
-		return $user;
 	}
 	
 	/**
@@ -108,7 +102,7 @@ class UserDAO implements UserProviderInterface {
 	 * {@inheritDoc}
 	 */
 	public function supportsClass($class) {
-		return 'Ylezzanne\Dao\User' === $class;
+		return 'Symfony\Component\Security\Core\User' === $class;
 	}
 	
 	/**
