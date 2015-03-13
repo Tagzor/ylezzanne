@@ -23,7 +23,7 @@ $user->get ( '/{name}', function ($name) use($app) {
 		$app ['monolog']->addDebug ( 'Row ' . $row ['username'] );
 		$app ['monolog']->addDebug ( 'Row ' . $row ['password'] );
 	
-		$user =  new User($row['username'], $row['password'], explode(',', $row['role']), true, true, true, true);
+		$user =  new User($row['id'],$row['username'], $row['password'], explode(',', $row['role']), true, true, true, true);
 	
 		array_push($usersData, $user);
 	
@@ -51,7 +51,7 @@ $user->get ( '/{name}', function ($name) use($app) {
 	$winner = $usersData[rand(0,count($usersData)-1)];
 	
 	return $app ['twig']->render ( 'user.twig', array (
-			'name' => $winner[username],
+			'name' => $winner->getUsername(),
 	) );
 } );
 
