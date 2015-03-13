@@ -26,19 +26,7 @@ $app->register ( new Herrera\Pdo\PdoServiceProvider (), array (
 		'pdo.username' => $dbopts ["user"],
 		'pdo.password' => $dbopts ["pass"] 
 ) );
-
-$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
-		'db.options' => array (
-				'mysql_read' => array(
-						'driver'    => 'pdo_pgsql',
-						'host'      => $dbopts ["host"],
-						'dbname'    => ltrim ( $dbopts ["path"], '/' ) ,
-						'user'      => $dbopts ["user"],
-						'password'  => $dbopts ["pass"],
-						'charset'   => 'utf8',
-				),
-			),
-) );
+$app['pdo']->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // Register the SessionProvider.
 $app->register(new Silex\Provider\SessionServiceProvider());

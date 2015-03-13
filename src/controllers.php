@@ -14,10 +14,9 @@ $twig->get ( '/{name}', function ($name) use($app) {
 // define controllers for a user
 $user = $app ['controllers_factory'];
 $user->get ( '/{name}', function ($name) use($app) {
-	$stmt = $app ['pdo']->prepare("SELECT * FROM users WHERE username=:username");
-	$stmt->bindValue(':username', $name, PDO::PARAM_STR);
+	$stmt = $app ['pdo']->prepare("SELECT u.* FROM users u WHERE u.username = :name");
+	$stmt->bindValue(':name', $name, PDO::PARAM_STR);
 	$stmt->execute();
-	
 	$usersData = array();
 	while ( $row = $stmt->fetch ( PDO::FETCH_ASSOC ) ) {
 		$app ['monolog']->addDebug ( 'Row ' . $row ['username'] );
@@ -39,6 +38,10 @@ $user->get ( '/{name}', function ($name) use($app) {
 	
 	if (empty ( $usersData )) {
 		echo "no user stored ";
+		return $app ['twig']->render ( 'user.twig', array (
+				'name' => 'no data stored name',
+		) );
+		
 	} else {
 		echo $usersData;
 	}
