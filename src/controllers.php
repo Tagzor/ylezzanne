@@ -23,7 +23,7 @@ $user->get ( '/{name}', function ($name) use($app) {
 		$app ['monolog']->addDebug ( 'Row ' . $row ['username'] );
 		$app ['monolog']->addDebug ( 'Row ' . $row ['password'] );
 	
-		$user =  new Symfony\Component\Security\Core\User($row['username'], $row['password'], explode(',', $row['role']), true, true, true, true);
+		$user =  new Symfony\Component\Security\Core\User\User($row['username'], $row['password'], explode(',', $row['role']), true, true, true, true);
 	
 		array_push($usersData, $user);
 	

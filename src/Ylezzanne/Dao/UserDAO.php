@@ -64,7 +64,7 @@ class UserDAO implements UserProviderInterface {
  			$userData = $row;
 		}
 		
-		$user =  new Symfony\Component\Security\Core\User($usersData['username'], $usersData['password'], explode(',', $usersData['role']), true, true, true, true);
+		$user =  new Symfony\Component\Security\Core\User\User($usersData['username'], $usersData['password'], explode(',', $usersData['role']), true, true, true, true);
 		
 	}
 
@@ -80,7 +80,7 @@ class UserDAO implements UserProviderInterface {
 			throw new UsernameNotFoundException ( sprintf ( 'User "%s" not found.', $username ) );
 		}
 		
-		$user =  new Symfony\Component\Security\Core\User($usersData['username'], $usersData['password'], explode(',', $usersData['role']), true, true, true, true);
+		$user =  new Symfony\Component\Security\Core\User\User($usersData['username'], $usersData['password'], explode(',', $usersData['role']), true, true, true, true);
 		
 	}
 	
