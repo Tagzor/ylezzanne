@@ -63,14 +63,16 @@ class UserDAO implements UserProviderInterface {
 		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
  			$userData = $row;
 		}
-		return $userData ? $user =  new Symfony\Component\Security\Core\User($row['username'], $row['password'], explode(',', $row['role']), true, true, true, true) : FALSE;
+		
+		$user =  new Symfony\Component\Security\Core\User($usersData['username'], $usersData['password'], explode(',', $usersData['role']), true, true, true, true);
+		
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public function loadUserByUsername($username) {
-		$stmt = $this->pdo->prepare("SELECT u.* FROM users u WHERE u.username = :username OR u.mail = :username");
+		$stmt = $this->pdo->prepare("SELECT * FROM users u WHERE u.username = :username OR u.mail = :username");
 		$stmt->execute(array(':username' => $username));
 		
 		$usersData = $stmt->fetchAll ();
@@ -78,7 +80,7 @@ class UserDAO implements UserProviderInterface {
 			throw new UsernameNotFoundException ( sprintf ( 'User "%s" not found.', $username ) );
 		}
 		
-		$user =  new Symfony\Component\Security\Core\User($row['username'], $row['password'], explode(',', $row['role']), true, true, true, true);
+		$user =  new Symfony\Component\Security\Core\User($usersData['username'], $usersData['password'], explode(',', $usersData['role']), true, true, true, true);
 		
 	}
 	
