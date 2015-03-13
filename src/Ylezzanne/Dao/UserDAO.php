@@ -72,7 +72,7 @@ class UserDAO implements UserProviderInterface {
 	 * {@inheritDoc}
 	 */
 	public function loadUserByUsername($username) {
-		$stmt = $this->pdo->prepare("SELECT * FROM users u WHERE u.username = :username OR u.mail = :username");
+		$stmt = $this->pdo->prepare("SELECT u.* FROM users u WHERE u.username = :username");
 		$stmt->execute(array(':username' => $username));
 		
 		$usersData = $stmt->fetchAll ();
