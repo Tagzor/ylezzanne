@@ -107,26 +107,5 @@ class UserDAO implements UserProviderInterface {
 		return 'Symfony\Component\Security\Core\User\User' === $class;
 	}
 	
-	/**
-	 * Instantiates a user entity and sets its properties using pdo data.
-	 *
-	 * @param array $userData
-	 *        	The array of pdo data.
-	 *        	
-	 * @return \Ylezzanne\Dao\User
-	 *
-	 */
-	protected function buildUser($userData) {
-		$user = new User ();
-		$user->setId ( $userData ['id'] );
-		$user->setUsername ( $userData ['username'] );
-		$user->setSalt ( $userData ['salt'] );
-		$user->setPassword ( $userData ['password'] );
-		$user->setMail ( $userData ['mail'] );
-		$user->setRole ( $userData ['role'] );
-		$createdAt = new \DateTime ( '@' . $userData ['created_at'] );
-		$user->setCreatedAt ( $createdAt );
-		return $user;
-	}
 }
 ?>
