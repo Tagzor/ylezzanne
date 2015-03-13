@@ -23,7 +23,7 @@ $user->get ( '/{name}', function ($name) use($app) {
 		$app ['monolog']->addDebug ( 'Row ' . $row ['username'] );
 		$app ['monolog']->addDebug ( 'Row ' . $row ['password'] );
 	
-		$user =  new Symfony\Component\Security\Core\User\User($row['username'], $row['password'], explode(',', $row['role']), true, true, true, true);
+		$user =  new User($row['username'], $row['password'], explode(',', $row['role']), true, true, true, true);
 	
 		array_push($usersData, $user);
 	
@@ -155,16 +155,4 @@ $app->get ( '/', function () use($app) {
 	return $app ['twig']->render ( 'login.twig' );
 } );
 
-function buildUser($userData) {
-	$user = new User ();
-	$user->setId ( $userData ['id'] );
-	$user->setUsername ( $userData ['username'] );
-	$user->setSalt ( $userData ['salt'] );
-	$user->setPassword ( $userData ['password'] );
-	$user->setMail ( $userData ['mail'] );
-	$user->setRole ( $userData ['role'] );
-	$createdAt = new \DateTime ( '@' . $userData ['created_at'] );
-	$user->setCreatedAt ( $createdAt );
-	return $user;
-}
 ?>
