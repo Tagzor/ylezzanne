@@ -15,8 +15,9 @@ $twig->get ( '/{name}', function ($name) use($app) {
 $user = $app ['controllers_factory'];
 $user->get ( '/{name}', function ($name) use($app) {
 	$stmt = $app ['pdo']->prepare("SELECT u.* FROM users u WHERE u.username = :name");
-	$stmt->bindValue(':name', $name, PDO::PARAM_STR);
-	$stmt->execute();
+	//$stmt->bindValue(':name', $name, PDO::PARAM_STR);
+	$stmt->execute(array(':name' => $name));
+	
 	$usersData = array();
 	while ( $row = $stmt->fetch ( PDO::FETCH_ASSOC ) ) {
 		$app ['monolog']->addDebug ( 'Row ' . $row ['username'] );
