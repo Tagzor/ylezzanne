@@ -3,7 +3,7 @@
 namespace Ylezzanne\Dao;
 
 use Herrera\Pdo\Pdo;
-use Ylezzanne\Dao\User;
+use Symfony\Component\Security\Core\User\User;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
@@ -102,7 +102,7 @@ class UserDAO implements UserProviderInterface {
 	 * {@inheritDoc}
 	 */
 	public function supportsClass($class) {
-		return 'Symfony\Component\Security\Core\User' === $class;
+		return 'Symfony\Component\Security\Core\User\User' === $class;
 	}
 	
 	/**
