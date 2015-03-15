@@ -76,13 +76,7 @@ class GameDAO implements RepositoryInterface {
 			array_push ( $gamesData, $game );
 		}
 		
-		$games = array();
-		foreach ($gamesData as $gameData) {
-			$gameId = $gameData->getId();
-			$games[$gameId] = $gameData;
-		}
-		
-		return $games;
+		return $gamesData;
 	}
 	
 }
