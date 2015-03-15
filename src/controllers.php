@@ -98,7 +98,9 @@ $user->get ( '/', function () use($app) {
 // define controllers for a game
 $game = $app ['controllers_factory'];
 $game->get ( '/', function () use($app) {
-	$games = $app['repository.games']->listGames();
+	$gameDAO = new Ylezzanne\Dao\GameDAO($app['pdo']);
+	$games = $gameDAO->listGames();
+	
 	return $app ['twig']->render ( 'games.twig', array (
 			'games' => $games 
 	) );
