@@ -1,0 +1,20 @@
+{% extends 'ylezzanne.html.twig' %}
+
+{% set active = 'name' %}
+
+{% block content %}
+<div class="container">
+
+<p>Games TEST:</p>
+
+<ul>
+{% for g in gamess %}
+  <li> {{ g.name }} </li>
+{% else %}
+  <li>GAMES NOT FOUND!</li>
+{% endfor %}
+</ul>
+
+</div>
+
+{% endblock %}

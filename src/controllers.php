@@ -98,9 +98,12 @@ $user->get ( '/', function () use($app) {
 // define controllers for a game
 $game = $app ['controllers_factory'];
 $game->get ( '/', function () {
-	return 'game list';
+	$games = $app['repository.games']->listGames();
+	return $app ['twig']->render ( 'games.twig', array (
+			'games' => $games 
+	) );
 } );
-
+	
 // define controllers for a game
 $statistics = $app ['controllers_factory'];
 $statistics->get ( '/', function () use($app) {

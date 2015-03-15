@@ -31,8 +31,6 @@ $app['pdo']->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 // Register the SessionProvider.
 $app->register(new Silex\Provider\SessionServiceProvider());
 
-
-
 // Register the SecurityServiceProvider.
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
 		'security.firewalls' => array(
@@ -58,5 +56,10 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
 		),
 ));
 return $app;
+
+// Register repositories.
+$app['repository.games'] = $app->share(function ($app) {
+	return new Ylezzanne\Dao\GameDAO($app['pdo']);
+});
 
 ?>
