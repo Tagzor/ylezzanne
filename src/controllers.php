@@ -102,8 +102,8 @@ $game->get ( '/', function () use($app) {
 	$games = $gameDAO->findAll();
 	echo count($games);
 	
-	$count = $app['repository.games']->getCount();
-	echo $count;
+	//$count = $app['repository.games']->getCount();
+	//echo $count;
 	return $app ['twig']->render ( 'games.twig', array (
 			'games' => $games 
 	) );
