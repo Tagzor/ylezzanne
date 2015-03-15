@@ -97,7 +97,7 @@ $user->get ( '/', function () use($app) {
 	
 // define controllers for a game
 $game = $app ['controllers_factory'];
-$game->get ( '/', function () {
+$game->get ( '/', function () use($app) {
 	$games = $app['repository.games']->listGames();
 	return $app ['twig']->render ( 'games.twig', array (
 			'games' => $games 
