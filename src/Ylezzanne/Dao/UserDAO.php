@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 /**
 * User DAO
 */
-class UserDAO implements UserProviderInterface {
+class UserDAO implements RepositoryInterface, UserProviderInterface {
 	
 	/**
      * @var Pdo
@@ -68,6 +68,26 @@ class UserDAO implements UserProviderInterface {
 		
 	}
 
+	/**
+	 * Returns array of users.
+	 *
+	 *
+	 * @return array \Ylezzanne\Dao\User.
+	 *
+	 */
+	public function findAll() {
+	
+		$stmt = $app ['pdo']->prepare ( "SELECT u.* FROM users u" );
+	
+		$usersData = array ();
+		while ( $row = $stmt->fetch ( PDO::FETCH_ASSOC ) ) {
+			// $app ['monolog']->addDebug ( ' ' );
+			// array_push ( $usersData, $user );
+		}
+	
+		return $usersData;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */

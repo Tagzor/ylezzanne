@@ -12,19 +12,6 @@ namespace Ylezzanne\Dao;
  */
 interface RepositoryInterface
 {
-    /**
-     * Saves the entity to the database.
-     *
-     * @param object $entity
-     */
-    public function save($entity);
-
-    /**
-     * Deletes the entity.
-     *
-     * @param integer $id
-     */
-    public function delete($id);
 
     /**
      * Returns the total number of entities.
@@ -45,14 +32,7 @@ interface RepositoryInterface
     /**
      * Returns a collection of entities.
      *
-     * @param integer $limit
-     *   The number of entities to return.
-     * @param integer $offset
-     *   The number of entities to skip.
-     * @param array $orderBy
-     *   Optionally, the order by info, in the $column => $direction format.
-     *
      * @return array A collection of entity objects.
      */
-    public function findAll($limit, $offset = 0, $orderBy = array());
+    public function findAll();
 }

@@ -64,7 +64,7 @@ class GameDAO implements RepositoryInterface {
 	 * @return array \Ylezzanne\Dao\Game.
 	 *
 	 */
-	public function listGames() {
+	public function findAll() {
 		
 		$stmt = $app ['pdo']->prepare ( "SELECT g.* FROM games g" );
 		
