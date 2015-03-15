@@ -7,8 +7,8 @@
 		<div class="row">
 		{% for game in games %}
 			<div class="col-lg-4">
-				<img src="{{game.image}}" class="img-circle" alt= "{{game.name}}">	
-				<a href="{{game.source}}"><h2>{{game.name}}</h2></a>
+				<img src="{{ app.request.basepath }}/images/games/{{game.image}}" class="img-circle" alt= "{{game.name}}">	
+				<a href="/game/{{game.id}}"><h2>{{game.name}}</h2></a>
 				<a href="/db/game/{{game.id}}"><p>Statistika</p></a>
 			</div>
         {% else %}

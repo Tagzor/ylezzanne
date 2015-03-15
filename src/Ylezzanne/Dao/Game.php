@@ -34,6 +34,10 @@ class Game{
 	 */
 	protected $image;
 	
+	
+	protected $source;
+	
+	
 	/**
 	 * The temporary uploaded file.
 	 *
@@ -44,7 +48,7 @@ class Game{
 	protected $file;
 	
 	
-	public function __construct($id, $name, $description, $image) {
+	public function __construct($id, $name, $description, $image, $source) {
 		$this->id  = $id;
 		$this->name = $name;
 		$this->description = $description; 
@@ -53,6 +57,7 @@ class Game{
 		} else {
 			$this->image = $image;
 		}
+		$this->source = $source;
 	}
 	
 	
@@ -100,6 +105,15 @@ class Game{
 	public function setFile(UploadedFile $file = null)
 	{
 		$this->file = $file;
+	}
+	
+	public function getSource()
+	{
+		return $this->source;
+	}
+	public function setSource($source)
+	{
+		$this->source = $source;
 	}
 	
 }
