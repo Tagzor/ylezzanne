@@ -99,7 +99,7 @@ $user->get ( '/', function () use($app) {
 $game = $app ['controllers_factory'];
 $game->get ( '/', function () use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO($app['pdo']);
-	$games = $gameDAO->listGames();
+	$games = $gameDAO->findAll();
 	echo count($games);
 	
 	$count = $app['repository.games']->getCount();
