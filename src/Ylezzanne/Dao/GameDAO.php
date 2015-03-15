@@ -79,6 +79,19 @@ class GameDAO implements RepositoryInterface {
 		return $gamesData;
 	}
 	
+	public function topGames() {
+		$stmt = $this->pdo->prepare ( "SELECT games.name, count(statistics.score)
+		FROM statistics INNER JOIN games ON statistics.game_id=games.id GROUP BY games.name ");
+
+		$stmt->execute();
+		
+		$topGameData = array ();
+		while ( $row = $stmt->fetch ( PDO::FETCH_ASSOC ) ) {
+			$topGameData[] =  $row;
+		}
+		
+		return $topGameDataData;
+	}
 }
 
 ?>
