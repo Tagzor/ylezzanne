@@ -65,7 +65,7 @@ class Game{
 		$this->id = $id;
 	}
 	
-	public function geName()
+	public function getName()
 	{
 		return $this->name;
 	}
