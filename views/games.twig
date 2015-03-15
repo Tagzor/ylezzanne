@@ -9,7 +9,7 @@
 
 <ul>
 {% for g in games %}
-  <li> {{  g}} </li>
+  <li> {{  g.Name()}} </li>
 {% else %}
   <li>GAMES NOT FOUND!</li>
 {% endfor %}
@@ -26,8 +26,8 @@
     <tbody>
         {% for game in games %}
             <tr>
-                <td> {{ game.name|e }} </td>
-                <td> {{ game.description }} </td>
+                <td> {{ game.Name() }} </td>
+                <td> {{ game.Description() }} </td>
                 <td>
                 </td>
             </tr>
