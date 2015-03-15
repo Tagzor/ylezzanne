@@ -3,41 +3,20 @@
 {% set active = 'name' %}
 
 {% block content %}
-<div class="container">
-
-<p>Games TEST:</p>
-
-<ul>
-{% for g in games %}
-  <li> {{  g.name }} </li>
-{% else %}
-  <li>GAMES NOT FOUND!</li>
-{% endfor %}
-</ul>
-
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Nimi</th>
-            <th>Description</th>
-            <th>Action </th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for game in games %}
-            <tr>
-                <td> {{ game.name|e }} </td>
-                <td> {{ game.description }} </td>
-                <td>
-                </td>
-            </tr>
+	<div class = "container text-center">
+		<div class="row">
+		{% for game in games %}
+			<div class="col-lg-4">
+				<img src="{{game.image}}" class="img-circle" alt= "{{game.name}}">	
+				<a href="{{game.source}}"><h2>{{game.name}}</h2></a>
+				<a href="/db/game/{{game.id}}"><p>Statistika</p></a>
+			</div>
         {% else %}
-            <tr>
-                <td colspan="4">'No games to play!'</td>
-            </tr>
+			<div class="col-lg-4">
+				'No games to play!'
+            </div>
         {% endfor %}
-    </tbody>
-</table>
-</div>
+		</div>
+	</div>
 
 {% endblock %}
