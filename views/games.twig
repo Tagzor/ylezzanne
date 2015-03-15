@@ -9,12 +9,35 @@
 
 <ul>
 {% for g in games %}
-  <li> {{ g.getName() }} </li>
+  <li> {{ g.name }} </li>
 {% else %}
   <li>GAMES NOT FOUND!</li>
 {% endfor %}
 </ul>
 
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th> {{ 'Name'|trans }} </th>
+            <th> {{ 'Description'|trans }} </th>
+            <th> {{ 'Operations'|trans }} </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for game in games %}
+            <tr>
+                <td> {{ game.name|e }} </td>
+                <td> {{ game.description }} </td>
+                <td>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">{{ 'No games to play!'|trans }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 </div>
 
 {% endblock %}
