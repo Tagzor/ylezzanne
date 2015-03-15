@@ -8,7 +8,7 @@ use Ylezzanne\Dao\Game;
 /**
 * Game DAO
 */
-class UserDAO implements UserProviderInterface {
+class GameDAO implements RepositoryInterface {
 	
 	/**
      * @var Pdo

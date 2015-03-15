@@ -100,7 +100,10 @@ $game = $app ['controllers_factory'];
 $game->get ( '/', function () use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO($app['pdo']);
 	$games = $gameDAO->listGames();
+	echo count($games);
 	
+	$count = $app['repository.games']->getCount();
+	echo $count;
 	return $app ['twig']->render ( 'games.twig', array (
 			'games' => $games 
 	) );
