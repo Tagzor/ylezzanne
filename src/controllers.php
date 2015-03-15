@@ -97,13 +97,16 @@ $user->get ( '/', function () use($app) {
 	
 // define controllers for a game
 $game = $app ['controllers_factory'];
+$game->get ( '/{id}', function ($id) use($app) {
+	$gameDAO = new Ylezzanne\Dao\GameDAO($app['pdo']);
+	$game = $gameDAO->find($id);
+	return $app ['twig']->render ( 'game.twig', array (
+			'game' => $game
+	) );
+} );
 $game->get ( '/', function () use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO($app['pdo']);
 	$games = $gameDAO->findAll();
-	echo count($games);
-	
-	//$count = $app['repository.games']->getCount();
-	//echo $count;
 	return $app ['twig']->render ( 'games.twig', array (
 			'games' => $games 
 	) );
