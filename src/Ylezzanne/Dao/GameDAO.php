@@ -66,7 +66,7 @@ class GameDAO implements RepositoryInterface {
 	 */
 	public function findAll() {
 		
-		$stmt = $app ['pdo']->prepare ( "SELECT g.* FROM games g" );
+		$stmt = $this->pdo->prepare ( "SELECT g.* FROM games g" );
 		
 		$gamesData = array ();
 		while ( $row = $stmt->fetch ( PDO::FETCH_ASSOC ) ) {
