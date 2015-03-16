@@ -1,13 +1,9 @@
 <?php
 
-ini_set('display_errors', 'stderr');
-mb_internal_encoding("UTF-8");
-error_reporting(E_ALL);// | E_STRICT
-// OpenID teek...
-require_once("Auth/OpenID/Consumer.php");
-require_once("Auth/OpenID/FileStore.php");
-require_once("Auth/OpenID/SReg.php");
-require_once("Auth/OpenID/PAPE.php");
+use Auth\OpenID\Consumer;
+use Auth\OpenID\FileStore;
+use Auth\OpenID\SReg;
+use Auth\OpenID\PAPE;
 
 // Kasutame PHP sessiooni
 session_start();

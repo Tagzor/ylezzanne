@@ -155,7 +155,19 @@ $app->get ( '/tbd/{name}', function ($name) use($app) {
 	) );
 } );
 
+$app->get ( '/logout', function (Request $request) use($app) {
+	session_destroy(); 
+	header("Location: " . getTrustRoot() );
+	return $app ['twig']->render ( 'login.twig');
+} );
+	
+	
 $app->get ( '/eid', function () use($app) {
+	
+	session_start();
+	
+	OpenIDeeAuth("e");
+	
 	return $app ['twig']->render ( 'eid.twig', array (
 			'name' => $name 
 	) );
