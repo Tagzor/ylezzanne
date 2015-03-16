@@ -87,7 +87,7 @@ class GameDAO implements RepositoryInterface {
 	 *
 	 */
 	public function getTopScores($id) {
-		$stmt = $this->pdo->prepare ( "SELECT st.created_at as time, u.username, st.score
+		$stmt = $this->pdo->prepare ( "SELECT st.created_at AS time, u.username, st.score AS score
 		FROM users u INNER JOIN statistics st
 		ON u.id = st.user_id JOIN games g
 		ON st.game_id = g.id
@@ -111,12 +111,12 @@ class GameDAO implements RepositoryInterface {
 	 *
 	 */
 	public function getStatistics($id, $username) {
-		$stmt = $this->pdo->prepare ( "SELECT st.created_at as time, st.score as score 
+		$stmt = $this->pdo->prepare ( "SELECT st.created_at AS time, st.score AS score 
 		FROM users u INNER JOIN statistics st
 		   ON u.id = st.user_id JOIN games g
 		   ON st.game_id = g.id
 		WHERE g.id = :id AND u.username= :username 
-		ORDER BY st.created_at ASC");
+		ORDER BY time ASC");
 				
 		$stmt->execute(array(':id' => $id, ':username' => $username));
 	
