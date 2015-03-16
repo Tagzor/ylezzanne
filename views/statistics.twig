@@ -12,8 +12,7 @@
           <p class="pull-left visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Men&uuml;&uuml;</button>
           </p>
-		  //TODO:{% include "gamesOnSidebar.twig" %}
-		  <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+          <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
 			<div class="list-group">
 			{% for game in games %}
 				<a href="/db/game/{{game.id}}">
@@ -33,7 +32,7 @@
 			     <thead>
 			         <tr>
 			             <th> {{ 'Aeg' }} </th>
-			             <th> {{ 'Punktid'|trans }} </th>
+			             <th> {{ 'Punktid' }} </th>
 			         </tr>
 			     </thead>
 			     <tbody>
