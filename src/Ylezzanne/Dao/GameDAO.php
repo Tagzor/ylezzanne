@@ -92,7 +92,7 @@ class GameDAO implements RepositoryInterface {
 		ON u.id = st.user_id JOIN games g
 		ON st.game_id = g.id
 		WHERE g.id = :id
-		ORDER BY st.score ASC");
+		ORDER BY ORDER BY score DESC");
 		$stmt->execute(array(':id' => $id));
 		
 		$topScores = array ();
