@@ -101,10 +101,12 @@ $game->get ( '/{id}', function ($id) use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO($app['pdo']);
 	$game = $gameDAO->find($id);
 	$topScores = $gameDAO->getTopScores($id);
+	$games = $gameDAO->findAll();
 	
 	return $app ['twig']->render ( 'game.twig', array (
 			'game' => $game,
-			'topScores' => $topScores
+			'topScores' => $topScores,
+			'games' => $games
 	) );
 } );
 
