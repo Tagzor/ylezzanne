@@ -38,7 +38,7 @@
 			     <tbody>
 			         {% for row in statistics %}
 			             <tr>
-			                 <td> {{ row.createdAt|date('Y-m-d H:i') }} </td>
+			                 <td> {{ row.time|date('Y-m-d H:i') }} </td>
 			                 <td> {{ row.score}} </td>
 			             </tr>
 			         {% else %}
