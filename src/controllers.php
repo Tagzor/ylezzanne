@@ -100,10 +100,14 @@ $game = $app ['controllers_factory'];
 $game->get ( '/{id}', function ($id) use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO($app['pdo']);
 	$game = $gameDAO->find($id);
+	$topScores = $gameDAO->getTopScores($id);
+	
 	return $app ['twig']->render ( 'game.twig', array (
-			'game' => $game
+			'game' => $game,
+			'topScores' => $topScores
 	) );
 } );
+
 $game->get ( '/', function () use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO($app['pdo']);
 	$games = $gameDAO->findAll();
@@ -112,20 +116,21 @@ $game->get ( '/', function () use($app) {
 	) );
 } );
 	
-// define controllers for a game
+// define controllers for a game statistics
 $statistics = $app ['controllers_factory'];
-$statistics->get ( '/', function () use($app) {
-	$st = $app ['pdo']->prepare ( 'SELECT name FROM test_table' );
-	$st->execute ();
+$statistics->get ( '/game/{id}', function ($id) use($app) {
+	$gameDAO = new Ylezzanne\Dao\GameDAO($app['pdo']);
+	$games = $gameDAO->findAll();
 	
-	$names = array ();
-	while ( $row = $st->fetch ( PDO::FETCH_ASSOC ) ) {
-		$app ['monolog']->addDebug ( 'Row ' . $row ['name'] );
-		$names [] = $row;
+	$token = $app ['security']->getToken ();
+	if (null !== $token) {
+		$user = $token->getUser ();
+		$stats = $gameDAO->getStatistics($id, $user->getUsername());
 	}
 	
-	return $app ['twig']->render ( 'database.twig', array (
-			'names' => $names 
+	return $app ['twig']->render ( 'statistics.twig', array (
+			'games' => $games,
+			'statistics' => $stats 
 	) );
 } );
 

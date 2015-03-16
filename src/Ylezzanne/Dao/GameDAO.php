@@ -79,19 +79,55 @@ class GameDAO implements RepositoryInterface {
 		return $gamesData;
 	}
 	
-	public function topGames() {
-		$stmt = $this->pdo->prepare ( "SELECT games.name, count(statistics.score)
-		FROM statistics INNER JOIN games ON statistics.game_id=games.id GROUP BY games.name ");
-
-		$stmt->execute();
+	/**
+	 * Returns a game topScorers matching the supplied id.
+	 *
+	 * @param integer $id game id
+	 *
+	 *
+	 */
+	public function getTopScores($id) {
+		$stmt = $this->pdo->prepare ( "SELECT st.created_at, u.username, st.score
+		FROM users u INNER JOIN statistics st
+		ON u.id = st.user_id JOIN games g
+		ON st.game_id = g.id
+		WHERE g.id = :id
+		ORDER BY st.score ASC");
+		$stmt->execute(array(':id' => $id));
 		
-		$topGameData = array ();
+		$topScores = array ();
 		while ( $row = $stmt->fetch ( PDO::FETCH_ASSOC ) ) {
-			$topGameData[] =  $row;
+			$topScores[] =  $row;
 		}
 		
-		return $topGameDataData;
+		return $topScores;
 	}
+
+	/**
+	 * Returns a game statistics matching the supplied id.
+	 *
+	 * @param integer $id game id
+	 *
+	 *
+	 */
+	public function getStatistics($id, $username) {
+		$stmt = $this->pdo->prepare ( "SELECT st.created_at, st.score 
+		FROM users u INNER JOIN statistics st
+		   ON u.id = st.user_id JOIN games g
+		   ON st.game_id = g.id
+		WHERE g.id = :id AND u.username= :username 
+		ORDER BY st.created_at ASC");
+				
+		$stmt->execute(array(':id' => $id, ':username' => $username));
+	
+		$statisticsRows = array ();
+		while ( $row = $stmt->fetch ( PDO::FETCH_ASSOC ) ) {
+			$statisticsRows[] =  $row;
+		}
+	
+		return $statisticsRows;
+	}
+	
 }
 
 ?>

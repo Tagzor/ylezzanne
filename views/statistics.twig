@@ -1,0 +1,59 @@
+{% extends 'ylezzanne.html.twig' %}
+
+{% set active = 'name' %}
+
+{% block content %}
+
+	<div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-left">
+
+        <div class="col-xs-12">
+          <p class="pull-left visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Men&uuml;&uuml;</button>
+          </p>
+		  //TODO:{% include "gamesOnSidebar.twig" %}
+		  <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+			<div class="list-group">
+			{% for game in games %}
+				<a href="/db/game/{{game.id}}">
+					<img src="{{ app.request.basepath }}/images/games/{{game.image}}" class="img-circle" alt= "{{game.name}}">
+				</a>
+			{% else %}
+				<div class="col-lg-4">
+					<p>Funktsionaalsus alles tuleb.</p>
+	            </div>
+	        {% endfor %}
+			</div>
+		  </div>
+
+          <div class="jumbotron col-xs-offset-0 col-sm-offset-3">
+			<h2>Tulemused<h2>
+			 <table class="table table-hover">
+			     <thead>
+			         <tr>
+			             <th> {{ 'Aeg' }} </th>
+			             <th> {{ 'Punktid'|trans }} </th>
+			         </tr>
+			     </thead>
+			     <tbody>
+			         {% for row in statistics %}
+			             <tr>
+			                 <td> {{ row.createdAt|date('Y-m-d H:i') }} </td>
+			                 <td> {{ row.score}} </td>
+			             </tr>
+			         {% else %}
+			             <tr>
+			                 <td colspan="4">{{ 'Pole veel proovinud!' }}</td>
+			             </tr>
+			         {% endfor %}
+			     </tbody>
+			 </table>
+            <p>Graafik</p>
+			<p>Funktsionaalsus alles tuleb.</p> 
+          </div>
+		</div>
+      </div>
+	</div>
+
+{% endblock %}
