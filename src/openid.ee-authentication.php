@@ -25,7 +25,7 @@ function &getStore() {
         print "Could not create the FileStore directory '$store_path'. Please check the effective permissions.";
         exit(0);
     }
-    $tmp = new Auth_OpenID_FileStore($store_path);
+    $tmp = new FileStore($store_path);
     return $tmp;
 }
 
