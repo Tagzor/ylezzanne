@@ -81,10 +81,10 @@ function Auth_OpenID_registerNamespaceAlias($namespace_uri, $alias)
 {
     global $Auth_OpenID_registered_aliases;
 
-    if (Auth_OpenID::arrayGet($Auth_OpenID_registered_aliases,
-                              $alias) == $namespace_uri) {
-        return true;
-    }
+//     if (Auth_OpenID::arrayGet($Auth_OpenID_registered_aliases,
+//                               $alias) == $namespace_uri) {
+//         return true;
+//     }
 
     if (in_array($namespace_uri,
                  array_values($Auth_OpenID_registered_aliases))) {
