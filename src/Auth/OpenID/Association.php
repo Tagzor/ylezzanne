@@ -17,17 +17,17 @@
 /**
  * @access private
  */
-require_once 'Auth/OpenID/CryptUtil.php';
+require_once __DIR_.'/CryptUtil.php';
 
 /**
  * @access private
  */
-require_once 'Auth/OpenID/KVForm.php';
+require_once __DIR_.'/KVForm.php';
 
 /**
  * @access private
  */
-require_once 'Auth/OpenID/HMAC.php';
+require_once __DIR_.'/HMAC.php';
 
 /**
  * This class represents an association between a server and a
