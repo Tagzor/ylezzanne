@@ -110,7 +110,7 @@ function Auth_OpenID_supportsSReg($endpoint)
  *
  * @package OpenID
  */
-class Auth_OpenID_SRegBase extends Auth_OpenID_Extension {
+class Auth_OpenID_SRegBase extends Extension {
     /**
      * Extract the simple registration namespace URI from the given
      * OpenID message. Handles OpenID 1 and 2, as well as both sreg
