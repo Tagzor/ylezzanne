@@ -5,11 +5,11 @@ mb_internal_encoding("UTF-8");
 error_reporting(E_ALL);// | E_STRICT
 
 require_once __DIR__.'/../vendor/autoload.php';
-//require_once __DIR__.'/../src/Auth/openid.ee-authentication.php';
 
 $app = require __DIR__.'/../src/app.php';
-
 require __DIR__.'/../src/controllers.php';
+
+require_once __DIR__.'/../src/Auth/openid.ee-authentication.php';
 
 $app->run();
 
