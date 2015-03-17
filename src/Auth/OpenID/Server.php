@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\OpenID;
-
 /**
  * OpenID server protocol and logic.
  * 
@@ -94,16 +92,16 @@ namespace Auth\OpenID;
 /**
  * Required imports
  */
-require_once __DIR__.'/../OpenID.php';
-require_once __DIR__.'/Association.php';
-require_once __DIR__.'/CryptUtil.php';
-require_once __DIR__.'/BigMath.php';
-require_once __DIR__.'/DiffieHellman.php';
-require_once __DIR__.'/KVForm.php';
-require_once __DIR__.'/TrustRoot.php';
-require_once __DIR__.'/ServerRequest.php';
-require_once __DIR__.'/Message.php';
-require_once __DIR__.'/Nonce.php';
+require_once "Auth/OpenID.php";
+require_once "Auth/OpenID/Association.php";
+require_once "Auth/OpenID/CryptUtil.php";
+require_once "Auth/OpenID/BigMath.php";
+require_once "Auth/OpenID/DiffieHellman.php";
+require_once "Auth/OpenID/KVForm.php";
+require_once "Auth/OpenID/TrustRoot.php";
+require_once "Auth/OpenID/ServerRequest.php";
+require_once "Auth/OpenID/Message.php";
+require_once "Auth/OpenID/Nonce.php";
 
 define('AUTH_OPENID_HTTP_OK', 200);
 define('AUTH_OPENID_HTTP_REDIRECT', 302);
@@ -1764,4 +1762,4 @@ class Auth_OpenID_Server {
     }
 }
 
-?>
+

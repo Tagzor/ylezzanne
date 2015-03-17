@@ -1,7 +1,4 @@
 <?php
-
-namespace Auth\OpenID;
-
 /**
  * Functions for dealing with OpenID trust roots
  *
@@ -15,7 +12,7 @@ namespace Auth\OpenID;
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
-require_once __DIR__.'/Discover.php';
+require_once 'Auth/OpenID/Discover.php';
 
 /**
  * A regular expression that matches a domain ending in a top-level domains.
@@ -462,4 +459,3 @@ function Auth_OpenID_verifyReturnTo($realm_str, $return_to, $fetcher,
     }
 }
 
-?>

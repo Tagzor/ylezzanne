@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\Yadis;
-
 /**
  * Routines for XRI resolution.
  *
@@ -11,9 +9,9 @@ namespace Auth\Yadis;
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
-require_once __DIR__.'/Misc.php';
-require_once __DIR__.'/Yadis.php';
-require_once __DIR__.'/../OpenID.php';
+require_once 'Auth/Yadis/Misc.php';
+require_once 'Auth/Yadis/Yadis.php';
+require_once 'Auth/OpenID.php';
 
 function Auth_Yadis_getDefaultProxy()
 {
@@ -233,4 +231,4 @@ function Auth_Yadis_getCanonicalID($iname, $xrds)
     return $canonicalID;
 }
 
-?>
+

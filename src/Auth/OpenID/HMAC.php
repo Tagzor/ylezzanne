@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\OpenID;
-
 /**
  * This is the HMACSHA1 implementation for the OpenID library.
  *
@@ -16,7 +14,7 @@ namespace Auth\OpenID;
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
-require_once __DIR__.'/../OpenID.php';
+require_once 'Auth/OpenID.php';
 
 /**
  * SHA1_BLOCKSIZE is this module's SHA1 blocksize used by the fallback
@@ -98,4 +96,3 @@ if (function_exists('hash_hmac') &&
     define('Auth_OpenID_HMACSHA256_SUPPORTED', false);
 }
 
-?>

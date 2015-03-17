@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth;
-
 /**
  * This is the PHP OpenID library by JanRain, Inc.
  *
@@ -27,10 +25,10 @@ define('Auth_OpenID_VERSION', '2.2.2');
 /**
  * Require the fetcher code.
  */
-require_once __DIR__.'/Yadis/PlainHTTPFetcher.php';
-require_once __DIR__.'/Yadis/ParanoidHTTPFetcher.php';
-require_once __DIR__.'/OpenID/BigMath.php';
-require_once __DIR__.'/OpenID/URINorm.php';
+require_once "Auth/Yadis/PlainHTTPFetcher.php";
+require_once "Auth/Yadis/ParanoidHTTPFetcher.php";
+require_once "Auth/OpenID/BigMath.php";
+require_once "Auth/OpenID/URINorm.php";
 
 /**
  * Status code returned by the server when the only option is to show
@@ -104,7 +102,7 @@ define('Auth_OpenID_digits',
 define('Auth_OpenID_punct',
        "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~");
 
-//Auth_OpenID_include_init();
+Auth_OpenID_include_init();
 
 /**
  * The OpenID utility function class.
@@ -558,10 +556,8 @@ class Auth_OpenID {
  * Abstracted to a function to make life easier
  * for some PHP optimizers.
  */
-// function Auth_OpenID_include_init() {
-//   if (Auth_OpenID_getMathLib() === null) {
-//     Auth_OpenID_setNoMathSupport();
-//   }
-// }
-
-?>
+function Auth_OpenID_include_init() {
+  if (Auth_OpenID_getMathLib() === null) {
+    Auth_OpenID_setNoMathSupport();
+  }
+}

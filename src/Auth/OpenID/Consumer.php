@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\OpenID;
-
 /**
  * This module documents the main interface with the OpenID consumer
  * library.  The only part of the library which has to be used and
@@ -162,18 +160,18 @@ namespace Auth\OpenID;
 /**
  * Require utility classes and functions for the consumer.
  */
-require_once __DIR__.'/../OpenID.php';
-require_once __DIR__.'/Message.php';
-require_once __DIR__.'/HMAC.php';
-require_once __DIR__.'/Association.php';
-require_once __DIR__.'/CryptUtil.php';
-require_once __DIR__.'/DiffieHellman.php';
-require_once __DIR__.'/KVForm.php';
-require_once __DIR__.'/Nonce.php';
-require_once __DIR__.'/Discover.php';
-require_once __DIR__.'/URINorm.php';
-require_once __DIR__.'/../Yadis/Manager.php';
-require_once __DIR__.'/../Yadis/XRI.php';
+require_once "Auth/OpenID.php";
+require_once "Auth/OpenID/Message.php";
+require_once "Auth/OpenID/HMAC.php";
+require_once "Auth/OpenID/Association.php";
+require_once "Auth/OpenID/CryptUtil.php";
+require_once "Auth/OpenID/DiffieHellman.php";
+require_once "Auth/OpenID/KVForm.php";
+require_once "Auth/OpenID/Nonce.php";
+require_once "Auth/OpenID/Discover.php";
+require_once "Auth/OpenID/URINorm.php";
+require_once "Auth/Yadis/Manager.php";
+require_once "Auth/Yadis/XRI.php";
 
 /**
  * This is the status code returned when the complete method returns
@@ -1183,7 +1181,7 @@ class Auth_OpenID_GenericConsumer {
         // oidutil.log('Performing discovery on %s' % (claimed_id,))
         list($unused, $services) = call_user_func($this->discoverMethod,
                                                   $claimed_id,
-												  $this->fetcher);
+												  &$this->fetcher);
 
         if (!$services) {
             return new Auth_OpenID_FailureResponse(null,
@@ -2229,4 +2227,4 @@ class Auth_OpenID_SetupNeededResponse extends Auth_OpenID_ConsumerResponse {
     }
 }
 
-?>
+

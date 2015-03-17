@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\OpenID;
-
 /**
  * SQL-backed OpenID stores for use with PEAR::MDB2.
  *
@@ -20,17 +18,17 @@ require_once 'MDB2.php';
 /**
  * @access private
  */
-require_once __DIR__.'/Interface.php';
+require_once 'Auth/OpenID/Interface.php';
 
 /**
  * @access private
  */
-require_once __DIR__.'/../OpenID.php';
+require_once 'Auth/OpenID.php';
 
 /**
  * @access private
  */
-require_once __DIR__.'/Nonce.php';
+require_once 'Auth/OpenID/Nonce.php';
 
 /**
  * This store uses a PEAR::MDB2 connection to store persistence

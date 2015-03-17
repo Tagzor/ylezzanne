@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\OpenID;
-
 /**
  * Extension argument processing code
  *
@@ -11,10 +9,10 @@ namespace Auth\OpenID;
 /**
  * Import tools needed to deal with messages.
  */
-require_once __DIR__.'/../OpenID.php';
-require_once __DIR__.'/KVForm.php';
-require_once __DIR__.'/../Yadis/XML.php';
-require_once __DIR__.'/Consumer.php'; // For Auth_OpenID_FailureResponse
+require_once 'Auth/OpenID.php';
+require_once 'Auth/OpenID/KVForm.php';
+require_once 'Auth/Yadis/XML.php';
+require_once 'Auth/OpenID/Consumer.php'; // For Auth_OpenID_FailureResponse
 
 // This doesn't REALLY belong here, but where is better?
 define('Auth_OpenID_IDENTIFIER_SELECT',
@@ -81,10 +79,10 @@ function Auth_OpenID_registerNamespaceAlias($namespace_uri, $alias)
 {
     global $Auth_OpenID_registered_aliases;
 
-//     if (Auth_OpenID::arrayGet($Auth_OpenID_registered_aliases,
-//                               $alias) == $namespace_uri) {
-//         return true;
-//     }
+    if (Auth_OpenID::arrayGet($Auth_OpenID_registered_aliases,
+                              $alias) == $namespace_uri) {
+        return true;
+    }
 
     if (in_array($namespace_uri,
                  array_values($Auth_OpenID_registered_aliases))) {
@@ -919,4 +917,4 @@ class Auth_OpenID_Message {
     }
 }
 
-?>
+

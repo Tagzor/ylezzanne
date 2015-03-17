@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\OpenID;
-
 /**
  * Nonce-related functionality.
  *
@@ -11,7 +9,7 @@ namespace Auth\OpenID;
 /**
  * Need CryptUtil to generate random strings.
  */
-require_once __DIR__.'/CryptUtil.php';
+require_once 'Auth/OpenID/CryptUtil.php';
 
 /**
  * This is the characters that the nonces are made from.
@@ -108,4 +106,3 @@ function Auth_OpenID_mkNonce($when = null)
     return $time_str . $salt;
 }
 
-?>

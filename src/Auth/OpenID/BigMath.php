@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\OpenID;
-
 /**
  * BigMath: A math library wrapper that abstracts out the underlying
  * long integer library.
@@ -20,12 +18,12 @@ namespace Auth\OpenID;
 /**
  * Needed for random number generation
  */
-require_once __DIR__.'/CryptUtil.php';
+require_once 'Auth/OpenID/CryptUtil.php';
 
 /**
  * Need Auth_OpenID::bytes().
  */
-require_once __DIR__.'/../OpenID.php';
+require_once 'Auth/OpenID.php';
 
 /**
  * The superclass of all big-integer math implementations
@@ -451,4 +449,4 @@ function Auth_OpenID_noMathSupport()
     return defined('Auth_OpenID_NO_MATH_SUPPORT');
 }
 
-?>
+

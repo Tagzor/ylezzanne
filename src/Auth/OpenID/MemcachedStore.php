@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\OpenID;
-
 /**
  * This file supplies a memcached store backend for OpenID servers and
  * consumers.
@@ -207,4 +205,3 @@ class Auth_OpenID_MemcachedStore extends Auth_OpenID_OpenIDStore {
     }
 }
 
-?>

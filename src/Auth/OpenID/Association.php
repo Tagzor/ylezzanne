@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\OpenID;
-
 /**
  * This module contains code for dealing with associations between
  * consumers and servers.
@@ -19,17 +17,17 @@ namespace Auth\OpenID;
 /**
  * @access private
  */
-require_once __DIR__.'/CryptUtil.php';
+require_once 'Auth/OpenID/CryptUtil.php';
 
 /**
  * @access private
  */
-require_once __DIR__.'/KVForm.php';
+require_once 'Auth/OpenID/KVForm.php';
 
 /**
  * @access private
  */
-require_once __DIR__.'/HMAC.php';
+require_once 'Auth/OpenID/HMAC.php';
 
 /**
  * This class represents an association between a server and a
@@ -610,4 +608,3 @@ class Auth_OpenID_SessionNegotiator {
     }
 }
 
-?>

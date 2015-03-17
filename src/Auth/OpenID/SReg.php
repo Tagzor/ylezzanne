@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\OpenID;
-
 /**
  * Simple registration request and response parsing and object
  * representation.
@@ -44,8 +42,8 @@ namespace Auth\OpenID;
 /**
  * Import message and extension internals.
  */
-require_once __DIR__.'/Message.php';
-require_once __DIR__.'/Extension.php';
+require_once 'Auth/OpenID/Message.php';
+require_once 'Auth/OpenID/Extension.php';
 
 // The data fields that are listed in the sreg spec
 global $Auth_OpenID_sreg_data_fields;
@@ -520,4 +518,4 @@ class Auth_OpenID_SRegResponse extends Auth_OpenID_SRegBase {
     }
 }
 
-?>
+

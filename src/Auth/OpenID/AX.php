@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\OpenID;
-
 /**
  * Implements the OpenID attribute exchange specification, version 1.0
  * as of svn revision 370 from openid.net svn.
@@ -12,9 +10,9 @@ namespace Auth\OpenID;
 /**
  * Require utility classes and functions for the consumer.
  */
-require_once __DIR__.'/Extension.php';
-require_once __DIR__.'/Message.php';
-require_once __DIR__.'/TrustRoot.php';
+require_once "Auth/OpenID/Extension.php";
+require_once "Auth/OpenID/Message.php";
+require_once "Auth/OpenID/TrustRoot.php";
 
 define('Auth_OpenID_AX_NS_URI',
        'http://openid.net/srv/ax/1.0');
@@ -1022,4 +1020,3 @@ class Auth_OpenID_AX_StoreResponse extends Auth_OpenID_AX_Message {
     }
 }
 
-?>

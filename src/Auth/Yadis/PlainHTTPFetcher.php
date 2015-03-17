@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\Yadis;
-
 /**
  * This module contains the plain non-curl HTTP fetcher
  * implementation.
@@ -19,7 +17,7 @@ namespace Auth\Yadis;
 /**
  * Interface import
  */
-require_once __DIR__.'/HTTPFetcher.php';
+require_once "Auth/Yadis/HTTPFetcher.php";
 
 /**
  * This class implements a plain, hand-built socket-based fetcher
@@ -248,4 +246,3 @@ class Auth_Yadis_PlainHTTPFetcher extends Auth_Yadis_HTTPFetcher {
     }
 }
 
-?>

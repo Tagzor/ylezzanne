@@ -1,14 +1,14 @@
 <?php
 
 ini_set('display_errors', 'stderr');
-//mb_internal_encoding("UTF-8");
+mb_internal_encoding("UTF-8");
 error_reporting(E_ALL);// | E_STRICT
 // OpenID teek...
 
-require_once __DIR__.'/OpenID/Consumer.php';
-require_once __DIR__.'/OpenID/FileStore.php';
-require_once __DIR__.'/OpenID/SReg.php';
-require_once __DIR__.'/OpenID/PAPE.php';
+require_once("Auth/OpenID/Consumer.php");
+require_once("Auth/OpenID/FileStore.php");
+require_once("Auth/OpenID/SReg.php");
+require_once("Auth/OpenID/PAPE.php");
 
 
 // Kasutame PHP sessiooni

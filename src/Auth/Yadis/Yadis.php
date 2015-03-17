@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\Yadis;
-
 /**
  * The core PHP Yadis implementation.
  *
@@ -19,18 +17,18 @@ namespace Auth\Yadis;
  * Need both fetcher types so we can use the right one based on the
  * presence or absence of CURL.
  */
-require_once __DIR__.'/PlainHTTPFetcher.php';
-require_once __DIR__.'/ParanoidHTTPFetcher.php';
+require_once "Auth/Yadis/PlainHTTPFetcher.php";
+require_once "Auth/Yadis/ParanoidHTTPFetcher.php";
 
 /**
  * Need this for parsing HTML (looking for META tags).
  */
-require_once __DIR__.'/ParseHTML.php';
+require_once "Auth/Yadis/ParseHTML.php";
 
 /**
  * Need this to parse the XRDS document during Yadis discovery.
  */
-require_once __DIR__.'/XRDS.php';
+require_once "Auth/Yadis/XRDS.php";
 
 /**
  * XRDS (yadis) content type
@@ -381,4 +379,4 @@ class Auth_Yadis_Yadis {
     }
 }
 
-?>
+

@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\OpenID;
-
 /**
  * A MySQL store.
  *
@@ -11,7 +9,7 @@ namespace Auth\OpenID;
 /**
  * Require the base class file.
  */
-require_once __DIR__.'/SQLStore.php';
+require_once "Auth/OpenID/SQLStore.php";
 
 /**
  * An SQL store that uses MySQL as its backend.
@@ -77,4 +75,3 @@ class Auth_OpenID_MySQLStore extends Auth_OpenID_SQLStore {
     }
 }
 
-?>

@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\Yadis;
-
 /**
  * This module contains the HTTP fetcher interface
  *
@@ -18,7 +16,7 @@ namespace Auth\Yadis;
 /**
  * Require logging functionality
  */
-require_once __DIR__.'/../OpenID.php';
+require_once "Auth/OpenID.php";
 
 define('Auth_OpenID_FETCHER_MAX_RESPONSE_KB', 1024);
 define('Auth_OpenID_USER_AGENT', 
@@ -174,4 +172,3 @@ class Auth_Yadis_HTTPFetcher {
     }
 }
 
-?>

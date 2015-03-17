@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\OpenID;
-
 /**
  * This module implements a VERY limited parser that finds <link> tags
  * in the head of HTML or XHTML documents and parses out their
@@ -84,7 +82,7 @@ namespace Auth\OpenID;
 /**
  * Require Auth_OpenID::arrayGet().
  */
-require_once __DIR__.'/../OpenID.php';
+require_once "Auth/OpenID.php";
 
 class Auth_OpenID_Parse {
 
@@ -377,4 +375,3 @@ function Auth_OpenID_legacy_discover($html_text, $server_rel,
     }
 }
 
-?>

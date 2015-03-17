@@ -1,7 +1,4 @@
 <?php
-
-namespace Auth\OpenID;
-
 /**
  * OpenID Server Request
  *
@@ -20,7 +17,7 @@ namespace Auth\OpenID;
 /**
  * Imports
  */
-require_once __DIR__.'/../OpenID.php';
+require_once "Auth/OpenID.php";
 
 /**
  * Object that holds the state of a request to the OpenID server
@@ -37,4 +34,3 @@ class Auth_OpenID_ServerRequest {
     }
 }
 
-?>

@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\Yadis;
-
 /**
  * This module contains the CURL-based HTTP fetcher implementation.
  *
@@ -18,8 +16,9 @@ namespace Auth\Yadis;
 /**
  * Interface import
  */
-require_once __DIR__.'/HTTPFetcher.php';
-require_once __DIR__.'/../OpenID.php';
+require_once "Auth/Yadis/HTTPFetcher.php";
+
+require_once "Auth/OpenID.php";
 
 /**
  * A paranoid {@link Auth_Yadis_HTTPFetcher} class which uses CURL
@@ -244,4 +243,3 @@ class Auth_Yadis_ParanoidHTTPFetcher extends Auth_Yadis_HTTPFetcher {
     }
 }
 
-?>

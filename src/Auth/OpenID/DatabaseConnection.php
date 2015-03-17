@@ -1,7 +1,5 @@
 <?php
 
-namespace Auth\OpenID;
-
 /**
  * The Auth_OpenID_DatabaseConnection class, which is used to emulate
  * a PEAR database connection.
