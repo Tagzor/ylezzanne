@@ -27,10 +27,10 @@ define('Auth_OpenID_VERSION', '2.2.2');
 /**
  * Require the fetcher code.
  */
-use Auth\Yadis\PlainHTTPFetcher;
-use Auth\Yadis\ParanoidHTTPFetcher;
-use Auth\OpenID\BigMath;
-use Auth\OpenID\URINorm;
+require_once __DIR__.'/Yadis/PlainHTTPFetcher.php';
+require_once __DIR__.'/Yadis/ParanoidHTTPFetcher.php';
+require_once __DIR__.'/OpenID/BigMath.php';
+require_once __DIR__.'/OpenID/URINorm.php';
 
 /**
  * Status code returned by the server when the only option is to show
@@ -559,8 +559,9 @@ class Auth_OpenID {
  * for some PHP optimizers.
  */
 function Auth_OpenID_include_init() {
-	$lib = new Auth_OpenID_MathLibrary();
-	if ($lib->Auth_OpenID_getMathLib() === null) {
+	if (Auth_OpenID_getMathLib() === null) {
 		Auth_OpenID_setNoMathSupport();
 	}
 }
+
+?>
