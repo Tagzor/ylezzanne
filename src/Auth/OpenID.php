@@ -559,8 +559,7 @@ class Auth_OpenID {
  * for some PHP optimizers.
  */
 function Auth_OpenID_include_init() {
-  $lib = new Auth_OpenID_MathLibrary();	
-  if ($lib->Auth_OpenID_getMathLib() === null) {
+  if (Auth_OpenID_getMathLib() === null) {
     Auth_OpenID_setNoMathSupport();
   }
 }
