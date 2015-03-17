@@ -87,7 +87,9 @@ define('Auth_OpenID_SREG_NS_URI_1_1', 'http://openid.net/extensions/sreg/1.1');
 // declaration.
 define('Auth_OpenID_SREG_NS_URI', Auth_OpenID_SREG_NS_URI_1_1);
 
-Auth_OpenID_registerNamespaceAlias(Auth_OpenID_SREG_NS_URI_1_1, 'sreg');
+// TODO:
+// $message = new Message();
+// $message->Auth_OpenID_registerNamespaceAlias(Auth_OpenID_SREG_NS_URI_1_1, 'sreg');
 
 /**
  * Does the given endpoint advertise support for simple
