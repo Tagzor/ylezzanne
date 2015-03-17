@@ -17,8 +17,8 @@
  * Need both fetcher types so we can use the right one based on the
  * presence or absence of CURL.
  */
-require_once "Auth/Yadis/PlainHTTPFetcher.php";
-require_once "Auth/Yadis/ParanoidHTTPFetcher.php";
+require_once __DIR__."/PlainHTTPFetcher.php";
+require_once __DIR__."/ParanoidHTTPFetcher.php";
 
 /**
  * Need this for parsing HTML (looking for META tags).
