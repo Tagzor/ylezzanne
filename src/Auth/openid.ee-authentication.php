@@ -1,7 +1,7 @@
 <?php
 
 ini_set('display_errors', 'stderr');
-mb_internal_encoding("UTF-8");
+//mb_internal_encoding("UTF-8");
 error_reporting(E_ALL);// | E_STRICT
 // OpenID teek...
 
