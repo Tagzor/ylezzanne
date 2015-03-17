@@ -558,10 +558,10 @@ class Auth_OpenID {
  * Abstracted to a function to make life easier
  * for some PHP optimizers.
  */
-function Auth_OpenID_include_init() {
-  if (Auth_OpenID_getMathLib() === null) {
-    Auth_OpenID_setNoMathSupport();
-  }
-}
+// function Auth_OpenID_include_init() {
+//   if (Auth_OpenID_getMathLib() === null) {
+//     Auth_OpenID_setNoMathSupport();
+//   }
+// }
 
 ?>
