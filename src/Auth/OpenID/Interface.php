@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\OpenID;
+
 /**
  * This file specifies the interface for PHP OpenID store implementations.
  *

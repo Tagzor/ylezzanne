@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\OpenID;
+
 /**
  * The OpenID library's Diffie-Hellman implementation.
  *
@@ -14,8 +16,8 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
-require_once 'Auth/OpenID.php';
-require_once 'Auth/OpenID/BigMath.php';
+use Auth\OpenID;
+use Auth\OpenID\BigMath;
 
 function Auth_OpenID_getDefaultMod()
 {

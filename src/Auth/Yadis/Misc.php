@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\Yadis;
+
 /**
  * Miscellaneous utility values and functions for OpenID and Yadis.
  *

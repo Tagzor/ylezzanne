@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\OpenID;
+
 /**
  * This file supplies a Memcached store backend for OpenID servers and
  * consumers.
@@ -17,10 +19,10 @@
 /**
  * Require base class for creating a new interface.
  */
-require_once 'Auth/OpenID.php';
-require_once 'Auth/OpenID/Interface.php';
-require_once 'Auth/OpenID/HMAC.php';
-require_once 'Auth/OpenID/Nonce.php';
+use Auth\OpenID;
+use Auth\OpenID\Interface;
+use Auth\OpenID\HMAC;
+use Auth\OpenID\Nonce;
 
 /**
  * This is a filesystem-based store for OpenID associations and

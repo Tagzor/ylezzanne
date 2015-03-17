@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\Yadis;
+
 /**
  * XML-parsing classes to wrap the domxml and DOM extensions for PHP 4
  * and 5, respectively.

@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\OpenID;
+
 /**
  * Simple registration request and response parsing and object
  * representation.
@@ -42,8 +44,8 @@
 /**
  * Import message and extension internals.
  */
-require_once 'Auth/OpenID/Message.php';
-require_once 'Auth/OpenID/Extension.php';
+use Auth\OpenID\Message;
+use Auth\OpenID\Extension;
 
 // The data fields that are listed in the sreg spec
 global $Auth_OpenID_sreg_data_fields;

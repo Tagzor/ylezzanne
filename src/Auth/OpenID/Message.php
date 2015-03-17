@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\OpenID;
+
 /**
  * Extension argument processing code
  *
@@ -10,9 +12,10 @@
  * Import tools needed to deal with messages.
  */
 require_once 'Auth/OpenID.php';
-require_once 'Auth/OpenID/KVForm.php';
-require_once 'Auth/Yadis/XML.php';
-require_once 'Auth/OpenID/Consumer.php'; // For Auth_OpenID_FailureResponse
+
+use Auth\OpenID\KVForm;
+use Auth\Yadis\XML;
+use Auth\OpenID\Consumer; // For Auth_OpenID_FailureResponse
 
 // This doesn't REALLY belong here, but where is better?
 define('Auth_OpenID_IDENTIFIER_SELECT',

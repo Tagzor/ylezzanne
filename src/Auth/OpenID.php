@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth;
+
 /**
  * This is the PHP OpenID library by JanRain, Inc.
  *
@@ -25,10 +27,10 @@ define('Auth_OpenID_VERSION', '2.2.2');
 /**
  * Require the fetcher code.
  */
-require_once "Auth/Yadis/PlainHTTPFetcher.php";
-require_once "Auth/Yadis/ParanoidHTTPFetcher.php";
-require_once "Auth/OpenID/BigMath.php";
-require_once "Auth/OpenID/URINorm.php";
+use Auth\Yadis\PlainHTTPFetcher;
+use Auth\Yadis\ParanoidHTTPFetcher;
+use Auth\OpenID\BigMath;
+use Auth\OpenID\URINorm;
 
 /**
  * Status code returned by the server when the only option is to show

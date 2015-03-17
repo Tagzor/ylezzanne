@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\OpenID;
+
 /**
  * This is the HMACSHA1 implementation for the OpenID library.
  *

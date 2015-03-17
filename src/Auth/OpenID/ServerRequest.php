@@ -1,4 +1,7 @@
 <?php
+
+namespace Auth\OpenID;
+
 /**
  * OpenID Server Request
  *

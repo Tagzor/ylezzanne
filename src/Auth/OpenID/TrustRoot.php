@@ -1,4 +1,7 @@
 <?php
+
+namespace Auth\OpenID;
+
 /**
  * Functions for dealing with OpenID trust roots
  *
@@ -12,7 +15,7 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
-require_once 'Auth/OpenID/Discover.php';
+use Auth\OpenID\Discover;
 
 /**
  * A regular expression that matches a domain ending in a top-level domains.

@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\Yadis;
+
 /**
  * This is the HTML pseudo-parser for the Yadis library.
  *
@@ -256,3 +258,4 @@ class Auth_Yadis_ParseHTML {
     }
 }
 
+?>

@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\OpenID;
+
 /**
  * This module documents the main interface with the OpenID consumer
  * library.  The only part of the library which has to be used and
@@ -160,18 +162,18 @@
 /**
  * Require utility classes and functions for the consumer.
  */
-require_once "../Auth/OpenID.php";
-require_once "../Auth/OpenID/Message.php";
-require_once "../Auth/OpenID/HMAC.php";
-require_once "../Auth/OpenID/Association.php";
-require_once "../Auth/OpenID/CryptUtil.php";
-require_once "../Auth/OpenID/DiffieHellman.php";
-require_once "../Auth/OpenID/KVForm.php";
-require_once "../Auth/OpenID/Nonce.php";
-require_once "../Auth/OpenID/Discover.php";
-require_once "../Auth/OpenID/URINorm.php";
-require_once "../Auth/Yadis/Manager.php";
-require_once "../Auth/Yadis/XRI.php";
+use Auth\OpenID;
+use Auth\OpenID\Message;
+use Auth\OpenID\HMAC;
+use Auth\OpenID\Association;
+use Auth\OpenID\CryptUtil;
+use Auth\OpenID\DiffieHellman;
+use Auth\OpenID\KVForm;
+use Auth\OpenID\Nonce;
+use Auth\OpenID\Discover;
+use Auth\OpenID\URINorm;
+use Auth\Yadis\Manager;
+use Auth\Yadis\XRI;
 
 /**
  * This is the status code returned when the complete method returns

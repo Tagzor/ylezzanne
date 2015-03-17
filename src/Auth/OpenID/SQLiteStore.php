@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\OpenID;
+
 /**
  * An SQLite store.
  *
@@ -9,7 +11,7 @@
 /**
  * Require the base class file.
  */
-require_once "Auth/OpenID/SQLStore.php";
+use Auth\OpenID\SQLStore;
 
 /**
  * An SQL store that uses SQLite as its backend.

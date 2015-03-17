@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\OpenID;
+
 /**
  * This file supplies a dumb store backend for OpenID servers and
  * consumers.
@@ -17,8 +19,8 @@
 /**
  * Import the interface for creating a new store class.
  */
-require_once 'Auth/OpenID/Interface.php';
-require_once 'Auth/OpenID/HMAC.php';
+use Auth\OpenID\Interface;
+use Auth\OpenID\HMAC;
 
 /**
  * This is a store for use in the worst case, when you have no way of

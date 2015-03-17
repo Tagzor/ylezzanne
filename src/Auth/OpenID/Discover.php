@@ -1,14 +1,16 @@
 <?php
 
+namespace Auth\OpenID;
+
 /**
  * The OpenID and Yadis discovery implementation for OpenID 1.2.
  */
 
-require_once "Auth/OpenID.php";
-require_once "Auth/OpenID/Parse.php";
-require_once "Auth/OpenID/Message.php";
-require_once "Auth/Yadis/XRIRes.php";
-require_once "Auth/Yadis/Yadis.php";
+use Auth\OpenID;
+use Auth\OpenID\Parse;
+use Auth\OpenID\Message;
+use Auth\Yadis\XRIRes;
+use Auth\Yadis\Yadis;
 
 // XML namespace value
 define('Auth_OpenID_XMLNS_1_0', 'http://openid.net/xmlns/1.0');

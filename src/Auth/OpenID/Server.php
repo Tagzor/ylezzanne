@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\OpenID;
+
 /**
  * OpenID server protocol and logic.
  * 
@@ -93,15 +95,15 @@
  * Required imports
  */
 require_once "Auth/OpenID.php";
-require_once "Auth/OpenID/Association.php";
-require_once "Auth/OpenID/CryptUtil.php";
-require_once "Auth/OpenID/BigMath.php";
-require_once "Auth/OpenID/DiffieHellman.php";
-require_once "Auth/OpenID/KVForm.php";
-require_once "Auth/OpenID/TrustRoot.php";
-require_once "Auth/OpenID/ServerRequest.php";
-require_once "Auth/OpenID/Message.php";
-require_once "Auth/OpenID/Nonce.php";
+use Auth\OpenID\Association;
+use Auth\OpenID\CryptUtil;
+use Auth\OpenID\BigMath;
+use Auth\OpenID\DiffieHellman;
+use Auth\OpenID\KVForm;
+use Auth\OpenID\TrustRoot;
+use Auth\OpenID\ServerRequest;
+use Auth\OpenID\Message;
+use Auth\OpenID\Nonce;
 
 define('AUTH_OPENID_HTTP_OK', 200);
 define('AUTH_OPENID_HTTP_REDIRECT', 302);

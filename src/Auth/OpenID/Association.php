@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\OpenID;
+
 /**
  * This module contains code for dealing with associations between
  * consumers and servers.
@@ -17,17 +19,17 @@
 /**
  * @access private
  */
-require_once 'Auth/OpenID/CryptUtil.php';
+use Auth\OpenID\CryptUtil;
 
 /**
  * @access private
  */
-require_once 'Auth/OpenID/KVForm.php';
+use Auth\OpenID\KVForm;
 
 /**
  * @access private
  */
-require_once 'Auth/OpenID/HMAC.php';
+use Auth\OpenID\HMAC;
 
 /**
  * This class represents an association between a server and a

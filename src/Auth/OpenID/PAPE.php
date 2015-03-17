@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\OpenID;
+
 /**
  * An implementation of the OpenID Provider Authentication Policy
  *  Extension 1.0
@@ -8,7 +10,7 @@
  * http://openid.net/developers/specs/
  */
 
-require_once "Auth/OpenID/Extension.php";
+use Auth\OpenID\Extension;
 
 define('Auth_OpenID_PAPE_NS_URI',
        "http://specs.openid.net/extensions/pape/1.0");

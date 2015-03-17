@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\Yadis;
+
 /**
  * Yadis service manager to be used during yadis-driven authentication
  * attempts.

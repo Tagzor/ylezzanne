@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\Yadis;
+
 /**
  * This module contains the XRDS parsing code.
  *
@@ -16,7 +18,7 @@
 /**
  * Require the XPath implementation.
  */
-require_once 'Auth/Yadis/XML.php';
+use Auth\Yadis\XML;
 
 /**
  * This match mode means a given service must match ALL filters passed

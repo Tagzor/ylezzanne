@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\OpenID;
+
 /**
  * SQL-backed OpenID stores.
  *
@@ -17,17 +19,17 @@
  * @access private
  */
 require_once 'Auth/OpenID/Interface.php';
-require_once 'Auth/OpenID/Nonce.php';
+use Auth\OpenID\Nonce;
 
 /**
  * @access private
  */
-require_once 'Auth/OpenID.php';
+use Auth\OpenID;
 
 /**
  * @access private
  */
-require_once 'Auth/OpenID/Nonce.php';
+use Auth\OpenID\Nonce;
 
 /**
  * This is the parent class for the SQL stores, which contains the

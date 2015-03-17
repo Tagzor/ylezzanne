@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\OpenID;
+
 /**
  * Nonce-related functionality.
  *
@@ -9,7 +11,7 @@
 /**
  * Need CryptUtil to generate random strings.
  */
-require_once 'Auth/OpenID/CryptUtil.php';
+use Auth\OpenID\CryptUtil;
 
 /**
  * This is the characters that the nonces are made from.

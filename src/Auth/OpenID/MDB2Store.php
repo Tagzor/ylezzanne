@@ -1,5 +1,7 @@
 <?php
 
+namespace Auth\OpenID;
+
 /**
  * SQL-backed OpenID stores for use with PEAR::MDB2.
  *
@@ -13,7 +15,7 @@
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
  */
 
-require_once 'MDB2.php';
+use Auth\OpenID\MDB2;
 
 /**
  * @access private
@@ -28,7 +30,7 @@ require_once 'Auth/OpenID.php';
 /**
  * @access private
  */
-require_once 'Auth/OpenID/Nonce.php';
+use Auth\OpenID\Nonce;
 
 /**
  * This store uses a PEAR::MDB2 connection to store persistence
