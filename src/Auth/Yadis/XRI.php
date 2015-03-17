@@ -11,8 +11,8 @@ namespace Auth\Yadis;
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
-use Auth\Yadis\Misc;
-use Auth\Yadis\Yadis;
+require_once __DIR__.'/Misc.php';
+require_once __DIR__.'/Yadis.php';
 require_once __DIR__.'/../OpenID.php';
 
 function Auth_Yadis_getDefaultProxy()

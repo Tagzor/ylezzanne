@@ -10,7 +10,7 @@ namespace Auth\OpenID;
  * http://openid.net/developers/specs/
  */
 
-use Auth\OpenID\Extension;
+require_once __DIR__.'//Extension.php';
 
 define('Auth_OpenID_PAPE_NS_URI',
        "http://specs.openid.net/extensions/pape/1.0");
@@ -300,3 +300,4 @@ class Auth_OpenID_PAPE_Response extends Auth_OpenID_Extension {
     }
 }
 
+?>

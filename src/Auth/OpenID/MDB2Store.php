@@ -15,22 +15,22 @@ namespace Auth\OpenID;
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
  */
 
-use Auth\OpenID\MDB2;
+require_once 'MDB2.php';
 
 /**
  * @access private
  */
-require_once 'Auth/OpenID/Interface.php';
+require_once __DIR__.'/Interface.php';
 
 /**
  * @access private
  */
-require_once 'Auth/OpenID.php';
+require_once __DIR__.'/../OpenID.php';
 
 /**
  * @access private
  */
-use Auth\OpenID\Nonce;
+require_once __DIR__.'/Nonce.php';
 
 /**
  * This store uses a PEAR::MDB2 connection to store persistence

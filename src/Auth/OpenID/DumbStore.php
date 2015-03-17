@@ -19,8 +19,8 @@ namespace Auth\OpenID;
 /**
  * Import the interface for creating a new store class.
  */
-use Auth\OpenID\Interface;
-use Auth\OpenID\HMAC;
+require_once __DIR__.'/Interface.php';
+require_once __DIR__.'/HMAC.php';
 
 /**
  * This is a store for use in the worst case, when you have no way of
@@ -99,3 +99,4 @@ class Auth_OpenID_DumbStore extends Auth_OpenID_OpenIDStore {
     }
 }
 
+?>

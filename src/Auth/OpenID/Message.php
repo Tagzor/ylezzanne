@@ -11,11 +11,10 @@ namespace Auth\OpenID;
 /**
  * Import tools needed to deal with messages.
  */
-require_once 'Auth/OpenID.php';
-
-use Auth\OpenID\KVForm;
-use Auth\Yadis\XML;
-use Auth\OpenID\Consumer; // For Auth_OpenID_FailureResponse
+require_once __DIR__.'/../OpenID.php';
+require_once __DIR__.'/KVForm.php';
+require_once __DIR__.'/../Yadis/XML.php';
+require_once __DIR__.'/Consumer.php'; // For Auth_OpenID_FailureResponse
 
 // This doesn't REALLY belong here, but where is better?
 define('Auth_OpenID_IDENTIFIER_SELECT',
@@ -920,4 +919,4 @@ class Auth_OpenID_Message {
     }
 }
 
-
+?>

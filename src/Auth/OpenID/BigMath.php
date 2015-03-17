@@ -20,7 +20,7 @@ namespace Auth\OpenID;
 /**
  * Needed for random number generation
  */
-use Auth\OpenID\CryptUtil;
+require_once __DIR__.'/CryptUtil.php';
 
 /**
  * Need Auth_OpenID::bytes().
@@ -451,4 +451,4 @@ function Auth_OpenID_noMathSupport()
     return defined('Auth_OpenID_NO_MATH_SUPPORT');
 }
 
-
+?>

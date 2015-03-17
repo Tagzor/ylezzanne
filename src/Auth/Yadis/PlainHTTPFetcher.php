@@ -19,7 +19,7 @@ namespace Auth\Yadis;
 /**
  * Interface import
  */
-use Auth\Yadis\HTTPFetcher;
+require_once __DIR__.'/HTTPFetcher.php';
 
 /**
  * This class implements a plain, hand-built socket-based fetcher
@@ -248,3 +248,4 @@ class Auth_Yadis_PlainHTTPFetcher extends Auth_Yadis_HTTPFetcher {
     }
 }
 
+?>

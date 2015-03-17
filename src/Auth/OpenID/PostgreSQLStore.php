@@ -11,7 +11,7 @@ namespace Auth\OpenID;
 /**
  * Require the base class file.
  */
-use Auth\OpenID\SQLStore;
+require_once __DIR__.'/SQLStore.php';
 
 /**
  * An SQL store that uses PostgreSQL as its backend.
@@ -112,3 +112,4 @@ class Auth_OpenID_PostgreSQLStore extends Auth_OpenID_SQLStore {
     }
 }
 
+?>

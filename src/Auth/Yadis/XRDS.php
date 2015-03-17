@@ -18,7 +18,7 @@ namespace Auth\Yadis;
 /**
  * Require the XPath implementation.
  */
-use Auth\Yadis\XML;
+require_once __DIR__.'/XML.php';
 
 /**
  * This match mode means a given service must match ALL filters passed
@@ -478,3 +478,4 @@ class Auth_Yadis_XRDS {
     }
 }
 
+?>

@@ -7,10 +7,10 @@ namespace Auth\OpenID;
  */
 
 require_once __DIR__.'/../OpenID.php';
-use Auth\OpenID\Parse;
-use Auth\OpenID\Message;
-use Auth\Yadis\XRIRes;
-use Auth\Yadis\Yadis;
+require_once __DIR__.'/Parse.php';
+require_once __DIR__.'/Message.php';
+require_once __DIR__.'/../Yadis/XRIRes.php';
+require_once __DIR__.'/../Yadis/Yadis.php';
 
 // XML namespace value
 define('Auth_OpenID_XMLNS_1_0', 'http://openid.net/xmlns/1.0');
@@ -605,4 +605,4 @@ function Auth_OpenID_discover($uri, $fetcher)
     return $result;
 }
 
-
+?>

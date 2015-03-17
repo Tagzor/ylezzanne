@@ -12,9 +12,9 @@ namespace Auth\OpenID;
 /**
  * Require utility classes and functions for the consumer.
  */
-use Auth\OpenID\Extension;
-use Auth\OpenID\Message;
-use Auth\OpenID\TrustRoot;
+require_once __DIR__.'/Extension.php';
+require_once __DIR__.'/Message.php';
+require_once __DIR__.'/TrustRoot.php';
 
 define('Auth_OpenID_AX_NS_URI',
        'http://openid.net/srv/ax/1.0');
@@ -1022,3 +1022,4 @@ class Auth_OpenID_AX_StoreResponse extends Auth_OpenID_AX_Message {
     }
 }
 
+?>

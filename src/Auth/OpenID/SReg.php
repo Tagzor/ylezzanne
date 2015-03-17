@@ -44,8 +44,8 @@ namespace Auth\OpenID;
 /**
  * Import message and extension internals.
  */
-use Auth\OpenID\Message;
-use Auth\OpenID\Extension;
+require_once __DIR__.'/Message.php';
+require_once __DIR__.'/Extension.php';
 
 // The data fields that are listed in the sreg spec
 global $Auth_OpenID_sreg_data_fields;
@@ -87,9 +87,7 @@ define('Auth_OpenID_SREG_NS_URI_1_1', 'http://openid.net/extensions/sreg/1.1');
 // declaration.
 define('Auth_OpenID_SREG_NS_URI', Auth_OpenID_SREG_NS_URI_1_1);
 
-// TODO:
-// $message = new Message();
-// $message->Auth_OpenID_registerNamespaceAlias(Auth_OpenID_SREG_NS_URI_1_1, 'sreg');
+Auth_OpenID_registerNamespaceAlias(Auth_OpenID_SREG_NS_URI_1_1, 'sreg');
 
 /**
  * Does the given endpoint advertise support for simple
@@ -522,4 +520,4 @@ class Auth_OpenID_SRegResponse extends Auth_OpenID_SRegBase {
     }
 }
 
-
+?>

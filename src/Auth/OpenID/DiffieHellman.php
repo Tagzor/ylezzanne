@@ -17,7 +17,7 @@ namespace Auth\OpenID;
  */
 
 require_once __DIR__.'/../OpenID.php';
-use Auth\OpenID\BigMath;
+require_once __DIR__.'/BigMath.php';
 
 function Auth_OpenID_getDefaultMod()
 {

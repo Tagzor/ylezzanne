@@ -11,7 +11,7 @@ namespace Auth\OpenID;
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
-use Auth\Yadis\Misc;
+require_once __DIR__.'/../Yadis/Misc.php';
 
 // from appendix B of rfc 3986 (http://www.ietf.org/rfc/rfc3986.txt)
 function Auth_OpenID_getURIPattern()
@@ -248,4 +248,4 @@ function Auth_OpenID_urinorm($uri)
     return $scheme . '://' . $authority . $path . $query . $fragment;
 }
 
-
+?>

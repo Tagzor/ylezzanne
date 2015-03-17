@@ -18,8 +18,7 @@ namespace Auth\Yadis;
 /**
  * Interface import
  */
-use Auth\Yadis\HTTPFetcher;
-
+require_once __DIR__.'/HTTPFetcher.php';
 require_once __DIR__.'/../OpenID.php';
 
 /**

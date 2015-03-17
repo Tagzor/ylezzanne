@@ -19,18 +19,18 @@ namespace Auth\Yadis;
  * Need both fetcher types so we can use the right one based on the
  * presence or absence of CURL.
  */
-use Auth\Yadis\PlainHTTPFetcher;
-use Auth\Yadis\ParanoidHTTPFetcher;
+require_once __DIR__.'/PlainHTTPFetcher.php';
+require_once __DIR__.'/ParanoidHTTPFetcher.php';
 
 /**
  * Need this for parsing HTML (looking for META tags).
  */
-use Auth\Yadis\ParseHTML;
+require_once __DIR__.'/ParseHTML.php';
 
 /**
  * Need this to parse the XRDS document during Yadis discovery.
  */
-use Auth\Yadis\XRDS;
+require_once __DIR__.'/XRDS.php';
 
 /**
  * XRDS (yadis) content type
@@ -167,7 +167,7 @@ function Auth_Yadis_getServiceEndpoints($input_url, $xrds_parse_func,
  *
  * First, require this library into your program source:
  *
- * <pre>  use Auth\Yadis\Yadis;</pre>
+ * <pre>  require_once "Auth/Yadis/Yadis.php";</pre>
  *
  * To perform Yadis discovery, first call the "discover" method
  * statically with a URI parameter:
@@ -381,4 +381,4 @@ class Auth_Yadis_Yadis {
     }
 }
 
-
+?>

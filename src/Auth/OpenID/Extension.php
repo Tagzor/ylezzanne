@@ -11,7 +11,7 @@ namespace Auth\OpenID;
 /**
  * Require the Message implementation.
  */
-use Auth\OpenID\Message;
+require_once __DIR__.'/Message.php';
 
 /**
  * A base class for accessing extension request and response data for
@@ -61,3 +61,4 @@ class Auth_OpenID_Extension {
     }
 }
 
+?>

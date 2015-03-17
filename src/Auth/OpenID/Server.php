@@ -94,16 +94,16 @@ namespace Auth\OpenID;
 /**
  * Required imports
  */
-require_once "Auth/OpenID.php";
-use Auth\OpenID\Association;
-use Auth\OpenID\CryptUtil;
-use Auth\OpenID\BigMath;
-use Auth\OpenID\DiffieHellman;
-use Auth\OpenID\KVForm;
-use Auth\OpenID\TrustRoot;
-use Auth\OpenID\ServerRequest;
-use Auth\OpenID\Message;
-use Auth\OpenID\Nonce;
+require_once __DIR__.'/../OpenID.php';
+require_once __DIR__.'/Association.php';
+require_once __DIR__.'/CryptUtil.php';
+require_once __DIR__.'/BigMath.php';
+require_once __DIR__.'/DiffieHellman.php';
+require_once __DIR__.'/KVForm.php';
+require_once __DIR__.'/TrustRoot.php';
+require_once __DIR__.'/ServerRequest.php';
+require_once __DIR__.'/Message.php';
+require_once __DIR__.'/Nonce.php';
 
 define('AUTH_OPENID_HTTP_OK', 200);
 define('AUTH_OPENID_HTTP_REDIRECT', 302);
@@ -1764,4 +1764,4 @@ class Auth_OpenID_Server {
     }
 }
 
-
+?>

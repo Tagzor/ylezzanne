@@ -163,17 +163,17 @@ namespace Auth\OpenID;
  * Require utility classes and functions for the consumer.
  */
 require_once __DIR__.'/../OpenID.php';
-use Auth\OpenID\Message;
-use Auth\OpenID\HMAC;
-use Auth\OpenID\Association;
-use Auth\OpenID\CryptUtil;
-use Auth\OpenID\DiffieHellman;
-use Auth\OpenID\KVForm;
-use Auth\OpenID\Nonce;
-use Auth\OpenID\Discover;
-use Auth\OpenID\URINorm;
-use Auth\Yadis\Manager;
-use Auth\Yadis\XRI;
+require_once __DIR__.'/Message.php';
+require_once __DIR__.'/HMAC.php';
+require_once __DIR__.'/Association.php';
+require_once __DIR__.'/CryptUtil.php';
+require_once __DIR__.'/DiffieHellman.php';
+require_once __DIR__.'/KVForm.php';
+require_once __DIR__.'/Nonce.php';
+require_once __DIR__.'/Discover.php';
+require_once __DIR__.'/URINorm.php';
+require_once __DIR__.'/../Yadis/Manager.php';
+require_once __DIR__.'/../Yadis/XRI.php';
 
 /**
  * This is the status code returned when the complete method returns
@@ -1183,7 +1183,7 @@ class Auth_OpenID_GenericConsumer {
         // oidutil.log('Performing discovery on %s' % (claimed_id,))
         list($unused, $services) = call_user_func($this->discoverMethod,
                                                   $claimed_id,
-												  $this->fetcher);
+												  &$this->fetcher);
 
         if (!$services) {
             return new Auth_OpenID_FailureResponse(null,
@@ -2229,4 +2229,4 @@ class Auth_OpenID_SetupNeededResponse extends Auth_OpenID_ConsumerResponse {
     }
 }
 
-
+?>

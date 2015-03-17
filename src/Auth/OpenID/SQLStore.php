@@ -18,8 +18,8 @@ namespace Auth\OpenID;
 /**
  * @access private
  */
-require_once 'Auth/OpenID/Interface.php';
-use Auth\OpenID\Nonce;
+require_once __DIR__.'/Interface.php';
+
 
 /**
  * @access private
@@ -29,7 +29,7 @@ require_once __DIR__.'/../OpenID.php';
 /**
  * @access private
  */
-use Auth\OpenID\Nonce;
+require_once __DIR__.'/Nonce.php';
 
 /**
  * This is the parent class for the SQL stores, which contains the
@@ -556,4 +556,4 @@ class Auth_OpenID_SQLStore extends Auth_OpenID_OpenIDStore {
     }
 }
 
-
+?>

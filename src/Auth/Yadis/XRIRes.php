@@ -6,8 +6,8 @@ namespace Auth\Yadis;
  * Code for using a proxy XRI resolver.
  */
 
-use Auth\Yadis\XRDS;
-use Auth\Yadis\XRI;
+require_once __DIR__.'/XRDS.php';
+require_once __DIR__.'/XRI.php';
 
 class Auth_Yadis_ProxyResolver {
     function Auth_Yadis_ProxyResolver($fetcher, $proxy_url = null)
@@ -71,4 +71,4 @@ class Auth_Yadis_ProxyResolver {
     }
 }
 
-
+?>

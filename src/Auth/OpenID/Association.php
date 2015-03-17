@@ -19,17 +19,17 @@ namespace Auth\OpenID;
 /**
  * @access private
  */
-require_once __DIR__.'CryptUtil.php';
+require_once __DIR__.'/CryptUtil.php';
 
 /**
  * @access private
  */
-require_once __DIR__.'KVForm.php';
+require_once __DIR__.'/KVForm.php';
 
 /**
  * @access private
  */
-require_once __DIR__.'HMAC.php';
+require_once __DIR__.'/HMAC.php';
 
 /**
  * This class represents an association between a server and a
@@ -610,3 +610,4 @@ class Auth_OpenID_SessionNegotiator {
     }
 }
 
+?>

@@ -15,7 +15,7 @@ namespace Auth\OpenID;
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
-use Auth\OpenID\Discover;
+require_once __DIR__.'/Discover.php';
 
 /**
  * A regular expression that matches a domain ending in a top-level domains.
@@ -462,3 +462,4 @@ function Auth_OpenID_verifyReturnTo($realm_str, $return_to, $fetcher,
     }
 }
 
+?>
