@@ -18,12 +18,12 @@
 /**
  * Needed for random number generation
  */
-require_once 'Auth/OpenID/CryptUtil.php';
+require_once __DIR__.'/CryptUtil.php';
 
 /**
  * Need Auth_OpenID::bytes().
  */
-require_once 'Auth/OpenID.php';
+require_once __DIR__.'/../OpenID.php';
 
 /**
  * The superclass of all big-integer math implementations
