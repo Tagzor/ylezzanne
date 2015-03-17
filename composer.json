@@ -13,5 +13,6 @@
   },
   "autoload": {
     "psr-0": {"Ylezzanne": "src/"}
+    "psr-0": {"Auth": "src/"}
   }
 }
