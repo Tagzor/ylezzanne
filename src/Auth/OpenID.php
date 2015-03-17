@@ -104,7 +104,7 @@ define('Auth_OpenID_digits',
 define('Auth_OpenID_punct',
        "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~");
 
-Auth_OpenID_include_init();
+//Auth_OpenID_include_init();
 
 /**
  * The OpenID utility function class.
