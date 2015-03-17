@@ -9,7 +9,7 @@
 /**
  * Require the Message implementation.
  */
-require_once __DIR__.'Message.php';
+require_once __DIR__.'/Message.php';
 
 /**
  * A base class for accessing extension request and response data for
