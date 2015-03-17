@@ -16,7 +16,7 @@ namespace Auth\OpenID;
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
-use Auth\OpenID;
+require_once __DIR__.'/../OpenID.php';
 use Auth\OpenID\BigMath;
 
 function Auth_OpenID_getDefaultMod()
@@ -112,4 +112,4 @@ class Auth_OpenID_DiffieHellman {
     }
 }
 
-
+?>

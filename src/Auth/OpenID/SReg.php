@@ -45,7 +45,7 @@ namespace Auth\OpenID;
  * Import message and extension internals.
  */
 use Auth\OpenID\Message;
-use Auth\OpenID\Auth_OpenID_Extension;
+use Auth\OpenID\Extension;
 
 // The data fields that are listed in the sreg spec
 global $Auth_OpenID_sreg_data_fields;

@@ -6,7 +6,7 @@ namespace Auth\OpenID;
  * The OpenID and Yadis discovery implementation for OpenID 1.2.
  */
 
-use Auth\OpenID;
+require_once __DIR__.'/../OpenID.php';
 use Auth\OpenID\Parse;
 use Auth\OpenID\Message;
 use Auth\Yadis\XRIRes;

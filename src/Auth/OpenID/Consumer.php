@@ -162,7 +162,7 @@ namespace Auth\OpenID;
 /**
  * Require utility classes and functions for the consumer.
  */
-use Auth\OpenID;
+require_once __DIR__.'/../OpenID.php';
 use Auth\OpenID\Message;
 use Auth\OpenID\HMAC;
 use Auth\OpenID\Association;

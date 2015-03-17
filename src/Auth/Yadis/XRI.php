@@ -13,7 +13,7 @@ namespace Auth\Yadis;
 
 use Auth\Yadis\Misc;
 use Auth\Yadis\Yadis;
-use Auth\OpenID;
+require_once __DIR__.'/../OpenID.php';
 
 function Auth_Yadis_getDefaultProxy()
 {
@@ -233,4 +233,4 @@ function Auth_Yadis_getCanonicalID($iname, $xrds)
     return $canonicalID;
 }
 
-
+?>

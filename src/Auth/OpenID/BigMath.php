@@ -25,7 +25,7 @@ use Auth\OpenID\CryptUtil;
 /**
  * Need Auth_OpenID::bytes().
  */
-use Auth\OpenID;
+require_once __DIR__.'/../OpenID.php';
 
 /**
  * The superclass of all big-integer math implementations

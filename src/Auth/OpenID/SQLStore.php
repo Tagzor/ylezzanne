@@ -24,7 +24,7 @@ use Auth\OpenID\Nonce;
 /**
  * @access private
  */
-use Auth\OpenID;
+require_once __DIR__.'/../OpenID.php';
 
 /**
  * @access private

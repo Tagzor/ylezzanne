@@ -18,7 +18,7 @@ namespace Auth\Yadis;
 /**
  * Require logging functionality
  */
-use Auth\OpenID;
+require_once __DIR__.'/../OpenID.php';
 
 define('Auth_OpenID_FETCHER_MAX_RESPONSE_KB', 1024);
 define('Auth_OpenID_USER_AGENT', 
@@ -174,3 +174,4 @@ class Auth_Yadis_HTTPFetcher {
     }
 }
 
+?>

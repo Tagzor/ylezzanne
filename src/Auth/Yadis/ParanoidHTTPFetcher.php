@@ -20,7 +20,7 @@ namespace Auth\Yadis;
  */
 use Auth\Yadis\HTTPFetcher;
 
-use Auth\OpenID;
+require_once __DIR__.'/../OpenID.php';
 
 /**
  * A paranoid {@link Auth_Yadis_HTTPFetcher} class which uses CURL
@@ -245,3 +245,4 @@ class Auth_Yadis_ParanoidHTTPFetcher extends Auth_Yadis_HTTPFetcher {
     }
 }
 
+?>
