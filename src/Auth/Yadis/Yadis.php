@@ -23,12 +23,12 @@ require_once __DIR__."/ParanoidHTTPFetcher.php";
 /**
  * Need this for parsing HTML (looking for META tags).
  */
-require_once "Auth/Yadis/ParseHTML.php";
+require_once __DIR__."/ParseHTML.php";
 
 /**
  * Need this to parse the XRDS document during Yadis discovery.
  */
-require_once "Auth/Yadis/XRDS.php";
+require_once __DIR__."/XRDS.php";
 
 /**
  * XRDS (yadis) content type
