@@ -82,7 +82,7 @@
 /**
  * Require Auth_OpenID::arrayGet().
  */
-require_once __DIR_."/../OpenID.php";
+require_once __DIR__."/../OpenID.php";
 
 class Auth_OpenID_Parse {
 
