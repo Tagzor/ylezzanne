@@ -19,8 +19,8 @@ namespace Auth\OpenID;
 /**
  * Require base class for creating a new interface.
  */
-require_once 'Auth/OpenID.php';
-require_once 'Interface.php';
+require_once __DIR__.'/../src/Auth/OpenID.php';
+require_once __DIR__.'/../src/Auth/OpenID/Interface.php';
 use Auth\OpenID\HMAC;
 use Auth\OpenID\Nonce;
 
