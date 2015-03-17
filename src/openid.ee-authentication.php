@@ -1,9 +1,9 @@
 <?php
 
-use Auth\OpenID\Consumer;
-use Auth\OpenID\FileStore;
-use Auth\OpenID\SReg;
-use Auth\OpenID\PAPE;
+require_once("Auth/OpenID/Consumer.php");
+require_once("Auth/OpenID/FileStore.php");
+require_once("Auth/OpenID/SReg.php");
+require_once("Auth/OpenID/PAPE.php");
 
 // Kasutame PHP sessiooni
 session_start();
@@ -25,7 +25,7 @@ function &getStore() {
         print "Could not create the FileStore directory '$store_path'. Please check the effective permissions.";
         exit(0);
     }
-    $tmp = new FileStore($store_path);
+    $tmp = new Auth_OpenID_FileStore($store_path);
     return $tmp;
 }
 
