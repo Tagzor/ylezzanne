@@ -9,7 +9,8 @@
     "doctrine/dbal" : "~2.2"
   },
   "require-dev": {
-    "heroku/heroku-buildpack-php": "*"
+    "heroku/heroku-buildpack-php": "*",
+    "ext-mbstring": "*"
   },
   "autoload": {
     "psr-0": {"Ylezzanne": "src/"}
