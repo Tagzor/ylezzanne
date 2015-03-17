@@ -12,7 +12,6 @@
     "heroku/heroku-buildpack-php": "*"
   },
   "autoload": {
-    "psr-0": {"Ylezzanne": "src/"},
-    "psr-0": {"Auth": "src/"}
+    "psr-0": {"Ylezzanne": "src/"}
   }
 }
