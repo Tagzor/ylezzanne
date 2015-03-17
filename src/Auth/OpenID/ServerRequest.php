@@ -20,7 +20,7 @@ namespace Auth\OpenID;
 /**
  * Imports
  */
-require_once "Auth/OpenID.php";
+require_once __DIR__.'/../OpenID.php';
 
 /**
  * Object that holds the state of a request to the OpenID server

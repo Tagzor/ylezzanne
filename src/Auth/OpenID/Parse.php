@@ -84,7 +84,7 @@ namespace Auth\OpenID;
 /**
  * Require Auth_OpenID::arrayGet().
  */
-require_once "Auth/OpenID.php";
+require_once __DIR__.'/../OpenID.php';
 
 class Auth_OpenID_Parse {
 
