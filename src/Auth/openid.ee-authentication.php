@@ -8,7 +8,7 @@ error_reporting(E_ALL);// | E_STRICT
 require_once __DIR__.'/OpenID/Consumer.php';
 require_once __DIR__.'/OpenID/FileStore.php';
 require_once __DIR__.'/OpenID/SReg.php';
-require_once __DIR__.'Auth/OpenID/PAPE.php';
+require_once __DIR__.'/OpenID/PAPE.php';
 
 
 // Kasutame PHP sessiooni
