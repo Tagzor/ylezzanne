@@ -14,8 +14,8 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache
  */
 
-require_once 'Auth/OpenID.php';
-require_once 'Auth/OpenID/BigMath.php';
+require_once __DIR__.'/../OpenID.php';
+require_once __DIR__.'/BigMath.php';
 
 function Auth_OpenID_getDefaultMod()
 {
