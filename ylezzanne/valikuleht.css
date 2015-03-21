@@ -14,6 +14,14 @@ body.liikumisega{
 	overflow-x: hidden;
 }
 
+table.statistika{
+	width: 600px;
+	border: 1px;
+	border-spacing: 5px;
+	border-collapse: separate;
+	padding: 10px;
+}
+
 @media screen and (max-width: 767px) {
 .row-offcanvas {
     position: relative;
