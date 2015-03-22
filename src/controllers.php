@@ -145,14 +145,7 @@ $app->mount ( '/db', $statistics );
 // define "global" controllers
 $app->get ( '/login', function (Request $request) use($app) {
 	
-	// Vaatame, mis muutujad olemas on ...
-	if(!empty($_SESSION)) {
-		echo "<h2>Massiivi \$_SESSION sisu:</h2>";
-		echo "<div class='alert'>";
-		foreach($_SESSION as $k => $v)
-			echo "$k = $v <br />";
-		echo "</div>";
-	}
+	
 	
 	return $app ['twig']->render ( 'login.twig', array (
 			'error' => $app ['security.last_error'] ( $request ),
@@ -168,8 +161,18 @@ $app->get ( '/tbd/{name}', function ($name) use($app) {
 
 $app->get ( '/eid', function () use($app) {
 
+	// Vaatame, mis muutujad olemas on ...
+	if(!empty($_SESSION)) {
+		echo "<h2>Massiivi \$_SESSION sisu:</h2>";
+		echo "<div class='alert'>";
+		foreach($_SESSION as $k => $v)
+			echo "$k = $v <br />";
+			echo "</div>";
+	}
+	
 	return $app ['twig']->render ( 'eid.twig', array (
-			'name' => $name 
+			'name' => $name,
+			'_SESSION' => $_SESSION 
 	) );
 } );
 
