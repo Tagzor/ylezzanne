@@ -240,6 +240,7 @@ $app->get ( '/', function () use($app) {
 		
 		return $app ['twig']->render ('user.twig', array (
 				'name' => $user->getUsername (),
+				'user' => $user,
 				'topGames' => $topGames  
 		) );
 	}
