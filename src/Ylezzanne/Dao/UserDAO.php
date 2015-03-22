@@ -106,11 +106,13 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 			sprintf ( 'User with "%s" found.', $username );
 			echo $usersData['username'];
 			echo $usersData['password'];
-			
+
 			// compute the encoded password for password
 			$password = $this->encoder->encodePassword($usersData['password'], $usersData['salt']);
 			echo $password;
 		}
+
+		echo $this->encoder;
 		
 		return new User($usersData['username'], $usersData['password'], explode(',', $usersData->$usersData['role']), true, true, true, true);
 		
