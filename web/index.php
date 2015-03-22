@@ -4,6 +4,8 @@ ini_set('display_errors', 0);
 mb_internal_encoding("UTF-8");
 error_reporting(E_ALL);// | E_STRICT
 
+define('YLEZZANNE_PUBLIC_ROOT', __DIR__);
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 $app = require __DIR__.'/../src/app.php';
