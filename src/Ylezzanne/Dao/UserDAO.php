@@ -63,8 +63,8 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
  			$userData = $row;
 		}
-		
-		return new User($usersData['username'], $usersData['password'], explode(',', $usersData['role']), true, true, true, true);
+		return $userData ? $this->buildUser($userData) : FALSE;
+		//return new User($usersData['username'], $usersData['password'], explode(',', $usersData['role']), true, true, true, true);
 		
 	}
 
@@ -95,26 +95,28 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 		$stmt = $this->pdo->prepare("SELECT u.* FROM users u WHERE u.username = :username");
 		$stmt->execute(array(':username' => $username));
 		
-		$usersData = array();
-		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-			$usersData = $row;
-		}
+		$usersData = $stmt->fetchAll();
+// 		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+// 			$usersData = $row;
+// 		}
 		
 		if (empty ( $usersData )) {
 			throw new UsernameNotFoundException ( sprintf ( 'User "%s" not found.', $username ) );
 		} else {
 			sprintf ( 'User with "%s" found.', $username );
-			echo $usersData['username'];
-			echo $usersData['password'];
+// 			echo $usersData[0];
+// 			echo $usersData[0];
 
-			// compute the encoded password for password
-			$password = $this->encoder->encodePassword('foo', $usersData['salt']);
-			echo $password;
+// 			// compute the encoded password for password
+// 			$password = $this->encoder->encodePassword('foo', $usersData['salt']);
+// 			echo $password;
 		}
 
+		//return new User($usersData['username'], $usersData['password'], explode(',', $usersData->$usersData['role']), true, true, true, true);
 		
-		return new User($usersData['username'], $usersData['password'], explode(',', $usersData->$usersData['role']), true, true, true, true);
 		
+		$user = $this->buildUser($usersData[0]);
+		return $user;
 	}
 	
 	/**
@@ -140,5 +142,26 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 		return 'Ylezzanne\Dao\User' === $class;
 	}
 	
+	/**
+	 * Instantiates a user entity and sets its properties using pdo data.
+	 *
+	 * @param array $userData
+	 *   The array of pdo data.
+	 *
+	 * @return \Ylezzanne\Dao\User
+	 */
+	protected function buildUser($userData)
+	{
+		$user = new User();
+		$user->setId($userData['id']);
+		$user->setUsername($userData['username']);
+		$user->setSalt($userData['salt']);
+		$user->setPassword($userData['password']);
+		$user->setMail($userData['mail']);
+		$user->setRole($userData['role']);
+		$createdAt = new \DateTime('@' . $userData['created_at']);
+		$user->setCreatedAt($createdAt);
+		return $user;
+	}
 }
 ?>
