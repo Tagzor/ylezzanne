@@ -7,33 +7,16 @@
 			{% if msg %}
 			    {{ msg }}
 			{% endif %}
-			{% if error %}
-			    {{ error }}
-			{% endif %}
-			{% if success %}
-			    {{ success }}
-			{% endif %}
-	        
+			
 	        <h2 class="form-signin-heading">ID login</h2>
 	        
 	        <label for="username" class="sr-only">Kasutajanimi</label>
-	        <input type="text" id="username" name="_username" value="{{ email }}"  class="form-control" placeholder="Kasutajanimi" required autofocus />
+	        <input type="text" id="username" name="_username" value="{{user.username}}"  class="form-control" placeholder="Kasutajanimi" required autofocus />
 	        
 	        <label for="password" class="sr-only">Parool</label>
-	        <input type="password" id="password" name="_password" value="{{ password }}" class="form-control" placeholder="Parool" required />
-	        
-		
-{{openid}}</br>
-{{email}}</br>
-{{fullname}}</br>
-{{gender}}</br>
-{{dob}}</br>
+	        <input type="password" id="password" name="_password" value="{{user.password}}" class="form-control" placeholder="Parool" required />
 
-{{user.username}}</br>
-{{user.password}}</br>
-
-	    <button class="btn btn-lg btn-primary btn-block" type="submit">Registreeri kasutjaks</button>
-	    <button class="btn btn-info btn-block">Katkesta</button>
+	    <button class="btn btn-lg btn-primary btn-block" type="submit">Sisene</button>
 	</form>
 
 
