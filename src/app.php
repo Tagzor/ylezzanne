@@ -56,8 +56,12 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
 return $app;
 
 // Register repositories.
-$app['repository.games'] = $app->share(function ($app) {
+$app['repository.game'] = $app->share(function ($app) {
 	return new Ylezzanne\Dao\GameDAO($app['pdo']);
+});
+
+$app['repository.user'] = $app->share(function ($app) {
+	return new Ylezzanne\Dao\UserDAO($app['pdo'], $app['security.encoder.digest']);
 });
 
 ?>
