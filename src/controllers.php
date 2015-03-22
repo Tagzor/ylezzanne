@@ -163,7 +163,7 @@ $app->get ( '/eid', function () use($app) {
 
 	// Vaatame, mis muutujad olemas on ...
 	if(!empty($_SESSION)) {
-		echo "<h2>Massiivi \$_SESSION sisu:</h2>";
+		echo "<h2>Siin kontroller \$_SESSION kuvab sisu:</h2>";
 		echo "<div class='alert'>";
 		foreach($_SESSION as $k => $v)
 			echo "$k = $v <br />";
