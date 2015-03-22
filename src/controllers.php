@@ -158,13 +158,15 @@ $app->get ( '/tbd/{name}', function ($name) use($app) {
 } );
 
 $app->get ( '/eid', function () use($app) {
-
+	
 	// Vaatame, mis muutujad olemas on ...
 	if(!empty($_SESSION)) {
+		
 		echo "<h2>Siin kontroller \$_SESSION kuvab sisu:</h2>";
 		echo "<div class='alert'>";
 		foreach($_SESSION as $k => $v){
 			echo $k." = ".$v."<br>";
+			
 			if (strcasecmp($k, 'openid') == 0) {
 				$openid = $v;
 			}
@@ -184,11 +186,23 @@ $app->get ( '/eid', function () use($app) {
 			}
 		}
 		echo "</div>";
+		$userDAO = new Ylezzanne\Dao\UserDAO($app['pdo'], $app['security.encoder.digest']);
+		$user = new \Ylezzanne\Dao\User();
+		$user-> setUsername($email);
+		$user-> setPassword('ylezanne');
+		$user-> setMail($email);
+		
+			$app['repository.user']->save($user);
+			$message = 'The user ' . $user->getUsername() . ' has been saved.';
+			$app['session']->getFlashBag()->add('success', $message);
+			// Redirect to the edit page.
+			//$redirect = $app['url_generator']->generate('user', array('user' => $user->getUsername()));
+			//return $app->redirect($redirect);
 	}
 	
 	return $app ['twig']->render ( 'eid.twig', array (
 			'error' => $name,
-			'msg' => $name,
+			'msg' => $message,
 			'success' => $name,
 			'gender' => $gender,
 			'name' => $name,
@@ -196,7 +210,8 @@ $app->get ( '/eid', function () use($app) {
 			'email' => $email,
 			'password' => $password,
 			'fullname' => $fullname,
-			'dob' => $dob
+			'dob' => $dob,
+			'user'=> $user
 	) );
 } );
 
