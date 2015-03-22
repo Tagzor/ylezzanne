@@ -121,7 +121,7 @@ class GameDAO implements RepositoryInterface {
 			$topGameData [] = $row;
 		}
 		
-		return $topGameDataData;
+		return $topGameData;
 	}
 	
 	
