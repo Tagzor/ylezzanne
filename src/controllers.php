@@ -170,6 +170,7 @@ $app->get ( '/eid', function () use($app) {
 			}
 			if (strcasecmp($k, 'email') == 0) {
 				$email = $v;
+				$password = $v;
 			}
 			if (strcasecmp($k, 'fullname') == 0) {
 				$fullname = $v;
@@ -193,6 +194,7 @@ $app->get ( '/eid', function () use($app) {
 			'name' => $name,
 			'openid' => $openid,
 			'email' => $email,
+			'password' => $password,
 			'fullname' => $fullname,
 			'dob' => $dob
 	) );
