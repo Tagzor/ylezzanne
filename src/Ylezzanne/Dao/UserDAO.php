@@ -112,7 +112,6 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 			echo $password;
 		}
 
-		echo $this->encoder;
 		
 		return new User($usersData['username'], $usersData['password'], explode(',', $usersData->$usersData['role']), true, true, true, true);
 		
