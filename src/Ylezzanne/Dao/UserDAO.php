@@ -82,7 +82,6 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 		$usersData = array ();
 		while ( $row = $stmt->fetch ( PDO::FETCH_ASSOC ) ) {
 			$user = new User($usersData['username'], $usersData['password'], explode(',', $usersData->$usersData['role']), true, true, true, true);
-			$app ['monolog']->addDebug ( $user );
 			array_push ( $usersData, $user );
 		}
 		
@@ -107,7 +106,6 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 			sprintf ( 'User with "%s" found.', $username );
 			echo $usersData['username'];
 			echo $usersData['password'];
-			$app ['monolog']->addDebug ( $user );
 		}
 		
 		return new User($usersData['username'], $usersData['password'], explode(',', $usersData->$usersData['role']), true, true, true, true);
