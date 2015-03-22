@@ -23,7 +23,7 @@
 			<div class="jumbotron col-xs-offset-0 col-sm-offset-3">
 
 				<img src="{{ app.request.basepath }}/images/users/profile_placeholder.jpg" alt="profiilipilt" class="img-circle">
-				<p>Nimi</p> <b>{{user.name}}</b>
+				<p>Nimi</p> <b>{{user.username}}</b>
 				<p>Email</p> <b>{{user.mail}}</b>
 				<p>Registreerus</p> <b>{{ user.createdAt|date('Y-m-d H:i') }}</b>
 				<p><a href="/tbd/{{name}}">Muuda parool</a></p>
