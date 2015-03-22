@@ -63,15 +63,16 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 			// The user is new, note the creation timestamp.
 			$userData['created_at'] = time();
 			
-			$stmt = $this->pdo->prepare("INSERT INTO USERS (username, salt, password, role, mail, created_at) VALUES (:username, :salt, :password, :role, :mail, :created_at)");
+			$stmt = $this->pdo->prepare("INSERT INTO USERS (username, salt, password, role, mail, createdAt) VALUES (:username, :salt, :password, :role, :mail, :createdAt)");
 			
 			$stmt->execute(
-					array(':username', $userData['username'],
-							':salt', $userData['salt'],
-							':password', $userData['password'],
-							':role', $userData['role'],
-							':mail', $userData['mail'],
-							':created_at', $userData['created_at']));
+					array(':username' => $userData['username'],
+							':salt' => $userData['salt'],
+							':password' => $userData['password'],
+							':role' => $userData['role'],
+							':mail' => $userData['mail'],
+							':createdAt' => $userData['created_at'])
+			);
 			
 			// Get the id of the newly created user and set it on the entity.
 			$id = $this->pdo->lastInsertId();
