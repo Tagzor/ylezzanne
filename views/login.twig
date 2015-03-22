@@ -18,10 +18,10 @@
 	        
 	    <button class="btn btn-lg btn-primary btn-block" type="submit">Logi sisse</button>
 	</form>
-<form style="display: inline" action="{{ path('login_check') }}?action=eid-login" method="get">
+<form style="display: inline" action="login?action=eid-login" method="get">
   <button type="button" class="btn btn-info btn-block"><img src="{{ app.request.basepath }}/images/id-kaart.png" alt="mobiilid"></button>
 </form>		
-<form style="display: inline" action="{{ path('login_check') }}?action=mid-login" method="get">
+<form style="display: inline" action="login?action=mid-login" method="get">
   <button type="button" class="btn btn-info btn-block"><img src="{{ app.request.basepath }}/images/mobiil-id.png" alt="mobiilid"></button>
 </form>	
 
