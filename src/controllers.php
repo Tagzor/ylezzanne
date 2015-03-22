@@ -94,7 +94,6 @@ $statistics->get ( '/game/{id}', function ($id) use($app) {
 	) );
 } );
 
-$app->mount ( '/twig', $twig );
 $app->mount ( '/user', $user );
 $app->mount ( '/game', $game );
 $app->mount ( '/db', $statistics );
