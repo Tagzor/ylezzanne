@@ -155,11 +155,7 @@ $app->get ( '/login-openId', function () use($app) {
 	// Vaatame, mis muutujad olemas on ...
 	if (! empty ( $_SESSION )) {
 		
-		echo "<h2>Siin kontroller \$_SESSION kuvab sisu:</h2>";
-		echo "<div class='alert'>";
 		foreach ( $_SESSION as $k => $v ) {
-			echo $k . " = " . $v . "<br>";
-			
 			if (strcasecmp ( $k, 'openid' ) == 0) {
 				$openid = $v;
 			}
@@ -178,14 +174,23 @@ $app->get ( '/login-openId', function () use($app) {
 				$dob = $v;
 			}
 		}
-		echo "</div>";
+		
 		if (null !== $openid) {
 			$userDAO = new Ylezzanne\Dao\UserDAO ( $app ['pdo'], $app ['security.encoder.digest'] );
 			$user = new \Ylezzanne\Dao\User ();
-			$user->setUsername ( $email );
 			$user->setPassword ( 'ylezzanne' );
-			$user->setMail ( $email );
-			
+			if (null !== $email) {
+				$user->setUsername ( $email );
+				$user->setMail ( $email );
+			} else {
+				$name = explode(" ", $fullname);
+				echo $name[0]; 
+				echo $name[1]; 
+				echo $name[0].$name[1]."@eesti.ee";
+				$user->setUsername ($name[0]);
+				$user->setUsername ( $name[0].$name[1]."@eesti.ee");
+			}
+						
 			$userDAO->save ( $user );
 			$message = 'The user ' . $user->getUsername () . ' has been saved.';
 			$app ['session']->getFlashBag ()->add ( 'success', $message );
