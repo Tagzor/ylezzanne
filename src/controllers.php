@@ -97,7 +97,14 @@ $game->get ( '/{id}', function ($id) use($app) {
 	$topScores = $gameDAO->getTopScores ( $id );
 	$games = $gameDAO->findAll ();
 	
+	$token = $app ['security']->getToken ();
+	if (null !== $token) {
+		$user = $token->getUser ();
+		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
+	}
+	
 	return $app ['twig']->render ( 'game.twig', array (
+			'name' => $user->getUsername (),
 			'game' => $game,
 			'topScores' => $topScores,
 			'games' => $games 
@@ -107,7 +114,15 @@ $game->get ( '/{id}', function ($id) use($app) {
 $game->get ( '/', function () use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
 	$games = $gameDAO->findAll ();
+	
+	$token = $app ['security']->getToken ();
+	if (null !== $token) {
+		$user = $token->getUser ();
+		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
+	}
+	
 	return $app ['twig']->render ( 'games.twig', array (
+			'name' => $user->getUsername (),
 			'games' => $games 
 	) );
 } );
@@ -125,6 +140,7 @@ $statistics->get ( '/game/{id}', function ($id) use($app) {
 	}
 	
 	return $app ['twig']->render ( 'statistics.twig', array (
+			'name' => $user->getUsername (),
 			'games' => $games,
 			'statistics' => $stats 
 	) );
