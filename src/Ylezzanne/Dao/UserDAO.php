@@ -41,35 +41,47 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 	{
 		$userData = array(
 				'username' => $user->getUsername(),
+				'password' => $user->getPassword(),
 				'mail' => $user->getMail(),
-				'role' => $user->getRole(),
+				'role' => 'ROLE_ADMIN',
+				
 		);
 		// If the password was changed, re-encrypt it.
 		if (strlen($user->getPassword()) != 88) {
 			$userData['salt'] = uniqid(mt_rand());
 			$userData['password'] = $this->encoder->encodePassword($user->getPassword(), $userData['salt']);
 		}
+		
 		if ($user->getId()) {
 			// If a new image was uploaded, make sure the filename gets set.
-			$newFile = $this->handleFileUpload($user);
-			if ($newFile) {
-				$userData['image'] = $user->getImage();
-			}
-			$this->pdo->update('users', $userData, array('id' => $user->getId()));
+// 			$newFile = $this->handleFileUpload($user);
+// 			if ($newFile) {
+// 				$userData['image'] = $user->getImage();
+// 			}
+// 			$this->pdo->update('users', $userData, array('id' => $user->getId()));
 		} else {
 			// The user is new, note the creation timestamp.
 			$userData['created_at'] = time();
-			$this->pdo->insert('users', $userData);
+			
+			$stmt = $this->pdo->prepare("INSERT INTO USERS (name, salt, password, mail, created_at) VALUES (:name, :salt, :password, :mail, :created_at)");
+			$stmt->bindParam(':name', $userData['username']);
+			$stmt->bindParam(':salt', $userData['salt']);
+			$stmt->bindParam(':password', $userData['password']);
+			$stmt->bindParam(':mail', $userData['mail']);
+			$stmt->bindParam(':created_at', $userData['created_at']);
+			
+			$stmt->execute();
+			
 			// Get the id of the newly created user and set it on the entity.
 			$id = $this->pdo->lastInsertId();
 			$user->setId($id);
 			// If a new image was uploaded, update the user with the new
 			// filename.
-			$newFile = $this->handleFileUpload($user);
-			if ($newFile) {
-				$newData = array('image' => $user->getImage());
-				$this->pdo->update('users', $newData, array('id' => $id));
-			}
+// 			$newFile = $this->handleFileUpload($user);
+// 			if ($newFile) {
+// 				$newData = array('image' => $user->getImage());
+// 				$this->pdo->update('users', $newData, array('id' => $id));
+// 			}
 		}
 	}
 	
