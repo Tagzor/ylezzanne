@@ -211,7 +211,7 @@ $app->get ( '/login-openId', function () use($app) {
 	
 	$app ['monolog']->addDebug ( 'logging output.' );
 	return $app ['twig']->render ( 'login.twig', array (
-					'error' => 'openID tuvastamine eba&ouml;nnestus!'));
+					'error' => 'Isikuandmeid ei leitud!'));
 } );
 
 $app->get ( '/', function () use($app) {
