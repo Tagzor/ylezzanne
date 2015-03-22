@@ -184,11 +184,8 @@ $app->get ( '/login-openId', function () use($app) {
 				$user->setMail ( $email );
 			} else {
 				$name = explode(" ", $fullname);
-				echo $name[0]; 
-				echo $name[1]; 
-				echo $name[0].$name[1]."@eesti.ee";
-				$user->setUsername ($name[0]);
-				$user->setUsername ( $name[0].$name[1]."@eesti.ee");
+				$user->setUsername($name[0]);
+				$user->setMail($name[0].".".$name[1]."@eesti.ee");
 			}
 						
 			$userDAO->save ( $user );
@@ -214,7 +211,7 @@ $app->get ( '/login-openId', function () use($app) {
 	
 	$app ['monolog']->addDebug ( 'logging output.' );
 	return $app ['twig']->render ( 'login.twig', array (
-					'error' => 'ID login failed!'));
+					'error' => 'openID tuvastamine eba&ouml;nnestus!'));
 } );
 
 $app->get ( '/', function () use($app) {
@@ -233,5 +230,21 @@ $app->get ( '/', function () use($app) {
 	$app ['monolog']->addDebug ( 'logging output.' );
 	return $app ['twig']->render ( 'login.twig' );
 } );
+
+
+// Register the error handler.
+$app->error(function (\Exception $e, $code) use ($app) {
+	if ($app['debug']) {
+		return;
+	}
+	switch ($code) {
+		case 404:
+			$message = 'The requested page could not be found.';
+			break;
+		default:
+			$message = 'We are sorry, but something went terribly wrong.';
+	}
+	return new Response($message, $code);
+});
 
 ?>
