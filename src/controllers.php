@@ -19,10 +19,15 @@ $user->get ( '/{name}', function ($name) use($app) {
 		) );
 	} 
 	
-	return $app ['twig']->render ( 'user.twig', array (
-			'name' => $user->getUsername () ,
-			'user' => $user
+	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
+	$topGames = $gameDAO->topGames();
+	
+	return $app ['twig']->render ('user.twig', array (
+			'name' => $user->getUsername (),
+			'user' => $user,
+			'topGames' => $topGames
 	) );
+	
 } );
 
 $user->get ( '/', function () use($app) {
@@ -31,9 +36,13 @@ $user->get ( '/', function () use($app) {
 		$user = $token->getUser ();
 	}
 	
-	return $app ['twig']->render ( 'user.twig', array (
-			'name' => $user->getUsername () ,
-			'user' => $user
+	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
+	$topGames = $gameDAO->topGames();
+	
+	return $app ['twig']->render ('user.twig', array (
+			'name' => $user->getUsername (),
+			'user' => $user,
+			'topGames' => $topGames
 	) );
 } );
 
