@@ -16,18 +16,13 @@ $twig->get ( '/{name}', function ($name) use($app) {
 $user = $app ['controllers_factory'];
 $user->get ( '/{name}', function ($name) use($app) {
 	$stmt = $app ['pdo']->prepare ( "SELECT u.* FROM users u WHERE u.username = :name" );
-	// $stmt->bindValue(':name', $name, PDO::PARAM_STR);
 	$stmt->execute ( array (
 			':name' => $name 
 	) );
 	
 	$usersData = array ();
 	while ( $row = $stmt->fetch ( PDO::FETCH_ASSOC ) ) {
-		$app ['monolog']->addDebug ( 'Row ' . $row ['username'] );
-		$app ['monolog']->addDebug ( 'Row ' . $row ['password'] );
-		
 		$user = new User ( $row ['id'], $row ['username'], $row ['password'], explode ( ',', $row ['role'] ), true, true, true, true );
-		
 		array_push ( $usersData, $user );
 		
 		$salt = uniqid ( mt_rand () );
@@ -214,8 +209,13 @@ $app->get ( '/', function () use($app) {
 	$token = $app ['security']->getToken ();
 	if (null !== $token) {
 		$user = $token->getUser ();
-		return $app ['twig']->render ( 'user.twig', array (
-				'name' => $user->getUsername () 
+		
+		$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
+		$games = $gameDAO->findAll ();
+		
+		return $app ['twig']->render ('user.twig', array (
+				'name' => $user->getUsername (),
+				'games' => $games  
 		) );
 	}
 	$app ['monolog']->addDebug ( 'logging output.' );
