@@ -211,7 +211,7 @@ $app->get ( '/', function () use($app) {
 		$user = $token->getUser ();
 		
 		$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
-		$games = $gameDAO->findAll ();
+		$games = $gameDAO->topGames();
 		
 		return $app ['twig']->render ('user.twig', array (
 				'name' => $user->getUsername (),

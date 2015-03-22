@@ -44,7 +44,6 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 				'password' => $user->getPassword(),
 				'mail' => $user->getMail(),
 				'role' => 'ROLE_ADMIN',
-				
 		);
 		// If the password was changed, re-encrypt it.
 		if (strlen($user->getPassword()) != 88) {
@@ -53,12 +52,7 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 		}
 		
 		if ($user->getId()) {
-			// If a new image was uploaded, make sure the filename gets set.
-// 			$newFile = $this->handleFileUpload($user);
-// 			if ($newFile) {
-// 				$userData['image'] = $user->getImage();
-// 			}
-// 			$this->pdo->update('users', $userData, array('id' => $user->getId()));
+		//TODO: change password or upload new image
 		} else {
 			// The user is new, note the creation timestamp.
 			$userData['created_at'] = time();
@@ -77,13 +71,6 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 			// Get the id of the newly created user and set it on the entity.
 			$id = $this->pdo->lastInsertId();
 			$user->setId($id);
-			// If a new image was uploaded, update the user with the new
-			// filename.
-// 			$newFile = $this->handleFileUpload($user);
-// 			if ($newFile) {
-// 				$newData = array('image' => $user->getImage());
-// 				$this->pdo->update('users', $newData, array('id' => $id));
-// 			}
 		}
 	}
 	
