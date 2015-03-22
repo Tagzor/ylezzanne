@@ -192,7 +192,7 @@ $app->get ( '/eid', function () use($app) {
 		$user-> setPassword('ylezanne');
 		$user-> setMail($email);
 		
-			$app['repository.user']->save($user);
+			$userDAO -> save($user);
 			$message = 'The user ' . $user->getUsername() . ' has been saved.';
 			$app['session']->getFlashBag()->add('success', $message);
 			// Redirect to the edit page.
