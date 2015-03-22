@@ -166,6 +166,7 @@ $app->get ( '/eid', function () use($app) {
 		echo "<h2>Siin kontroller \$_SESSION kuvab sisu:</h2>";
 		echo "<div class='alert'>";
 		foreach($_SESSION as $k => $v){
+			echo $k." = ".$v."<br>";
 			if (strcasecmp($k, 'openid') == 0) {
 				$openid = $v;
 			}
@@ -175,6 +176,10 @@ $app->get ( '/eid', function () use($app) {
 			if (strcasecmp($k, 'fullname') == 0) {
 				$fullname = $v;
 			}
+			
+			if (strcasecmp($k, 'gender') == 0) {
+				$gender = $v;
+			}
 			if (strcasecmp($k, 'dob') == 0) {
 				$dob = $v;
 			}
@@ -183,6 +188,10 @@ $app->get ( '/eid', function () use($app) {
 	}
 	
 	return $app ['twig']->render ( 'eid.twig', array (
+			'error' => $name,
+			'msg' => $name,
+			'success' => $name,
+			'gender' => $gender,
 			'name' => $name,
 			'openid' => $openid,
 			'email' => $email,
