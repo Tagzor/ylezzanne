@@ -13,8 +13,8 @@
 				<div class="list-group">
 					<a href="#" class="list-group-item active">TOP M&auml;ngud</a>
 					
-					{% for game in games %}
-						<a href="/game/{{game.id}}" class="list-group-item">{{ game.name }} ({{ total }})</a>
+					{% for game in topGames %}
+						<a href="/game/{{game.id}}" class="list-group-item">{{ game.name }} ({{ game.total }})</a>
 					{% else %}
 						<p>M&auml;nge ei leitud!</p>
 				        {% endfor %}

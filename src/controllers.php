@@ -211,11 +211,11 @@ $app->get ( '/', function () use($app) {
 		$user = $token->getUser ();
 		
 		$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
-		$games = $gameDAO->topGames();
+		$topGames = $gameDAO->topGames();
 		
 		return $app ['twig']->render ('user.twig', array (
 				'name' => $user->getUsername (),
-				'games' => $games  
+				'topGames' => $topGames  
 		) );
 	}
 	$app ['monolog']->addDebug ( 'logging output.' );
