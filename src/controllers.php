@@ -165,14 +165,29 @@ $app->get ( '/eid', function () use($app) {
 	if(!empty($_SESSION)) {
 		echo "<h2>Siin kontroller \$_SESSION kuvab sisu:</h2>";
 		echo "<div class='alert'>";
-		foreach($_SESSION as $k => $v)
-			echo "$k = $v <br />";
-			echo "</div>";
+		foreach($_SESSION as $k => $v){
+			if (strcasecmp($k, 'openid') == 0) {
+				$openid = $v;
+			}
+			if (strcasecmp($k, 'email') == 0) {
+				$email = $v;
+			}
+			if (strcasecmp($k, 'fullname') == 0) {
+				$fullname = $v;
+			}
+			if (strcasecmp($k, 'dob') == 0) {
+				$dob = $v;
+			}
+		}
+		echo "</div>";
 	}
 	
 	return $app ['twig']->render ( 'eid.twig', array (
 			'name' => $name,
-			'_SESSION' => $_SESSION 
+			'openid' => $openid,
+			'email' => $email,
+			'fullname' => $fullname,
+			'dob' => $dob
 	) );
 } );
 
