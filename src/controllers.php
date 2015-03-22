@@ -179,30 +179,37 @@ $app->get ( '/login-openId', function () use($app) {
 			}
 		}
 		echo "</div>";
-		$userDAO = new Ylezzanne\Dao\UserDAO ( $app ['pdo'], $app ['security.encoder.digest'] );
-		$user = new \Ylezzanne\Dao\User ();
-		$user->setUsername ( $email );
-		$user->setPassword ( 'ylezzanne' );
-		$user->setMail ( $email );
+		if (null !== $openid) {
+			$userDAO = new Ylezzanne\Dao\UserDAO ( $app ['pdo'], $app ['security.encoder.digest'] );
+			$user = new \Ylezzanne\Dao\User ();
+			$user->setUsername ( $email );
+			$user->setPassword ( 'ylezzanne' );
+			$user->setMail ( $email );
+			
+			$userDAO->save ( $user );
+			$message = 'The user ' . $user->getUsername () . ' has been saved.';
+			$app ['session']->getFlashBag ()->add ( 'success', $message );
+			
+			return $app ['twig']->render ( 'openId.twig', array (
+					'error' => $name,
+					'msg' => $message,
+					'success' => $name,
+					'gender' => $gender,
+					'name' => $name,
+					'openid' => $openid,
+					'email' => $email,
+					'password' => $password,
+					'fullname' => $fullname,
+					'dob' => $dob,
+					'user' => $user
+			) );
+		}
 		
-		$userDAO->save ( $user );
-		$message = 'The user ' . $user->getUsername () . ' has been saved.';
-		$app ['session']->getFlashBag ()->add ( 'success', $message );
 	}
 	
-	return $app ['twig']->render ( 'eid.twig', array (
-			'error' => $name,
-			'msg' => $message,
-			'success' => $name,
-			'gender' => $gender,
-			'name' => $name,
-			'openid' => $openid,
-			'email' => $email,
-			'password' => $password,
-			'fullname' => $fullname,
-			'dob' => $dob,
-			'user' => $user 
-	) );
+	$app ['monolog']->addDebug ( 'logging output.' );
+	return $app ['twig']->render ( 'login.twig', array (
+					'error' => 'ID login failed!'));
 } );
 
 $app->get ( '/', function () use($app) {
