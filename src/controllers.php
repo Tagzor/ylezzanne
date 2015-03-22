@@ -4,88 +4,36 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\User;
 use Ylezzanne\Dao\GameDAO;
 
-// define controllers for a twig
-$twig = $app ['controllers_factory'];
-$twig->get ( '/{name}', function ($name) use($app) {
-	return $app ['twig']->render ( 'index.twig', array (
-			'name' => $name 
-	) );
-} );
-
 // define controllers for a user
 $user = $app ['controllers_factory'];
 $user->get ( '/{name}', function ($name) use($app) {
-	$stmt = $app ['pdo']->prepare ( "SELECT u.* FROM users u WHERE u.username = :name" );
-	$stmt->execute ( array (
-			':name' => $name 
-	) );
-	
-	$usersData = array ();
-	while ( $row = $stmt->fetch ( PDO::FETCH_ASSOC ) ) {
-		$user = new User ( $row ['id'], $row ['username'], $row ['password'], explode ( ',', $row ['role'] ), true, true, true, true );
-		array_push ( $usersData, $user );
 		
-		$salt = uniqid ( mt_rand () );
-		$password = $app ['security.encoder.digest']->encodePassword ( 'foo', $salt );
-		
-		$app ['monolog']->addDebug ( 'RowSalt ' . $salt );
-		$app ['monolog']->addDebug ( 'RowPAssword ' . $password );
-		
-		print count ( $usersData );
+	$token = $app ['security']->getToken ();
+	if (null !== $token) {
+		$user = $token->getUser ();
 	}
-	
-	if (empty ( $usersData )) {
-		echo "no user stored ";
+
+	if ($user->getUsername () !== $name) {
 		return $app ['twig']->render ( 'user.twig', array (
-				'name' => 'no data stored name' 
+				'error' => 'Access denied!' 
 		) );
-	} else {
-		echo $usersData;
-	}
-	// PHP Catchable fatal error: Object of class Ylezzanne\Dao\User could not be converted to string
-	// print join(",", $usersData);
-	$winner = $usersData [rand ( 0, count ( $usersData ) - 1 )];
+	} 
 	
 	return $app ['twig']->render ( 'user.twig', array (
-			'name' => $winner->getUsername () 
+			'name' => $user->getUsername () ,
+			'user' => $user
 	) );
 } );
 
 $user->get ( '/', function () use($app) {
-	echo "load users! ";
-	
-	$st = $app ['pdo']->prepare ( 'SELECT u.*  FROM users u' );
-	$st->execute ();
-	
-	$usersData = array ();
-	while ( $row = $st->fetch ( PDO::FETCH_ASSOC ) ) {
-		$app ['monolog']->addDebug ( 'Row ' . $row ['username'] );
-		$app ['monolog']->addDebug ( 'Row ' . $row ['password'] );
-		
-		$user = buildUser ( $row );
-		
-		array_push ( $usersData, $user );
-		
-		$salt = uniqid ( mt_rand () );
-		$password = $app ['security.encoder.digest']->encodePassword ( 'foo', $salt );
-		
-		$app ['monolog']->addDebug ( 'RowSalt ' . $salt );
-		$app ['monolog']->addDebug ( 'RowPAssword ' . $password );
-		
-		print count ( $usersData );
+	$token = $app ['security']->getToken ();
+	if (null !== $token) {
+		$user = $token->getUser ();
 	}
-	
-	if (empty ( $usersData )) {
-		echo "no user stored ";
-	} else {
-		echo $usersData;
-	}
-	// PHP Catchable fatal error: Object of class Ylezzanne\Dao\User could not be converted to string
-	// print join(",", $usersData);
-	$winner = $usersData [rand ( 0, count ( $usersData ) - 1 )];
 	
 	return $app ['twig']->render ( 'user.twig', array (
-			'name' => $winner->getUsername () 
+			'name' => $user->getUsername () ,
+			'user' => $user
 	) );
 } );
 
