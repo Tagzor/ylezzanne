@@ -81,10 +81,11 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 	
 		$usersData = array ();
 		while ( $row = $stmt->fetch ( PDO::FETCH_ASSOC ) ) {
-			// $app ['monolog']->addDebug ( ' ' );
-			// array_push ( $usersData, $user );
+			$user = new User($usersData['username'], $usersData['password'], explode(',', $usersData->$usersData['role']), true, true, true, true);
+			$app ['monolog']->addDebug ( $user );
+			array_push ( $usersData, $user );
 		}
-	
+		
 		return $usersData;
 	}
 	
@@ -95,13 +96,18 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 		$stmt = $this->pdo->prepare("SELECT u.* FROM users u WHERE u.username = :username");
 		$stmt->execute(array(':username' => $username));
 		
-		$usersData = $stmt->fetchAll ();
+		$usersData = array();
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$usersData = $row;
+		}
+		
 		if (empty ( $usersData )) {
 			throw new UsernameNotFoundException ( sprintf ( 'User "%s" not found.', $username ) );
 		} else {
 			sprintf ( 'User with "%s" found.', $username );
-			echo $usersData;
 			echo $usersData['username'];
+			echo $usersData['password'];
+			$app ['monolog']->addDebug ( $user );
 		}
 		
 		return new User($usersData['username'], $usersData['password'], explode(',', $usersData->$usersData['role']), true, true, true, true);
