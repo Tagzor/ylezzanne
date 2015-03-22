@@ -17,8 +17,13 @@
 	        <input type="password" id="password" name="_password" value="" class="form-control" placeholder="Parool" required />
 	        
 	    <button class="btn btn-lg btn-primary btn-block" type="submit">Logi sisse</button>
-		<a href="?action=eid-login"><button type="button" class="btn btn-info btn-block"><img src="{{ app.request.basepath }}/images/id-kaart.png" alt="mobiilid"></button></a>
-		<a href="?action=mid-login"><button type="button" class="btn btn-info btn-block"><img src="{{ app.request.basepath }}/images/mobiil-id.png" alt="mobiilid"></button></a>
 	</form>
+<form style="display: inline" action="?action=eid-login" method="get">
+  <button type="button" class="btn btn-info btn-block"><img src="{{ app.request.basepath }}/images/id-kaart.png" alt="mobiilid"></button>
+</form>		
+<form style="display: inline" action="?action=mid-login" method="get">
+  <button type="button" class="btn btn-info btn-block"><img src="{{ app.request.basepath }}/images/mobiil-id.png" alt="mobiilid"></button>
+</form>	
+
 </div>
 {% endblock %}
