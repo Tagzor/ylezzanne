@@ -12,7 +12,7 @@ session_start();
 function getSiteURL() {
 	// Muuda ära vastavalt enda veebisaidile, kui on vajadus.
 	// Võib tagastada ka näiteks stringi "http://mart.randala.pri.ee/openid-php/"
-	return "http://" . $_SERVER["HTTP_HOST"] . dirname($_SERVER["SCRIPT_NAME"]) . "eid";
+	return "http://" . $_SERVER["HTTP_HOST"] . dirname($_SERVER["SCRIPT_NAME"]) . "login-openId";
 } 
 function getReturnTo() { return getSiteURL() . "?action=finishAuth"; }
 function getTrustRoot() { return getSiteURL(); }

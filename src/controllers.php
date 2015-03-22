@@ -150,7 +150,7 @@ $app->get ( '/tbd/{name}', function ($name) use($app) {
 	) );
 } );
 
-$app->get ( '/eid', function () use($app) {
+$app->get ( '/login-openId', function () use($app) {
 	
 	// Vaatame, mis muutujad olemas on ...
 	if (! empty ( $_SESSION )) {
