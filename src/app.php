@@ -6,7 +6,7 @@ use Silex\Provider;
 // Application setup
 //
 $app = new Application ();
-$app ['debug'] = false;
+$app ['debug'] = true;
 // Register the monolog logging service
 $app->register ( new Silex\Provider\MonologServiceProvider (), array (
 		'monolog.logfile' => 'php://stderr' 
