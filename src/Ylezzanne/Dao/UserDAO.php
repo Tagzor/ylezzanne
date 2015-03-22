@@ -108,7 +108,7 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 			echo $usersData['password'];
 
 			// compute the encoded password for password
-			$password = $this->encoder->encodePassword($usersData['password'], $usersData['salt']);
+			$password = $this->encoder->encodePassword('foo', $usersData['salt']);
 			echo $password;
 		}
 
