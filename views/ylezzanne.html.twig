@@ -9,7 +9,7 @@
     <title>Ylezzanne</title>
 </head>
 <body class = "liikumisega">
-{% set active = name|default(1) %}
+{% set active = name|default(null) %}
 {% set error = error|default(null) %}
 {% set last_username = last_username|default(null) %}
 
@@ -36,7 +36,7 @@
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="/user/{{name}}">Profiil</a></li>
 						<li><a href="/tbd/{{name}}">Muuda parooli</a></li>
-						<li><a href="/game/">Statistika</a></li>
+						<li><a href="/db/">Statistika</a></li>
 						<li><a href="{{ path('logout') }}">Logi v&auml;lja</a></li>
 					</ul>
 				</li>
