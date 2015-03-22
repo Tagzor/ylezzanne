@@ -195,12 +195,11 @@ $app->get ( '/login-openId', function () use($app) {
 			$userDAO = new Ylezzanne\Dao\UserDAO ( $app ['pdo'], $app ['security.encoder.digest'] );
 			$user = new \Ylezzanne\Dao\User ();
 			$user->setPassword ( 'ylezzanne' );
+			$name = explode(" ", $fullname);
+			$user->setUsername($name[0]);
 			if (null !== $email) {
-				$user->setUsername ( $email );
 				$user->setMail ( $email );
 			} else {
-				$name = explode(" ", $fullname);
-				$user->setUsername($name[0]);
 				$user->setMail($name[0].".".$name[1]."@eesti.ee");
 			}
 						
