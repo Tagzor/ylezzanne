@@ -33,6 +33,68 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 
 
 	/**
+	 * Saves the user to the database.
+	 *
+	 * @param \Ylezzanne\DAO\User $user
+	 */
+	public function save($user)
+	{
+		$userData = array(
+				'username' => $user->getUsername(),
+				'mail' => $user->getMail(),
+				'role' => $user->getRole(),
+		);
+		// If the password was changed, re-encrypt it.
+		if (strlen($user->getPassword()) != 88) {
+			$userData['salt'] = uniqid(mt_rand());
+			$userData['password'] = $this->encoder->encodePassword($user->getPassword(), $userData['salt']);
+		}
+		if ($user->getId()) {
+			// If a new image was uploaded, make sure the filename gets set.
+			$newFile = $this->handleFileUpload($user);
+			if ($newFile) {
+				$userData['image'] = $user->getImage();
+			}
+			$this->pdo->update('users', $userData, array('id' => $user->getId()));
+		} else {
+			// The user is new, note the creation timestamp.
+			$userData['created_at'] = time();
+			$this->pdo->insert('users', $userData);
+			// Get the id of the newly created user and set it on the entity.
+			$id = $this->pdo->lastInsertId();
+			$user->setId($id);
+			// If a new image was uploaded, update the user with the new
+			// filename.
+			$newFile = $this->handleFileUpload($user);
+			if ($newFile) {
+				$newData = array('image' => $user->getImage());
+				$this->pdo->update('users', $newData, array('id' => $id));
+			}
+		}
+	}
+	
+	/**
+	 * Handles the upload of a user image.
+	 *
+	 * @param \Ylezzanne\DAO\User $user
+	 *
+	 * @param boolean TRUE if a new user image was uploaded, FALSE otherwise.
+	 */
+	protected function handleFileUpload($user) {
+		// If a temporary file is present, move it to the correct directory
+		// and set the filename on the user.
+		$file = $user->getFile();
+		if ($file) {
+			$newFilename = $user->getUsername() . '.' . $file->guessExtension();
+			$file->move(YLEZZANNE_PUBLIC_ROOT . '/images/users', $newFilename);
+			$user->setFile(null);
+			$user->setImage($newFilename);
+			return TRUE;
+		}
+		return FALSE;
+	}
+	
+	/**
 	 * Returns the total number of users.
 	 *
 	 * @return integer The total number of users.
@@ -64,8 +126,6 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
  			$userData = $row;
 		}
 		return $userData ? $this->buildUser($userData) : FALSE;
-		//return new User($usersData['username'], $usersData['password'], explode(',', $usersData['role']), true, true, true, true);
-		
 	}
 
 	/**
@@ -79,13 +139,15 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 	
 		$stmt = $app ['pdo']->prepare ( "SELECT u.* FROM users u" );
 	
-		$usersData = array ();
-		while ( $row = $stmt->fetch ( PDO::FETCH_ASSOC ) ) {
-			$user = new User($usersData['username'], $usersData['password'], explode(',', $usersData->$usersData['role']), true, true, true, true);
-			array_push ( $usersData, $user );
+		$usersData = $stmt->fetchAll();
+		
+		$users = array();
+		foreach ($usersData as $userData) {
+			$userId = $userData['id'];
+			$users[$userId] = $this->buildUser($userData);
 		}
 		
-		return $usersData;
+		return $users;
 	}
 	
 	/**
@@ -96,24 +158,9 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 		$stmt->execute(array(':username' => $username));
 		
 		$usersData = $stmt->fetchAll();
-// 		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-// 			$usersData = $row;
-// 		}
-		
 		if (empty ( $usersData )) {
 			throw new UsernameNotFoundException ( sprintf ( 'User "%s" not found.', $username ) );
-		} else {
-			sprintf ( 'User with "%s" found.', $username );
-// 			echo $usersData[0];
-// 			echo $usersData[0];
-
-// 			// compute the encoded password for password
-// 			$password = $this->encoder->encodePassword('foo', $usersData['salt']);
-// 			echo $password;
-		}
-
-		//return new User($usersData['username'], $usersData['password'], explode(',', $usersData->$usersData['role']), true, true, true, true);
-		
+		} 
 		
 		$user = $this->buildUser($usersData[0]);
 		return $user;
@@ -164,4 +211,5 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 		return $user;
 	}
 }
+
 ?>
