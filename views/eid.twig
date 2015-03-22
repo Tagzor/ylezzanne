@@ -9,7 +9,7 @@ if(isset($success)) echo "<div class=\"success\">$success</div>";
 
 // Vaatame, mis muutujad olemas on ...
 if(!empty($_SESSION)) {
-	echo "<h2>Massiivi \$_SESSION sisu:</h2>";
+	echo "<h2>Siin twig kuvab Massiivi \$_SESSION sisu:</h2>";
 	echo "<div class='alert'>";
 	foreach($_SESSION as $k => $v)
 		echo "$k = $v <br />";
