@@ -98,6 +98,10 @@ class UserDAO implements RepositoryInterface, UserProviderInterface {
 		$usersData = $stmt->fetchAll ();
 		if (empty ( $usersData )) {
 			throw new UsernameNotFoundException ( sprintf ( 'User "%s" not found.', $username ) );
+		} else {
+			sprintf ( 'User with "%s" found.', $username );
+			echo $usersData;
+			echo $usersData['username'];
 		}
 		
 		return new User($usersData['username'], $usersData['password'], explode(',', $usersData->$usersData['role']), true, true, true, true);
