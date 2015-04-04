@@ -49,7 +49,8 @@ $user->get ( '/', function () use($app) {
 // define controllers for a game
 $game = $app ['controllers_factory'];
 
-$game->post ( '/cointoss', function () use($app) {
+
+$game->get ( '/cointoss', function () use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
 	$games = $gameDAO->findAll ();
 
@@ -59,6 +60,28 @@ $game->post ( '/cointoss', function () use($app) {
 		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
 	}
 
+	return $app ['twig']->render ( 'gamecoin.twig', array (
+			'name' => $user->getUsername (),
+			'games' => $games
+	) );
+} );
+
+$game->post ( '/cointoss', function ($valik) use($app) {
+	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
+	$games = $gameDAO->findAll ();
+
+	$token = $app ['security']->getToken ();
+	if (null !== $token) {
+		$user = $token->getUser ();
+		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
+	}
+
+	echo ($score);
+	
+	$score = cointoss($valik, 10);
+	
+	echo ($score);
+	
 	return $app ['twig']->render ( 'gamecoin.twig', array (
 			'name' => $user->getUsername (),
 			'games' => $games
@@ -98,23 +121,6 @@ $game->get ( '/', function () use($app) {
 	if ($_POST['valik']) { 
     cointoss($_POST['valik'], (int)file_get_contents(__DIR__.'cointoss.txt'));
 } 
-//lisab skoorile +1 kui õigesti ja paneb nulli kui valesti
-function cointoss($sisse, $skoor){ 
-	$result = Rand (1,2);	        
-	if ($result ==1 and $sisse=='Kull'){ 
-		$skoor = (int)file_get_contents(__DIR__.'cointoss.txt') + 1;
-		file_put_contents(__DIR__.'cointoss.txt',(string)$skoor);
-		
-	}elseif ($result==2 and $sisse=='Kiri'){ 
-		$skoor = (int)file_get_contents(__DIR__.'cointoss.txt') + 1;
-		return file_put_contents(__DIR__.'cointoss.txt',(string)$skoor);
-			
-    }else {
-		print "Sinu skoor on: ". (int)file_get_contents(__DIR__.'cointoss.txt');	
-		$skoor = 0;	
-		return file_put_contents(__DIR__.'cointoss.txt',(string)$skoor);
-	}
-}
 
 	return $app ['twig']->render ( 'gamecoin.twig', array (
 			'name' => $user->getUsername (),
@@ -259,4 +265,22 @@ $app->error(function (\Exception $e, $code) use ($app) {
 	return new Response($message, $code);
 });
 
+	//lisab skoorile +1 kui õigesti ja paneb nulli kui valesti
+	function cointoss($sisse, $skoor){
+		$result = Rand (1,2);
+		if ($result ==1 and $sisse=='Kull'){
+			$skoor = (int)file_get_contents(__DIR__.'cointoss.txt') + 1;
+			file_put_contents(__DIR__.'cointoss.txt',(string)$skoor);
+	
+		}elseif ($result==2 and $sisse=='Kiri'){
+			$skoor = (int)file_get_contents(__DIR__.'cointoss.txt') + 1;
+			return file_put_contents(__DIR__.'cointoss.txt',(string)$skoor);
+				
+		}else {
+			print "Sinu skoor on: ". (int)file_get_contents(__DIR__.'cointoss.txt');
+			$skoor = 0;
+			return file_put_contents(__DIR__.'cointoss.txt',(string)$skoor);
+		}
+	}
+	
 ?>
