@@ -66,7 +66,7 @@ $game->get ( '/cointoss', function () use($app) {
 	) );
 } );
 
-$game->post ( '/cointoss', function ($valik) use($app) {
+$game->post ( '/cointoss', function () use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
 	$games = $gameDAO->findAll ();
 
@@ -76,7 +76,8 @@ $game->post ( '/cointoss', function ($valik) use($app) {
 		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
 	}
 
-	echo ($score);
+	$valik = $app ['session']->get ( 'valik' );
+	echo ($valik);
 	
 	$score = cointoss($valik, 10);
 	
