@@ -49,7 +49,7 @@ $user->get ( '/', function () use($app) {
 // define controllers for a game
 $game = $app ['controllers_factory'];
 
-$game->get ( '/cointoss', function () use($app) {
+$game->post ( '/cointoss', function () use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
 	$games = $gameDAO->findAll ();
 
