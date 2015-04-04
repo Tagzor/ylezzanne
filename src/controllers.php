@@ -83,6 +83,21 @@ $game->get ( '/', function () use($app) {
 			'games' => $games 
 	) );
 } );
+$game->get ( '/cointoss', function () use($app) {
+	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
+	$games = $gameDAO->findAll ();
+	
+	$token = $app ['security']->getToken ();
+	if (null !== $token) {
+		$user = $token->getUser ();
+		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
+	}
+	
+	return $app ['twig']->render ( 'gamecoin.twig', array (
+			'name' => $user->getUsername (),
+			'games' => $games 
+	) );
+} );
 
 // define controllers for a game statistics
 $statistics = $app ['controllers_factory'];
