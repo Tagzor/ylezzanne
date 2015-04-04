@@ -94,7 +94,7 @@ $game->get ( '/', function () use($app) {
 		$user = $token->getUser ();
 		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
 	}
-<<<<<<< HEAD
+
 	if ($_POST['valik']) { 
     cointoss($_POST['valik'], (int)file_get_contents(__DIR__.'cointoss.txt'));
 } 
@@ -117,10 +117,6 @@ function cointoss($sisse, $skoor){
 }
 
 	return $app ['twig']->render ( 'gamecoin.twig', array (
-=======
-	
-	return $app ['twig']->render ( 'games.twig', array (
->>>>>>> origin/master
 			'name' => $user->getUsername (),
 			'games' => $games ,
 			'skoor'=> (int)file_get_contents(__DIR__.'cointoss.txt')
