@@ -48,6 +48,23 @@ $user->get ( '/', function () use($app) {
 
 // define controllers for a game
 $game = $app ['controllers_factory'];
+
+$game->get ( '/cointoss', function () use($app) {
+	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
+	$games = $gameDAO->findAll ();
+
+	$token = $app ['security']->getToken ();
+	if (null !== $token) {
+		$user = $token->getUser ();
+		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
+	}
+
+	return $app ['twig']->render ( 'gamecoin.twig', array (
+			'name' => $user->getUsername (),
+			'games' => $games
+	) );
+} );
+
 $game->get ( '/{id}', function ($id) use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
 	$game = $gameDAO->find ( $id );
@@ -77,21 +94,7 @@ $game->get ( '/', function () use($app) {
 		$user = $token->getUser ();
 		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
 	}
-	
-	return $app ['twig']->render ( 'games.twig', array (
-			'name' => $user->getUsername (),
-			'games' => $games 
-	) );
-} );
-$game->get ( '/cointoss', function () use($app) {
-	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
-	$games = $gameDAO->findAll ();
-	
-	$token = $app ['security']->getToken ();
-	if (null !== $token) {
-		$user = $token->getUser ();
-		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
-	}
+<<<<<<< HEAD
 	if ($_POST['valik']) { 
     cointoss($_POST['valik'], (int)file_get_contents(__DIR__.'cointoss.txt'));
 } 
@@ -114,11 +117,16 @@ function cointoss($sisse, $skoor){
 }
 
 	return $app ['twig']->render ( 'gamecoin.twig', array (
+=======
+	
+	return $app ['twig']->render ( 'games.twig', array (
+>>>>>>> origin/master
 			'name' => $user->getUsername (),
 			'games' => $games ,
 			'skoor'=> (int)file_get_contents(__DIR__.'cointoss.txt')
 	) );
 } );
+
 
 // define controllers for a game statistics
 $statistics = $app ['controllers_factory'];

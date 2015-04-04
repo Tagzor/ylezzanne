@@ -13,13 +13,6 @@
           </p>
 		  <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
 			<div class="list-group">
-				<a href="#" class="list-group-item active">M&auml;ngud</a>
-				{% for game in games %}
-					<a href="/game/{{game.id}}" class="list-group-item">{{ game.name }}</a>
-				{% else %}
-					<p>M&auml;ngud puuduvad</p>
-		        {% endfor %}
-				
 			</div>
 		  </div>
           <div class="jumbotron col-xs-offset-0 col-sm-offset-3">
@@ -31,12 +24,6 @@
 		</div>
 		  <div class="hidden-xs visible-sm visible-md visible-lg col-sm-3 row-offcanvas-right">
 			<div class="list-group">
-				<a href="#" class="list-group-item active">Top skoorid</a>
-				 {% for row in topScores %}
-			    	<a href="#" class="list-group-item">{{ row.username }} - {{ row.score}}</a>
-			     {% else %}
-		        	<a href="#" class="list-group-item">Tulemused puuduvad!</a>
-				 {% endfor %}
 			</div>
 		  </div>
 	  </div>
