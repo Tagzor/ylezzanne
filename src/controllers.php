@@ -136,6 +136,7 @@ $statistics = $app ['controllers_factory'];
 $statistics->get ( '/game/{id}', function ($id) use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
 	$games = $gameDAO->findAll ();
+	$game = $gameDAO->find($id);
 	
 	$token = $app ['security']->getToken ();
 	if (null !== $token) {
@@ -146,6 +147,7 @@ $statistics->get ( '/game/{id}', function ($id) use($app) {
 	return $app ['twig']->render ( 'statistics.twig', array (
 			'name' => $user->getUsername (),
 			'games' => $games,
+			'game' => $game,
 			'statistics' => $stats 
 	) );
 } );
