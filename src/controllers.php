@@ -167,8 +167,8 @@ $ajax->get ( '/game/{id}', function ($id) use($app) {
 	foreach ($stats as $row)
 	{
 		$aaData[] = array(
-				"0" => $row->getColumn1(),
-				"1" => $row->getColumn2(),
+				"0" => $row->getTime(),
+				"1" => $row->getScore(),
 		);
 	}
 	
