@@ -163,11 +163,22 @@ $ajax->get ( '/game/{id}', function ($id) use($app) {
 		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
 	}
 	
-	return $app ['twig']->render ( 'statistics.twig', array (
-			'name' => $user->getUsername (),
-			'games' => $games,
-			'statistics' => $stats 
-	) );
+	$aaData = array();
+	foreach ($stats as $row)
+	{
+		$aaData[] = array(
+				"0" => $row->getColumn1(),
+				"1" => $row->getColumn2(),
+		);
+	}
+	
+	$output = array(
+			"iTotalRecords" => count($stats),
+			"aaData" => $aaData,
+	);
+	
+	return $this->renderText(json_encode($output));
+	
 } );
 	
 $app->mount ( '/user', $user );

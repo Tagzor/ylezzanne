@@ -96,7 +96,7 @@
 						},
 					      "bProcessing": true,
 					      "bServerSide": true,
-					      "sAjaxSource": "ajax/game/{{game.id}}",
+					      "sAjaxSource": "{{ app.request.basepath }}/ajax/game/{{game.id}}",
 					   });
 			        alert('example2!'); 
 			      });
