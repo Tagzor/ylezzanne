@@ -98,10 +98,8 @@
 						     { "data": "time", "defaultContent": "-" },
 						     { "data": "score", "defaultContent": "-" }
 						 ],
-						
-					      "bProcessing": true,
-					      "bServerSide": true,
-					      "sAjaxSource": "{{ app.request.basepath }}/ajax/game/{{game.id}}",
+						  "processing": true,
+					      "ajax": "{{ app.request.basepath }}/ajax/game/{{game.id}}",
 					   });
 			        alert('example2!'); 
 			      });
