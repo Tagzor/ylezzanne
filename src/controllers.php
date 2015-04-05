@@ -150,9 +150,28 @@ $statistics->get ( '/game/{id}', function ($id) use($app) {
 	) );
 } );
 
+$ajax = $app ['controllers_factory'];
+$ajax->get ( '/game/{id}', function ($id) use($app) {
+	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
+	$games = $gameDAO->findAll ();
+	
+	$token = $app ['security']->getToken ();
+	if (null !== $token) {
+		$user = $token->getUser ();
+		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
+	}
+	
+	return $app ['twig']->render ( 'statistics.twig', array (
+			'name' => $user->getUsername (),
+			'games' => $games,
+			'statistics' => $stats 
+	) );
+} );
+	
 $app->mount ( '/user', $user );
 $app->mount ( '/game', $game );
 $app->mount ( '/db', $statistics );
+$app->mount ( '/ajax', $ajax );
 
 // define "global" controllers
 $app->get ( '/login', function (Request $request) use($app) {
@@ -265,23 +284,21 @@ $app->error(function (\Exception $e, $code) use ($app) {
 	}
 	return new Response($message, $code);
 });
-
-	//lisab skoorile +1 kui õigesti ja paneb nulli kui valesti
-	function cointoss($sisse, $skoor){
-		$result = Rand (1,2);
-		if ($result ==1 and $sisse=='Kull'){
-			$skoor = (int)file_get_contents(__DIR__.'cointoss.txt') + 1;
-			file_put_contents(__DIR__.'cointoss.txt',(string)$skoor);
 	
-		}elseif ($result==2 and $sisse=='Kiri'){
-			$skoor = (int)file_get_contents(__DIR__.'cointoss.txt') + 1;
-			return file_put_contents(__DIR__.'cointoss.txt',(string)$skoor);
-				
-		}else {
-			print "Sinu skoor on: ". (int)file_get_contents(__DIR__.'cointoss.txt');
-			$skoor = 0;
-			return file_put_contents(__DIR__.'cointoss.txt',(string)$skoor);
-		}
+	// lisab skoorile +1 kui 6igesti ja paneb nulli kui valesti
+function cointoss($sisse, $skoor) {
+	$result = Rand ( 1, 2 );
+	if ($result == 1 and $sisse == 'Kull') {
+		$skoor = ( int ) file_get_contents ( __DIR__ . 'cointoss.txt' ) + 1;
+		file_put_contents ( __DIR__ . 'cointoss.txt', ( string ) $skoor );
+	} elseif ($result == 2 and $sisse == 'Kiri') {
+		$skoor = ( int ) file_get_contents ( __DIR__ . 'cointoss.txt' ) + 1;
+		return file_put_contents ( __DIR__ . 'cointoss.txt', ( string ) $skoor );
+	} else {
+		print "Sinu skoor on: " . ( int ) file_get_contents ( __DIR__ . 'cointoss.txt' );
+		$skoor = 0;
+		return file_put_contents ( __DIR__ . 'cointoss.txt', ( string ) $skoor );
 	}
+}
 	
 ?>

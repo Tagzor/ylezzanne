@@ -1,0 +1,17 @@
+
+{
+	"sProcessing":   "Palun oodake!",
+	"sLengthMenu":   "Ridade arv lehel: _MENU_",
+	"sZeroRecords":  "Otsitavaid objekte ei leitud.",
+	"sInfo":         "Kokku: _TOTAL_ Kuvatud: _START_-_END_",
+	"sInfoEmpty":    " ",
+	"sInfoFiltered": " ",
+	"sInfoPostFix":  " ",
+	"sSearch":       "Otsi kõikidest veergudest:",
+	"oPaginate": {
+		"sFirst":      "Esimesed",
+		"sPrevious":   "<<",
+		"sNext":       ">>",
+		"sLast":       "Viimased"
+	}
+}
