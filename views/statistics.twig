@@ -84,11 +84,27 @@
 			      $(document).ready(function(){ 
 			      	alert('ready!');
 		
-			        $('#example').DataTable({}); 
+			        $('#example').DataTable({
+			        	"language": {
+						        "url": "{{ app.request.basepath }}/js/jquery.dataTables.translations.et.json"
+						},
+						"columnDefs": [
+						        {
+						                "targets": [ 0,1 ],
+						                "sortable": true,
+						                "searchable": true
+						        }
+						]
+			        }); 
 			        
 			        alert('example!');
 			        
-			        $('#example2').DataTable();
+			        $('#example2').DataTable({
+			        	
+					      "bProcessing": true,
+					      "bServerSide": true,
+					      "sAjaxSource": "<?php echo url_for('ajax/game/{{game.id}}') ?>",
+					   });
 			        alert('example2!'); 
 			      });
     			
