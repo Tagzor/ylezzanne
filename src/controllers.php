@@ -167,12 +167,13 @@ $ajax->get ( '/game/{id}', function ($id) use($app) {
 	foreach ($stats as $row)
 	{
 
-		echo int($row[0]);
-		echo int($row[1]);
-		echo ('====');
+		echo $row[0];
+		echo (' score: ');
+		echo $row[1];
+		echo ('</br>');
 		$aaData[] = array(
-				"time" => int($row[0]),
-				"score" => int($row[1]),
+				"time" => $row[0],
+				"score" => $row[1],
 		);
 	}
 	
@@ -181,8 +182,8 @@ $ajax->get ( '/game/{id}', function ($id) use($app) {
 			"data" => $aaData,
 	);
 	
-	return json_encode($output);
-	
+	return $app->json($output);
+	//return json_encode($output);
 } );
 	
 $app->mount ( '/user', $user );
