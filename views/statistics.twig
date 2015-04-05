@@ -27,31 +27,29 @@
 		  </div>
 
           <div class="jumbotron col-xs-offset-0 col-sm-offset-3">
-			<p>
+			
 			{{ ' Statistika ' }} - {{game.name}}
-			</p>
-			<p>
-				<table class="display" id="statistics">
-					<thead>
-						<tr>
-							<th width="50%"> {{ 'Aeg' }} </th>
-					        <th width="50%"> {{ 'Punktid' }} </th>
-						</tr>
-					</thead>
-					<tbody>
-							{% for row in statistics %}
-					             <tr>
-					                 <td> {{ row.time|date('Y-m-d H:i') }} </td>
-					                 <td> {{ row.score}} </td>
-					             </tr>
-					         {% else %}
-					             <tr>
-									<td colspan="2" class="dataTables_empty">{{ 'Pole veel proovinud!' }}</td>
-					             </tr>
-					         {% endfor %}
-					</tbody>
-				</table>
-			</p>
+			<table class="statistika" id="statistics">
+				<thead>
+					<tr>
+						<th> {{ 'Aeg' }} </th>
+				        <th> {{ 'Punktid' }} </th>
+					</tr>
+				</thead>
+				<tbody>
+						{% for row in statistics %}
+				             <tr>
+				                 <td> {{ row.time|date('Y-m-d H:i') }} </td>
+				                 <td> {{ row.score}} </td>
+				             </tr>
+				         {% else %}
+				             <tr>
+								<td colspan="2" class="dataTables_empty">{{ 'Pole veel proovinud!' }}</td>
+				             </tr>
+				         {% endfor %}
+				</tbody>
+			</table>
+
           </div>
 		</div>
       </div>
