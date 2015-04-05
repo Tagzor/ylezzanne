@@ -61,18 +61,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					
-						{% for row in statistics %}
-				             <tr>
-				                 <td> {{ row.time|date('Y-m-d H:i') }} </td>
-				                 <td> {{ row.score}} </td>
-				             </tr>
-				         {% else %}
-				             <tr>
-								<td colspan="2" class="dataTables_empty">{{ 'Pole veel proovinud!' }}</td>
-				             </tr>
-				         {% endfor %}
-					
+				     <tr>
+						<td colspan="2" class="dataTables_empty">{{ 'Pole veel proovinud!' }}</td>
+		             </tr>
 				</tbody>
 			</table>
 		</div>
@@ -100,10 +91,12 @@
 			        alert('example!');
 			        
 			        $('#example2').DataTable({
-			        	
+			        	"language": {
+						        "url": "{{ app.request.basepath }}/js/jquery.dataTables.translations.et.json"
+						},
 					      "bProcessing": true,
 					      "bServerSide": true,
-					      "sAjaxSource": "<?php echo url_for('ajax/game/{{game.id}}') ?>",
+					      "sAjaxSource": "ajax/game/{{game.id}}",
 					   });
 			        alert('example2!'); 
 			      });
