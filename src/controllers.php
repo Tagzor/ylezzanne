@@ -166,11 +166,6 @@ $ajax->get ( '/game/{id}', function ($id) use($app) {
 	$aaData = array();
 	foreach ($stats as $row)
 	{
-
-		echo $row['time'];
-		echo (' score: ');
-		echo $row['score'];
-		echo ('</br>');
 		$aaData[] = array(
 				"time" => $row['time'],
 				"score" => $row['score'],
@@ -183,7 +178,6 @@ $ajax->get ( '/game/{id}', function ($id) use($app) {
 	);
 	
 	return $app->json($output);
-	//return json_encode($output);
 } );
 	
 $app->mount ( '/user', $user );
