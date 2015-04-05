@@ -37,7 +37,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+					
 						{% for row in statistics %}
 				             <tr>
 				                 <td> {{ row.time|date('Y-m-d H:i') }} </td>
@@ -48,7 +48,7 @@
 								<td colspan="2" class="dataTables_empty">{{ 'Pole veel proovinud!' }}</td>
 				             </tr>
 				         {% endfor %}
-					</tr>
+					
 				</tbody>
 			</table>
 
@@ -60,10 +60,10 @@
 	<script type="text/javascript">
 
         $(document).ready(function() {
-				alert('ready!');
+				alert('ready! ' + <?php echo url_for('{{ app.request.basepath }}/js/jquery.dataTables.translations.et.json') ?>);
                 $('table#example').dataTable( {
                         "language": {
-                                "url": "<?php echo url_for('js/jquery.dataTables.translations.et.json') ?>"
+                                "url": "<?php echo url_for('{{ app.request.basepath }}/js/jquery.dataTables.translations.et.json') ?>"
                         },
                 } );
         });
