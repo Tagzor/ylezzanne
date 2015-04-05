@@ -76,8 +76,6 @@ table.dataTable thead .sorting_desc_disabled {
   background: url("../images/sort_desc_disabled.png") no-repeat top right rgb(223,236,245);
 }
 
-/*loetelu tabeli päis */
-
 #list table.dataTable thead .sorting_disabled {
   background: rgb(226,242,230);
 }
@@ -385,7 +383,7 @@ position: relative;
   color: rgb(0,0,0);
 }
 .dataTables_wrapper .dataTables_processing  {
-  color: rgb(4,146,84);
+  color: rgb(30,144,255);
 }
 
 .dataTables_wrapper .dataTables_scroll {
