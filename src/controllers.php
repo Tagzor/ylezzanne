@@ -166,6 +166,7 @@ $ajax->get ( '/game/{id}', function ($id) use($app) {
 	$aaData = array();
 	foreach ($stats as $row)
 	{
+
 		$aaData[] = array(
 				"time" => $row[0],
 				"score" => $row[1],
@@ -173,8 +174,8 @@ $ajax->get ( '/game/{id}', function ($id) use($app) {
 	}
 	
 	$output = array(
-			"iTotalRecords" => count($stats),
-			"aaData" => $aaData,
+			"recordsTotal" => count($stats),
+			"data" => $aaData,
 	);
 	
 	return json_encode($output);
