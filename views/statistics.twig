@@ -28,7 +28,7 @@
 
           <div class="jumbotron col-xs-offset-0 col-sm-offset-3">
 			
-			<h2>Tulemused<h2>
+			<h2>{{ ' Statistika ' }} - {{game.name}}<h2>
 			<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
 				<thead>
 					<tr>
@@ -37,7 +37,6 @@
 					</tr>
 				</thead>
 				<tbody>
-					
 						{% for row in statistics %}
 				             <tr>
 				                 <td> {{ row.time|date('Y-m-d H:i') }} </td>
@@ -48,12 +47,11 @@
 								<td colspan="2" class="dataTables_empty">{{ 'Pole veel proovinud!' }}</td>
 				             </tr>
 				         {% endfor %}
-					
 				</tbody>
 			</table>
 
           </div>
-          <table cellpadding="0" cellspacing="0" border="0" class="display" id="example2">
+          <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
 				<thead>
 					<tr>
 						<th width="50%"> {{ 'Aeg' }} </th>
@@ -72,41 +70,21 @@
 
 	<script>
                  
-			      $(document).ready(function(){ 
-			      	alert('ready!');
-		
-			        $('#example').DataTable({
-			        	"language": {
-						        "url": "{{ app.request.basepath }}/js/jquery.dataTables.translations.et.json"
-						},
-						"columnDefs": [
-						        {
-						                "targets": [ 0,1 ],
-						                "sortable": true,
-						                "searchable": true
-						        }
-						]
-			        }); 
-			        
-			        alert('example!');
-			        
-			        $('#example2').DataTable({
-			        	"language": {
-						        "url": "{{ app.request.basepath }}/js/jquery.dataTables.translations.et.json"
-						},
-						"columns": [
-						     { "data": "time", "defaultContent": "-" },
-						     { "data": "score", "defaultContent": "-" }
-						 ],
-						  "processing": true,
-					      "ajax": "{{ app.request.basepath }}/ajax/game/{{game.id}}",
-					   });
-			        alert('example2!'); 
-			      });
-    			
-    			alert('done! ');
+      $(document).ready(function(){ 
         
-	
+        $('#example').DataTable({
+        	"language": {
+			        "url": "{{ app.request.basepath }}/js/jquery.dataTables.translations.et.json"
+			},
+			"columns": [
+			     { "data": "{{ time|date('Y-m-d H:i') }}", "defaultContent": "-" },
+			     { "data": "score", "defaultContent": "-" }
+			 ],
+			  "processing": true,
+		      "ajax": "{{ app.request.basepath }}/ajax/game/{{game.id}}",
+		   });
+      });
+ 	
 	</script>
 
 {% endblock %}
