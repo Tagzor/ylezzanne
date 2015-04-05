@@ -167,9 +167,12 @@ $ajax->get ( '/game/{id}', function ($id) use($app) {
 	foreach ($stats as $row)
 	{
 
+		echo int($row[0]);
+		echo int($row[1]);
+		echo ('====');
 		$aaData[] = array(
-				"time" => $row[0],
-				"score" => $row[1],
+				"time" => int($row[0]),
+				"score" => int($row[1]),
 		);
 	}
 	
