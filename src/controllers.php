@@ -177,7 +177,7 @@ $ajax->get ( '/game/{id}', function ($id) use($app) {
 			"aaData" => $aaData,
 	);
 	
-	return $this->renderText(json_encode($output));
+	return json_encode($output);
 	
 } );
 	
