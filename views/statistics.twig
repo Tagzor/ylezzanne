@@ -53,21 +53,45 @@
 			</table>
 
           </div>
+          <table cellpadding="0" cellspacing="0" border="0" class="display" id="example2">
+				<thead>
+					<tr>
+						<th width="50%"> {{ 'Aeg' }} </th>
+				        <th width="50%"> {{ 'Punktid' }} </th>
+					</tr>
+				</thead>
+				<tbody>
+					
+						{% for row in statistics %}
+				             <tr>
+				                 <td> {{ row.time|date('Y-m-d H:i') }} </td>
+				                 <td> {{ row.score}} </td>
+				             </tr>
+				         {% else %}
+				             <tr>
+								<td colspan="2" class="dataTables_empty">{{ 'Pole veel proovinud!' }}</td>
+				             </tr>
+				         {% endfor %}
+					
+				</tbody>
+			</table>
 		</div>
       </div>
 	</div>
 
 	<script type="text/javascript">
-
-        $(document).ready(function() {
-				alert('ready! ' + <?php echo url_for('{{ app.request.basepath }}/js/jquery.dataTables.translations.et.json') ?>);
-                $('table#example').dataTable( {
-                        "language": {
-                                "url": "<?php echo url_for('{{ app.request.basepath }}/js/jquery.dataTables.translations.et.json') ?>"
-                        },
-                } );
+                 
+			      $(document).ready(function(){ 
+			      	alert('ready! ' );
+			        $('#example').dataTable(); 
+			        alert('example! ' );
+			        $('#example2').dataTable();
+			        alert('example2! ' ); 
+			      });
+    			
+    			alert('done! ' );
         });
-
+	
 	</script>
 
 {% endblock %}
