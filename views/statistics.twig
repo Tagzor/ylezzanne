@@ -94,6 +94,11 @@
 			        	"language": {
 						        "url": "{{ app.request.basepath }}/js/jquery.dataTables.translations.et.json"
 						},
+						"columns": [
+						     { "data": "time", "defaultContent": "-" },
+						     { "data": "score", "defaultContent": "-" }
+						 ],
+						
 					      "bProcessing": true,
 					      "bServerSide": true,
 					      "sAjaxSource": "{{ app.request.basepath }}/ajax/game/{{game.id}}",
