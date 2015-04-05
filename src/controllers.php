@@ -15,7 +15,7 @@ $user->get ( '/{name}', function ($name) use($app) {
 
 	if ($user->getUsername () !== $name) {
 		return $app ['twig']->render ( 'user.twig', array (
-				'error' => 'Access denied!' 
+				'error' => 'Tegevus pole lubatud!' 
 		) );
 	} 
 	
@@ -49,7 +49,6 @@ $user->get ( '/', function () use($app) {
 // define controllers for a game
 $game = $app ['controllers_factory'];
 
-
 $game->get ( '/cointoss', function () use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
 	$games = $gameDAO->findAll ();
@@ -60,7 +59,7 @@ $game->get ( '/cointoss', function () use($app) {
 		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
 	}
 
-	return $app ['twig']->render ( 'gamecoin.twig', array (
+	return $app ['twig']->render ( 'cointoss.twig', array (
 			'name' => $user->getUsername (),
 			'games' => $games
 	) );
@@ -83,7 +82,7 @@ $game->post ( '/cointoss', function () use($app) {
 	
 	echo ($score);
 	
-	return $app ['twig']->render ( 'gamecoin.twig', array (
+	return $app ['twig']->render ( 'cointoss.twig', array (
 			'name' => $user->getUsername (),
 			'games' => $games
 	) );
@@ -109,25 +108,10 @@ $game->get ( '/{id}', function ($id) use($app) {
 	) );
 } );
 
-$game->get ( '/', function () use($app) {
-	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
-	$games = $gameDAO->findAll ();
-	
-	$token = $app ['security']->getToken ();
-	if (null !== $token) {
-		$user = $token->getUser ();
-		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
-	}
-
-	return $app ['twig']->render ( 'games.twig', array (
-			'name' => $user->getUsername (),
-			'games' => $games
-	) );
-} );
-
 
 // define controllers for a game statistics
 $statistics = $app ['controllers_factory'];
+
 $statistics->get ( '/game/{id}', function ($id) use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
 	$games = $gameDAO->findAll ();
@@ -147,6 +131,22 @@ $statistics->get ( '/game/{id}', function ($id) use($app) {
 	) );
 } );
 
+$statistics->get ( '/', function () use($app) {
+	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
+	$games = $gameDAO->findAll ();
+
+	$token = $app ['security']->getToken ();
+	if (null !== $token) {
+		$user = $token->getUser ();
+		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
+	}
+
+	return $app ['twig']->render ( 'games.twig', array (
+			'name' => $user->getUsername (),
+			'games' => $games
+	) );
+} );
+	
 $ajax = $app ['controllers_factory'];
 $ajax->get ( '/game/{id}', function ($id) use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
@@ -233,7 +233,7 @@ $app->get ( '/login-openId', function () use($app) {
 			}
 						
 			$userDAO->save ( $user );
-			$message = 'The user ' . $user->getUsername () . ' has been saved.';
+			$message = 'Kasutaja ' . $user->getUsername () . ' on Ylezzanne keskonnas aktiveeritud!.';
 			$app ['session']->getFlashBag ()->add ( 'success', $message );
 			
 			return $app ['twig']->render ( 'openId.twig', array (
@@ -292,7 +292,7 @@ $app->error(function (\Exception $e, $code) use ($app) {
 	return new Response($message, $code);
 });
 	
-	// lisab skoorile +1 kui 6igesti ja paneb nulli kui valesti
+// lisab skoorile +1 kui 6igesti ja paneb nulli kui valesti
 function cointoss($sisse, $skoor) {
 	$result = Rand ( 1, 2 );
 	if ($result == 1 and $sisse == 'Kull') {
