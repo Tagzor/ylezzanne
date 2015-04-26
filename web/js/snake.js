@@ -89,7 +89,10 @@ function play_game()
 			ctx.clearRect(0,0,450,300);
 			$('#msg').show();
 			var msg_score = document.getElementById("msg");
+			msg_score.innerHTML = "Aitäh mängimast!<br /> Teie tulemus: <b>"+score+"</b><br /><br /><input type='button' value='Mängi' onclick='play_game();' />";
 			window.location.replace('/game/3/'+score);
+			document.getElementById("playArea").style.display = 'none';
+			window.clearInterval(interval);
 		}
 	}
 
