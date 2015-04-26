@@ -10,14 +10,8 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
 	<link href="valikuleht.css" type="text/css" rel="stylesheet">
 	<title>M&auml;ng</title>
-<!--
-<title>Kolmas vaade</title>
-<meta charset="utf-8">
-<script src="SpryAssets/SpryMenuBar.js" type="text/javascript"></script>
-<link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css">
--->
 </head>
-<body onload="play_game()" class="liikumisega">
+<body class="liikumisega">
 	<nav class="navbar navbar-default navbar-fixed-top">
 	  <div class ="container">
 		<div class="navbar-header">
@@ -68,6 +62,7 @@
           <div class="jumbotron col-xs-offset-0 col-sm-offset-3">
 			<div class="mang">
 				<div id="msg"></div>
+				<div id="stardinupp"><button onclick="play_game()">Alusta mängu</button></div>
 				<canvas id="playArea" width="450px" height="300px">Sorry your browser does not support HTML5</canvas>
 			</div>
 			<div class="tekst">
