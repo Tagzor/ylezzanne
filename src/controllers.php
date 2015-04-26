@@ -64,12 +64,7 @@ $game->get ( '/{id}/{score}', function ($id, $score) use($app) {
 	$gameDAO->saveScore( $user->getId (), $game->getId (), $score);
 	print "Sinu skoor oli: " . $score ;
 	
-	return $app ['twig']->render ( 'game.twig', array (
-			'name' => $user->getUsername (),
-			'game' => $game,
-			'topScores' => $topScores,
-			'games' => $games
-	) );
+	return $app->redirect('/game/'.$id);
 } );
 
 $game->get ( '/snake', function () use($app) {
