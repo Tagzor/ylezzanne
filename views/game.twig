@@ -24,7 +24,13 @@
 		  </div>
           <div class="jumbotron col-xs-offset-0 col-sm-offset-3">
             <p><img src="{{ app.request.basepath }}/images/games/{{game.image}}" class="img-circle" alt= "{{game.name}}"></p>
-			<p>{{ game.description }} </p>
+			<div class="mang">
+				<div id="msg"></div>
+				<canvas id="playArea" width="450px" height="300px">Sorry your browser does not support HTML5</canvas>
+			</div>
+			<div class="tekst">
+				<p>{{ game.description }} </p>
+			</div>
 		  </div>
 		</div>
 		  <div class="hidden-xs visible-sm visible-md visible-lg col-sm-3 row-offcanvas-right">
