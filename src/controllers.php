@@ -90,13 +90,10 @@ $game->post ( '/cointoss', function () use($app) {
 		$user = $token->getUser ();
 		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
 	}
-
-	if (empty($_POST["valik"])) {
-		$valik = "Kull";
-	} else {
-		$valik = test_input($_POST["valik"]);
-		echo ($valik);
-	}
+	
+	$valik = $request->request->get('valik', 'Kull');
+	
+	echo ($valik);
 		
 	$score = cointoss($valik, 10);
 	
