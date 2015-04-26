@@ -110,7 +110,7 @@ $game->post ( '/cointoss', function (Request $request) use($app) {
 	$token = $app ['security']->getToken ();
 	if (null !== $token) {
 		$user = $token->getUser ();
-		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
+		$stats = $gameDAO->getStatistics ( 2, $user->getUsername () );
 	}
 			
 	$valik = $request->request->get('valik', 'fail');
@@ -135,7 +135,7 @@ $game->post ( '/cointoss', function (Request $request) use($app) {
 		$skoor = 0;
 		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) $skoor);
 	    
-		$redirect = $app['url_generator']->generate('score', array('id' => $id, 'score' => $score));
+		$redirect = $app['url_generator']->generate('score', array('id' => 2, 'score' => $score));
 		return $app->redirect($redirect);
 	}
 	
