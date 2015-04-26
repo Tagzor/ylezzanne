@@ -184,3 +184,18 @@ else if ( jQuery ) {
 
 })(window, document);
 
+$(document).ready(function(){ 
+  
+  $('#statistics').DataTable({
+  	"language": {
+		        "url": "{{ app.request.basepath }}/js/jquery.dataTables.translations.et.json"
+		},
+		"columns": [
+		     { "data": "time", "defaultContent": "-" },
+		     { "data": "score", "defaultContent": "-" }
+		 ],
+		  "processing": true,
+	      "ajax": "{{ app.request.basepath }}/ajax/game/{{game.id}}",
+	   });
+});
+
