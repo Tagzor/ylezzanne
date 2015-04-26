@@ -62,9 +62,8 @@ $game->get ( '/{id}/{score}', function ($id, $score) use($app) {
 	}
 
 	$gameDAO->saveScore( $user->getId (), $game->getId (), $score);
-	print "Sinu skoor oli: " . $score ;
 	
-	return $app->redirect('/game/'.$id);
+	return $app->redirect('db/game/'.$id, 303);
 } );
 
 $game->get ( '/snake', function () use($app) {
