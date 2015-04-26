@@ -95,6 +95,7 @@ $game->post ( '/cointoss', function (Request $request) use($app) {
 	echo ($valik);
 	
 	$result = Rand ( 1, 2 );
+	echo ($result);
 	
 	if ($result == 1 and $valik == 'Kull') {
 		$skoor = ( int ) file_get_contents ( __DIR__ .$user->getId (). 'cointoss.txt' ) + 1;
@@ -110,15 +111,14 @@ $game->post ( '/cointoss', function (Request $request) use($app) {
 		$game = $gameDAO->find ( 2 );
 		
 		$gameDAO->saveScore( $user->getId (), $game->getId (), $skoor);
-		
-		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) 0 );
+		$skoor = 0;
+		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) $skoor);
 	    
 		return $app ['twig']->render ( 'game.twig', array (
 				'name' => $user->getUsername (),
 				'game' => $game,
 				'topScores' => $topScores,
-				'games' => $games,
-				'score' => $skoor
+				'games' => $games
 			) );
 	}
 	
