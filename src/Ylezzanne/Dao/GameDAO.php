@@ -4,6 +4,7 @@ namespace Ylezzanne\Dao;
 
 use Herrera\Pdo\Pdo;
 use Ylezzanne\Dao\Game;
+use Ylezzanne\Dao\StatisticsData;
 
 /**
 * Game DAO
@@ -178,7 +179,7 @@ class GameDAO implements RepositoryInterface {
 			
 		// Get the id of the newly created statistics row and set it on the entity.
 		$id = $this->pdo->lastInsertId ();
-		$statisticsRow->setId ( $id );
+		//$statisticsRow->setId ( $id );
 		
 	}
 	
