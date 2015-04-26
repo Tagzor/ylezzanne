@@ -63,7 +63,7 @@ $game->get ( '/{id}/{score}', function ($id, $score) use($app) {
 
 	$gameDAO->saveScore( $user->getId (), $game->getId (), $score);
 	
-	return $app->redirect($app['url_generator']->generate('db/game/'.$id));
+	return $app->redirect($app['url_generator']->generate('/db/game/'.$id));
 } );
 
 $game->get ( '/snake', function () use($app) {
