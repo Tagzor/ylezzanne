@@ -65,7 +65,7 @@ $game->get ( '/{id}/{score}', function ($id, $score) use($app) {
 	
 	//return $app->path('/db/game/'.$id);
 	//return $app->redirect($app['url_generator']->generate('/db/game/'.$id));
-	$redirect = $app['url_generator']->generate('../db/game/', array('id' => $id));
+	$redirect = $app['url_generator']->generate('/game', array('id' => $id));
 	return $app->redirect($redirect);
 } );
 
