@@ -24,16 +24,12 @@
 		  </div>
           <div class="jumbotron col-xs-offset-0 col-sm-offset-3">
           	<div class="mang">
-				<div id="msg"></div>
+				<div id="stardinupp"><button onclick="play_game()">Alusta mängu</button></div>
 				<canvas id="playArea" width="450px" height="300px">Sorry your browser does not support HTML5</canvas>
 			</div>
 			<div class="tekst">
-				<p>Ussim&auml;ng on tuntud ajaviide juba aegadest, mil Nokia valitses mobiilituru liidrikohal. Püüa hiir kinni, liikuda saad nooltega.</p>
+				<p>{{ game.description }} </p>
 			</div>
-			
-            <p><img src="{{ app.request.basepath }}/images/games/{{game.image}}" class="img-circle" alt= "{{game.name}}"></p>
-			<p>{{ game.description }} </p>
-		  </div>
 		</div>
 		  <div class="hidden-xs visible-sm visible-md visible-lg col-sm-3 row-offcanvas-right">
 			<div class="list-group">

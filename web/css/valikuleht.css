@@ -1,6 +1,31 @@
 @charset "utf-8";
 /* CSS Document */
 
+.mang{
+	padding-left: 25px;
+	margin-bottom: 30px;
+	width: 450px;
+	height: 300px;
+}
+
+#msg {
+	width: 450px;
+	position: relative;
+	text-align: center;
+}
+
+#playArea {
+	display: none;
+	border: 2px solid red;
+}
+
+#stardinupp{
+	width: 450px;
+	height: 300px;
+	text-align: center;
+	border: 2px solid red;
+}
+
 .img-circle {
 	width: 200px;
 	height: 200px;
