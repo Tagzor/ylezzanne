@@ -49,6 +49,29 @@ $user->get ( '/', function () use($app) {
 // define controllers for a game
 $game = $app ['controllers_factory'];
 
+$game->get ( '/{id}/{score}', function ($id, $score) use($app) {
+	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
+	$game = $gameDAO->find ( $id );
+	$topScores = $gameDAO->getTopScores ( $id );
+	$games = $gameDAO->findAll ();
+
+	$token = $app ['security']->getToken ();
+	if (null !== $token) {
+		$user = $token->getUser ();
+		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
+	}
+
+	$gameDAO->saveScore( $user->getId (), $game->getId (), $score);
+	print "Sinu skoor oli: " . $score ;
+	
+	return $app ['twig']->render ( 'game.twig', array (
+			'name' => $user->getUsername (),
+			'game' => $game,
+			'topScores' => $topScores,
+			'games' => $games
+	) );
+} );
+
 $game->get ( '/snake', function () use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
 	$games = $gameDAO->findAll ();
@@ -109,7 +132,7 @@ $game->post ( '/cointoss', function (Request $request) use($app) {
 		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) $skoor );
 	} else {
 		
-		$skoor = ( int ) file_get_contents ( __DIR__ .$user->getId (). 'cointoss.txt' );
+		$score = ( int ) file_get_contents ( __DIR__ .$user->getId (). 'cointoss.txt' );
 		$topScores = $gameDAO->getTopScores ( 2 );
 		$game = $gameDAO->find ( 2 );
 		
@@ -117,10 +140,8 @@ $game->post ( '/cointoss', function (Request $request) use($app) {
 		$skoor = 0;
 		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) $skoor);
 	    
-		return $app->redirect('/db/game/2');
+		return $app->redirect('/game/2/'.$score);
 	}
-	
-	print "Sinu skoor on: " . ( int ) file_get_contents ( __DIR__ .$user->getId (). 'cointoss.txt' );
 	
 	return $app ['twig']->render ( 'cointoss.twig', array (
 			'name' => $user->getUsername (),
