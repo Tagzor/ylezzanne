@@ -173,7 +173,7 @@ class GameDAO implements RepositoryInterface {
 				array(	':userId' => $statisticsRow['userId'],
 						':gameId' => $statisticsRow['gameId'],
 						':score' => $statisticsRow['score'],
-						':created_at' => $statisticsRow['created_at'])
+						':created_at' => $statisticsRow['createdAt'])
 		);
 			
 		// Get the id of the newly created statistics row and set it on the entity.
