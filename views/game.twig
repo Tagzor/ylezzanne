@@ -23,22 +23,11 @@
 			</div>
 		  </div>
           <div class="jumbotron col-xs-offset-0 col-sm-offset-3">
-            <p><img src="{{ app.request.basepath }}/images/games/{{game.image}}" class="img-circle" alt= "{{game.name}}"></p>
-			<div class="mang">
-				<div id="msg"></div>
-				<canvas id="playArea" width="450px" height="300px">Sorry your browser does not support HTML5</canvas>
-			</div>
+          	<a href="?action={{ game.source }}" role="button"><img src="{{ app.request.basepath }}/images//games/{{game.image}}" alt="{{game.name}}"></a>
 			<div class="tekst">
-				<p>{{ game.description }} </p>
-				{{game.source}}
+				{{ game.description }}
 			</div>
-			
-			{{game.source}}
-			
-			{% include 'cointoss.twig' %}
-			
-			</div>
-		</div>
+          </div>
 		  <div class="hidden-xs visible-sm visible-md visible-lg col-sm-3 row-offcanvas-right">
 			<div class="list-group">
 				<a href="#" class="list-group-item active">Top skoorid</a>
