@@ -91,18 +91,34 @@ $game->post ( '/cointoss', function (Request $request) use($app) {
 		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
 	}
 			
-	$valik = $request->request->get('valik', 'Kull');
-	echo ($valik);
-	$message = $request->get('message');
-	echo ($message);
-		
-	$score = cointoss($valik, 10);
+	$valik = $request->request->get('valik', 'fail');
+	$result = Rand ( 1, 2 );
 	
-	echo ($score);
+	if ($result == 1 and $sisse == 'Kull') {
+		$skoor = ( int ) file_get_contents ( __DIR__ .$user->getId (). 'cointoss.txt' ) + 1;
+		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) $skoor );
+	} elseif ($result == 2 and $sisse == 'Kiri') {
+		$skoor = ( int ) file_get_contents ( __DIR__ .$user->getId (). 'cointoss.txt' ) + 1;
+		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) $skoor );
+	} else {
+		print "Sinu skoor on: " . ( int ) file_get_contents ( __DIR__ .$user->getId (). 'cointoss.txt' );
+		$skoor = 0;
+		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) $skoor );
+	
+		return $app ['twig']->render ( 'game.twig', array (
+				'id' => 2,
+				'name' => $user->getUsername (),
+				'games' => $games
+		) );
+	}
+	
+	echo ($skoor);
 	
 	return $app ['twig']->render ( 'cointoss.twig', array (
 			'name' => $user->getUsername (),
-			'games' => $games
+			'games' => $games,
+			'score' => $skoor
+			
 	) );
 } );
 
