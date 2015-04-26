@@ -53,7 +53,7 @@ class GameDAO implements RepositoryInterface {
  			$gameData = $row;
 		}
 		
-		return new Game($gameData['id'], $gameData['name'], $gameData['description'], $gameData['image']);
+		return new Game($gameData['id'], $gameData['name'], $gameData['description'], $gameData['image'], $gameData['source']);
 		
 	}
 	
@@ -148,6 +148,38 @@ class GameDAO implements RepositoryInterface {
 		}
 	
 		return $statisticsRows;
+	}
+	
+	/**
+	 * Save score to the statistiscs database.
+	 *
+	 * @param integer $gameId        	
+	 * @param integer $userId        	
+	 * @param integer $score        	
+	 *
+	 */
+	public function saveScore( $userId, $gameId, $score) {
+		
+		$statisticsRow = array (
+				'gameId' => $gameId,
+				'userId' => $userId,
+				'score' => $score 
+		);
+		// creation timestamp.
+		$statisticsRow ['createdAt'] = time ();
+				
+		$stmt = $this->pdo->prepare("INSERT INTO statistics (user_id, game_id, created_at, score) VALUES (:userId, :gameId, :created_at, :score)");
+		$stmt->execute(
+				array(	':userId' => $statisticsRow['userId'],
+						':gameId' => $statisticsRow['gameId'],
+						':score' => $statisticsRow['score'],
+						':created_at' => $statisticsRow['created_at'])
+		);
+			
+		// Get the id of the newly created statistics row and set it on the entity.
+		$id = $this->pdo->lastInsertId ();
+		$statisticsRow->setId ( $id );
+		
 	}
 	
 }
