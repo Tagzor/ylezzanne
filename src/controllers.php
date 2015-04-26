@@ -52,7 +52,9 @@ $game = $app ['controllers_factory'];
 $game->get ( '/snake', function () use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
 	$games = $gameDAO->findAll ();
-
+	$game = $gameDAO->find ( 3 );
+	$topScores = $gameDAO->getTopScores ( 3 );
+	
 	$token = $app ['security']->getToken ();
 	if (null !== $token) {
 		$user = $token->getUser ();
@@ -61,6 +63,8 @@ $game->get ( '/snake', function () use($app) {
 
 	return $app ['twig']->render ( 'snake.twig', array (
 			'name' => $user->getUsername (),
+			'game' => $game,
+			'topScores' => $topScores,
 			'games' => $games
 	) );
 } );
@@ -106,7 +110,6 @@ $game->post ( '/cointoss', function (Request $request) use($app) {
 	} else {
 		
 		$skoor = ( int ) file_get_contents ( __DIR__ .$user->getId (). 'cointoss.txt' );
-		$game = $gameDAO->find ( 2 );
 		$topScores = $gameDAO->getTopScores ( 2 );
 		$game = $gameDAO->find ( 2 );
 		
