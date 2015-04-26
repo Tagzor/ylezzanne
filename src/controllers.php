@@ -103,22 +103,26 @@ $game->post ( '/cointoss', function (Request $request) use($app) {
 		$skoor = ( int ) file_get_contents ( __DIR__ .$user->getId (). 'cointoss.txt' ) + 1;
 		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) $skoor );
 	} else {
-		print "Sinu skoor on: " . ( int ) file_get_contents ( __DIR__ .$user->getId (). 'cointoss.txt' );
-		$skoor = 0;
-		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) $skoor );
-	
-		$game = $gameDAO->find ( $id );
-	    $topScores = $gameDAO->getTopScores ( $id );
 		
+		$skoor = ( int ) file_get_contents ( __DIR__ .$user->getId (). 'cointoss.txt' );
+		$game = $gameDAO->find ( 2 );
+		$topScores = $gameDAO->getTopScores ( 2 );
+		$game = $gameDAO->find ( 2 );
+		
+		$gameDAO->saveScore( $user->getId (), $game->getId (), $skoor);
+		
+		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) 0 );
+	    
 		return $app ['twig']->render ( 'game.twig', array (
 				'name' => $user->getUsername (),
 				'game' => $game,
 				'topScores' => $topScores,
-				'games' => $games 
+				'games' => $games,
+				'score' => $skoor
 			) );
 	}
 	
-	echo ($skoor);
+	print "Sinu skoor on: " . ( int ) file_get_contents ( __DIR__ .$user->getId (). 'cointoss.txt' );
 	
 	return $app ['twig']->render ( 'cointoss.twig', array (
 			'name' => $user->getUsername (),
