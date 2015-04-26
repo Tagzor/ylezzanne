@@ -117,12 +117,7 @@ $game->post ( '/cointoss', function (Request $request) use($app) {
 		$skoor = 0;
 		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) $skoor);
 	    
-		return $app ['twig']->render ( 'game.twig', array (
-				'name' => $user->getUsername (),
-				'game' => $game,
-				'topScores' => $topScores,
-				'games' => $games
-			) );
+		return $app->redirect('/db/game/2');
 	}
 	
 	print "Sinu skoor on: " . ( int ) file_get_contents ( __DIR__ .$user->getId (). 'cointoss.txt' );
