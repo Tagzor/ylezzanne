@@ -30,15 +30,14 @@
 			</div>
 			<div class="tekst">
 				<p>{{ game.description }} </p>
+				{{game.source}}
 			</div>
 			
 			{{game.source}}
 			
-			{% set src%}
-				{{include('cointoss.twig')}}
-			{% endset %}
+			{% include 'cointoss.twig' %}
 			
-			
+			{% include {{game.source}} %}
 		  </div>
 		</div>
 		  <div class="hidden-xs visible-sm visible-md visible-lg col-sm-3 row-offcanvas-right">
