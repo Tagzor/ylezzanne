@@ -31,6 +31,17 @@
 			<div class="tekst">
 				<p>{{ game.description }} </p>
 			</div>
+			
+			{{game.source}}
+			
+			{% set game %}
+				{{include('cointoss.twig')}}
+			{% endset %}
+			
+			{% set gameSrc %}
+				{{include('game.source')}}
+			{% endset %}
+			
 		  </div>
 		</div>
 		  <div class="hidden-xs visible-sm visible-md visible-lg col-sm-3 row-offcanvas-right">
