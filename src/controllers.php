@@ -92,12 +92,14 @@ $game->post ( '/cointoss', function (Request $request) use($app) {
 	}
 			
 	$valik = $request->request->get('valik', 'fail');
+	echo ($valik);
+	
 	$result = Rand ( 1, 2 );
 	
-	if ($result == 1 and $sisse == 'Kull') {
+	if ($result == 1 and $valik == 'Kull') {
 		$skoor = ( int ) file_get_contents ( __DIR__ .$user->getId (). 'cointoss.txt' ) + 1;
 		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) $skoor );
-	} elseif ($result == 2 and $sisse == 'Kiri') {
+	} elseif ($result == 2 and $valik == 'Kiri') {
 		$skoor = ( int ) file_get_contents ( __DIR__ .$user->getId (). 'cointoss.txt' ) + 1;
 		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) $skoor );
 	} else {
@@ -105,11 +107,15 @@ $game->post ( '/cointoss', function (Request $request) use($app) {
 		$skoor = 0;
 		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) $skoor );
 	
+		$game = $gameDAO->find ( $id );
+	    $topScores = $gameDAO->getTopScores ( $id );
+		
 		return $app ['twig']->render ( 'game.twig', array (
-				'id' => 2,
 				'name' => $user->getUsername (),
-				'games' => $games
-		) );
+				'game' => $game,
+				'topScores' => $topScores,
+				'games' => $games 
+			) );
 	}
 	
 	echo ($skoor);
