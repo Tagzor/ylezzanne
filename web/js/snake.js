@@ -94,6 +94,7 @@ function set_game_speed()
 		window.clearInterval(interval);
 	}
 }
+
 interval = window.setInterval(set_game_speed, level);
 document.onkeydown = function(e) {
 	var code = e.keyCode - 37;
