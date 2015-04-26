@@ -1,0 +1,52 @@
+{% extends 'ylezzanne.html.twig' %}
+
+{% set active = 'name' %}
+
+{% block content %}
+
+	<div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-left visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Men&uuml;&uuml;</button>
+          </p>
+		  <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+			<div class="list-group">
+				<a href="#" class="list-group-item active">M&auml;ngud</a>
+				{% for game in games %}
+					<a href="/game/{{game.id}}" class="list-group-item">{{ game.name }}</a>
+				{% else %}
+					<p>M&auml;ngud puuduvad</p>
+		        {% endfor %}
+				
+			</div>
+		  </div>
+          <div class="jumbotron col-xs-offset-0 col-sm-offset-3">
+          	<div class="mang">
+				<div id="msg"></div>
+				<canvas id="playArea" width="450px" height="300px">Sorry your browser does not support HTML5</canvas>
+			</div>
+			<div class="tekst">
+				<p>Ussim&auml;ng on tuntud ajaviide juba aegadest, mil Nokia valitses mobiilituru liidrikohal. Püüa hiir kinni, liikuda saad nooltega.</p>
+			</div>
+			
+            <p><img src="{{ app.request.basepath }}/images/games/{{game.image}}" class="img-circle" alt= "{{game.name}}"></p>
+			<p>{{ game.description }} </p>
+		  </div>
+		</div>
+		  <div class="hidden-xs visible-sm visible-md visible-lg col-sm-3 row-offcanvas-right">
+			<div class="list-group">
+				<a href="#" class="list-group-item active">Top skoorid</a>
+				 {% for row in topScores %}
+			    	<a href="#" class="list-group-item">{{ row.username }} - {{ row.score}}</a>
+			     {% else %}
+		        	<a href="#" class="list-group-item">Tulemused puuduvad!</a>
+				 {% endfor %}
+			</div>
+		  </div>
+	  </div>
+	</div>
+
+
+{% endblock %}
