@@ -89,6 +89,8 @@ function set_game_speed()
 		ctx.clearRect(0,0,450,300);
 		$('#msg').show();
 		var msg_score = document.getElementById("msg");
+		//See järgmine rida on see mis redirectib
+		window.location.replace('/game/3/'+score);
 		msg_score.innerHTML = "Aitäh mängimast!<br /> Teie tulemus: <b>"+score+"</b><br /><br /><input type='button' value='Mängi' onclick='play_game();' />";
 		document.getElementById("playArea").style.display = 'none';
 		window.clearInterval(interval);
