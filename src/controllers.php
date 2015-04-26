@@ -62,12 +62,10 @@ $game->get ( '/{id}/{score}', function ($id, $score) use($app) {
 	}
 
 	$gameDAO->saveScore( $user->getId (), $game->getId (), $score);
-	
-	//return $app->path('/db/game/'.$id);
-	//return $app->redirect($app['url_generator']->generate('/db/game/'.$id));
+
 	$redirect = $app['url_generator']->generate('stat', array('id' => $id));
 	return $app->redirect($redirect);
-} );
+} )->bind('score');
 
 $game->get ( '/snake', function () use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
@@ -137,7 +135,8 @@ $game->post ( '/cointoss', function (Request $request) use($app) {
 		$skoor = 0;
 		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) $skoor);
 	    
-		return $app->redirect('/game/2/'.$score);
+		$redirect = $app['url_generator']->generate('score', array('id' => $id, 'score' => $score));
+		return $app->redirect($redirect);
 	}
 	
 	return $app ['twig']->render ( 'cointoss.twig', array (
