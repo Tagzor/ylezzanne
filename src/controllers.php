@@ -80,8 +80,8 @@ $game->get ( '/cointoss', function () use($app) {
 			'games' => $games
 	) );
 } );
-
-$game->post ( '/cointoss', function () use($app) {
+	
+$game->post ( '/cointoss', function (Request $request) use($app) {
 	$gameDAO = new Ylezzanne\Dao\GameDAO ( $app ['pdo'] );
 	$games = $gameDAO->findAll ();
 
@@ -90,10 +90,11 @@ $game->post ( '/cointoss', function () use($app) {
 		$user = $token->getUser ();
 		$stats = $gameDAO->getStatistics ( $id, $user->getUsername () );
 	}
-	
+			
 	$valik = $request->request->get('valik', 'Kull');
-	
 	echo ($valik);
+	$message = $request->get('message');
+	echo ($message);
 		
 	$score = cointoss($valik, 10);
 	

@@ -71,7 +71,7 @@ class GameDAO implements RepositoryInterface {
 		
 		$gamesData = array ();
 		while ( $row = $stmt->fetch ( PDO::FETCH_ASSOC ) ) {
-			$game = new Game ( $row ['id'], $row ['name'], $row ['description'], $row ['image'] );
+			$game = new Game ( $row ['id'], $row ['name'], $row ['description'], $row ['image'], $row ['source'] );
 			array_push ( $gamesData, $game );
 		}
 		

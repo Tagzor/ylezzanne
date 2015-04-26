@@ -34,7 +34,11 @@ class Game{
 	 */
 	protected $image;
 	
-	
+	/**
+	 * The filename of source.
+	 *
+	 * @var string
+	 */
 	protected $source;
 	
 	
