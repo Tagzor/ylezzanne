@@ -23,7 +23,7 @@
 			</div>
 		  </div>
           <div class="jumbotron col-xs-offset-0 col-sm-offset-3">
-          	<a href="?action={{ game.source }}" role="button"><img src="{{ app.request.basepath }}/images//games/{{game.image}}" alt="{{game.name}}"></a>
+          	<a href="{{ game.source }}" role="button"><img src="{{ app.request.basepath }}/images//games/{{game.image}}" class="img-circle" alt="{{game.name}}"></a>
 			<div class="tekst">
 				{{ game.description }}
 			</div>
