@@ -135,7 +135,7 @@ $game->post ( '/cointoss', function (Request $request) use($app) {
 		$skoor = 0;
 		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) $skoor);
 	    
-		$redirect = $app['url_generator']->generate('score', array('id' => 2, 'score' => $score));
+		$redirect = $app['url_generator']->generate('stat', array('id' => 2));
 		return $app->redirect($redirect);
 	}
 	
