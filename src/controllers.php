@@ -131,7 +131,7 @@ $game->post ( '/cointoss', function (Request $request) use($app) {
 		$topScores = $gameDAO->getTopScores ( 2 );
 		$game = $gameDAO->find ( 2 );
 		
-		$gameDAO->saveScore( $user->getId (), $game->getId (), $skoor);
+		$gameDAO->saveScore( $user->getId (), $game->getId (), $score);
 		$skoor = 0;
 		file_put_contents ( __DIR__ .$user->getId (). 'cointoss.txt', ( string ) $skoor);
 	    
