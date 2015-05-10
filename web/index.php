@@ -1,4 +1,5 @@
 <?php
+if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); else ob_start();
 
 ini_set('display_errors', 0);
 mb_internal_encoding("UTF-8");
