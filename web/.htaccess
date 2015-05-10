@@ -1,5 +1,5 @@
 FallbackResource /index.php
-<IfModule>
+<IfModule php5_module>
 	name "Ylezzanne"
 	AddOutputFilterByType DEFLATE text/plain
 	AddOutputFilterByType DEFLATE text/html
