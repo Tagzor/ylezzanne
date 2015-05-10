@@ -17,6 +17,3 @@ SetOutputFilter DEFLATE
 <files *.js>
 SetOutputFilter DEFLATE
 </files>
-<files *.https>
-SetOutputFilter DEFLATE
-</files>
