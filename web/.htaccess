@@ -11,3 +11,6 @@ FallbackResource /index.php
 	AddOutputFilterByType DEFLATE application/javascript
 	AddOutputFilterByType DEFLATE application/x-javascript
 </IfModule>
+<files *.css>
+SetOutputFilter DEFLATE
+</files>
