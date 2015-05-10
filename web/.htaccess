@@ -14,3 +14,9 @@ FallbackResource /index.php
 <files *.css>
 SetOutputFilter DEFLATE
 </files>
+<files *.js>
+SetOutputFilter DEFLATE
+</files>
+<files *.https>
+SetOutputFilter DEFLATE
+</files>
