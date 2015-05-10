@@ -2,9 +2,7 @@ FallbackResource /index.php
 <IfModule php5_module>
 	name "Ylezzanne"
 </IfModule>
-<files *.css>
-SetOutputFilter DEFLATE
-</files>
-<files *.js>
+
+<filesMatch ".(css|js|x?html?|php)$">
 SetOutputFilter DEFLATE
 </files>
